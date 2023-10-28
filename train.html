@@ -364,7 +364,7 @@
             
             var scale = document.getElementById('scale').value
             if (scale !== "") {
-                output += ' "scale":' + scale + ', \n';
+                output += ' "scale":"' + scale + '", \n';
             }
             
             var offset1 = document.getElementById('offset1').value
@@ -422,7 +422,7 @@
             var smoke2 = document.getElementById('smoke2').value
             var smoke3 = document.getElementById('smoke3').value
             if (smoke1 !== "") {
-                output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',' + smoke1 + ',' + smoke2 + ',' + smoke3 + ']], \n';
+                output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',"' + smoke1 + '",' + smoke2 + ',' + smoke3 + ']], \n';
             }
             
             var notDisplayCab = document.getElementById('notDisplayCab').value
@@ -437,12 +437,12 @@
             
             var sound_BrakeRelease = document.getElementById('sound_BrakeRelease').value
             if (sound_BrakeRelease !== "") {
-                output += ' "sound_BrakeRelease":' + sound_BrakeRelease + ', \n';
+                output += ' "sound_BrakeRelease":"' + sound_BrakeRelease + '", \n';
             }
             
             var sound_BrakeRelease2 = document.getElementById('sound_BrakeRelease2').value
             if (sound_BrakeRelease2 !== "") {
-                output += ' "sound_BrakeRelease2":' + sound_BrakeRelease2 + ', \n';
+                output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
             }
             
             var isSingleTrain = document.getElementById('isSingleTrain').value
@@ -450,7 +450,7 @@
                 output += ' "isSingleTrain":' + isSingleTrain + ',\n';
             }
             
-            output += ' "accuracy": ' + accuracy + '\n';
+            output += ' "accuracy": "' + accuracy + '"\n';
 
             output += "}";
             

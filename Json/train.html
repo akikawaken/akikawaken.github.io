@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rtm_Json_Creator - TrainJson - v1.0w</title>
+    <title>Rtm_Json_Creator - TrainJson - v1.1w</title>
     <meta charset=utf-8>
+    <meta name="author" content="akikawa9616" />
+    <meta name="description" content="RealTrainMod向けJson作成支援ツール:RtmJsonCreatorのブラウザ版 - train" />
+    <!--JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -156,7 +159,7 @@
         <button onclick="outputMats()">出力</button>
 
     </form>
-
+    <hr>
     <h2 id="filename">------ファイル名:TrainName_.json-------</h2>
 
     <pre id="output"></pre>
@@ -273,182 +276,182 @@
 
             // おぷしょんとゆかいななかまたち
 
-            var accelerateion = document.getElementById('accelerateion').value
-            if (accelerateion !== "") {
-                output += ' "accelerateion":' + accelerateion + ', \n';
-            }
+                var accelerateion = document.getElementById('accelerateion').value
+                if (accelerateion !== "") {
+                    output += ' "accelerateion":' + accelerateion + ', \n';
+                }
 
-            var maxSpeed1 = document.getElementById('maxSpeed1').value
-            var maxSpeed2 = document.getElementById('maxSpeed2').value
-            var maxSpeed3 = document.getElementById('maxSpeed3').value
-            var maxSpeed4 = document.getElementById('maxSpeed4').value
-            var maxSpeed5 = document.getElementById('maxSpeed5').value
-            if (maxSpeed5 !== "") {
-                output += ' "maxSpeed": [' + maxSpeed + ',' + maxSpeed2 + ',' + maxSpeed3 + ',' + maxSpeed4 + ',' + maxSpeed5 + ' \n';
-            }
-            
-            var sound_DoorOpen = document.getElementById('sound_DoorOpen').value
-            if (sound_DoorOpen !== "") {
-                output += ' "sound_DoorOpen": "' + sound_DoorOpen + '", \n';
-            }
-            
-            var sound_Horn = document.getElementById('sound_Horn').value
-            if (sound_Horn !== "") {
-                output += ' "sound_Horn": "' + sound_Horn + '", \n';
-            }
-            
-            var sound_DoorClose = document.getElementById('sound_DoorClose').value
-            if (sound_DoorClose !== "") {
-                output += ' "sound_DoorClose": "' + sound_DoorClose + '", \n';
-            }
-            
-            var sound_Stop = document.getElementById('sound_Stop').value
-            if (sound_Stop !== "") {
-                output += ' "sound_Stop": "' + sound_Stop + '", \n';
-            }
-            
-            var sound_S_A = document.getElementById('sound_S_A').value
-            if (sound_S_A !== "") {
-                output += ' "sound_S_A": "' + sound_S_A + '", \n';
-            }
-            
-            var sound_Deceleration = document.getElementById('sound_Deceleration').value
-            if (sound_Deceleration !== "") {
-                output += ' "sound_Deceleration": "' + sound_Deceleration + '", \n';
-            }
-            
-            var sound_D_S = document.getElementById('sound_D_S').value
-            if (sound_D_S !== "") {
-                output += ' "sound_D_S": "' + sound_D_S + '", \n';
-            }
-            
-            var rolling = document.getElementById('rolling').value
-            if (rolling !== "") {
-                output += ' "rolling":' + rolling + ', \n';
-            }
-            
-            var mutejointsound = document.getElementById('mutejointsound').value
-            if (mutejointsound !== "") {
-                output += ' "mutejointsound":' + mutejointsound + ', \n';
-            }
-            
-            var rollSpeedCoefficient = document.getElementById('rollSpeedCoefficient').value
-            if (rollSpeedCoefficient !== "") {
-                output += ' "rollSpeedCoefficient":' + rollSpeedCoefficient + ', \n';
-            }
-            
-            var rollCoefficient = document.getElementById('rollCoefficient').value
-            if (rollCoefficient !== "") {
-                output += ' "rollCoefficient":' + rollCoefficient + ', \n';
-            }
-            
-            var rollVariationCoefficient = document.getElementById('rollVariationCoefficient').value
-            if (rollVariationCoefficient !== "") {
-                output += ' "rollVariationCoefficient":' + rollVariationCoefficient + ', \n';
-            }
-            
-            var rollWidthCoefficient = document.getElementById('rollWidthCoefficient').value
-            if (rollWidthCoefficient !== "") {
-                output += ' "rollWidthCoefficient":' + rollWidthCoefficient + ', \n';
-            }
-            
-            var useCustomColor = document.getElementById('useCustomColor').value
-            if (useCustomColor !== "") {
-                output += ' "useCustomColor":' + useCustomColor + ', \n';
-            }
-            
-            var defaultData = document.getElementById('defaultData').value
-            if (defaultData !== "") {
-                output += ' "defaultData":' + defaultData + ', \n';
-            }
-            
-            var scale = document.getElementById('scale').value
-            if (scale !== "") {
-                output += ' "scale":"' + scale + '", \n';
-            }
-            
-            var offset1 = document.getElementById('offset1').value
-            var offset2 = document.getElementById('offset2').value
-            var offset3 = document.getElementById('offset3').value
-            if (offset3 !== "") {
-                output += ' "offset": [' + offset1 + ',' + offset2 + ',' + offset3 + '], \n';
-            } 
-            
-            var smoothing = document.getElementById('smoothing').value
-            if (smoothing !== "") {
-                output += ' "smoothing":' + smoothing + ', \n';
-            }
-            
-            var doCulling = document.getElementById('doCulling').value
-            if (doCulling !== "") {
-                output += ' "doCulling":' + doCulling + ', \n';
-            }
-            
-            var serverScriptPath = document.getElementById('serverScriptPath').value
-            if (serverScriptPath !== "") {
-                output += ' "serverScriptPath": "' + serverScriptPath + '", \n';
-            }
-            
-            var guiScriptPath = document.getElementById('guiScriptPath').value
-            if (guiScriptPath !== "") {
-                output += ' "guiScriptPath": "' + guiScriptPath + '", \n';
-            }
-            
-            var renderAABB1 = document.getElementById('renderAABB1').value
-            var renderAABB2 = document.getElementById('renderAABB2').value
-            var renderAABB3 = document.getElementById('renderAABB3').value
-            var renderAABB4 = document.getElementById('renderAABB4').value
-            var renderAABB5 = document.getElementById('renderAABB5').value
-            var renderAABB6 = document.getElementById('renderAABB6').value
-            if (renderAABB6 !== "") {
-                output += ' "renderAABB": [' + renderAABB1 + ',' + renderAABB2 + ',' + renderAABB3 + ',' + renderAABB4 + ',' + renderAABB5 + ',' + renderAABB6 + '], \n';
-            }
-            
-            var size1 = document.getElementById('size1').value
-            var size2 = document.getElementById('size2').value
-            if (size2 !== "") {
-                output += ' "size": [' + size1 + ',' + size2 + '], \n';
-            }
-            
-            var soundScriptPath = document.getElementById('soundScriptPath').value
-            if (soundScriptPath !== "") {
-                output += ' "soundScriptPath": "' + soundScriptPath + '", \n';
-            }
-            
-            var smokex = document.getElementById('smokex').value
-            var smokey = document.getElementById('smokey').value
-            var smokez = document.getElementById('smokez').value
-            var smoke1 = document.getElementById('smoke1').value
-            var smoke2 = document.getElementById('smoke2').value
-            var smoke3 = document.getElementById('smoke3').value
-            if (smoke1 !== "") {
-                output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',"' + smoke1 + '",' + smoke2 + ',' + smoke3 + ']], \n';
-            }
-            
-            var notDisplayCab = document.getElementById('notDisplayCab').value
-            if (notDisplayCab !== "") {
-                output += ' "notDisplayCab":' + notDisplayCab + ', \n';
-            }
-            
-            var wheelRotationSpeed = document.getElementById('wheelRotationSpeed').value
-            if (wheelRotationSpeed !== "") {
-                output += ' "wheelRotationSpeed":' + wheelRotationSpeed + ', \n';
-            }
-            
-            var sound_BrakeRelease = document.getElementById('sound_BrakeRelease').value
-            if (sound_BrakeRelease !== "") {
-                output += ' "sound_BrakeRelease":"' + sound_BrakeRelease + '", \n';
-            }
-            
-            var sound_BrakeRelease2 = document.getElementById('sound_BrakeRelease2').value
-            if (sound_BrakeRelease2 !== "") {
-                output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
-            }
-            
-            var isSingleTrain = document.getElementById('isSingleTrain').value
-            if (isSingleTrain !== "") {
-                output += ' "isSingleTrain":' + isSingleTrain + ',\n';
-            }
+                var maxSpeed1 = document.getElementById('maxSpeed1').value
+                var maxSpeed2 = document.getElementById('maxSpeed2').value
+                var maxSpeed3 = document.getElementById('maxSpeed3').value
+                var maxSpeed4 = document.getElementById('maxSpeed4').value
+                var maxSpeed5 = document.getElementById('maxSpeed5').value
+                if (maxSpeed5 !== "") {
+                    output += ' "maxSpeed": [' + maxSpeed + ',' + maxSpeed2 + ',' + maxSpeed3 + ',' + maxSpeed4 + ',' + maxSpeed5 + ' \n';
+                }
+
+                var sound_DoorOpen = document.getElementById('sound_DoorOpen').value
+                if (sound_DoorOpen !== "") {
+                    output += ' "sound_DoorOpen": "' + sound_DoorOpen + '", \n';
+                }
+
+                var sound_Horn = document.getElementById('sound_Horn').value
+                if (sound_Horn !== "") {
+                    output += ' "sound_Horn": "' + sound_Horn + '", \n';
+                }
+
+                var sound_DoorClose = document.getElementById('sound_DoorClose').value
+                if (sound_DoorClose !== "") {
+                    output += ' "sound_DoorClose": "' + sound_DoorClose + '", \n';
+                }
+
+                var sound_Stop = document.getElementById('sound_Stop').value
+                if (sound_Stop !== "") {
+                    output += ' "sound_Stop": "' + sound_Stop + '", \n';
+                }
+
+                var sound_S_A = document.getElementById('sound_S_A').value
+                if (sound_S_A !== "") {
+                    output += ' "sound_S_A": "' + sound_S_A + '", \n';
+                }
+
+                var sound_Deceleration = document.getElementById('sound_Deceleration').value
+                if (sound_Deceleration !== "") {
+                    output += ' "sound_Deceleration": "' + sound_Deceleration + '", \n';
+                }
+
+                var sound_D_S = document.getElementById('sound_D_S').value
+                if (sound_D_S !== "") {
+                    output += ' "sound_D_S": "' + sound_D_S + '", \n';
+                }
+
+                var rolling = document.getElementById('rolling').value
+                if (rolling !== "") {
+                    output += ' "rolling":' + rolling + ', \n';
+                }
+
+                var mutejointsound = document.getElementById('mutejointsound').value
+                if (mutejointsound !== "") {
+                    output += ' "mutejointsound":' + mutejointsound + ', \n';
+                }
+
+                var rollSpeedCoefficient = document.getElementById('rollSpeedCoefficient').value
+                if (rollSpeedCoefficient !== "") {
+                    output += ' "rollSpeedCoefficient":' + rollSpeedCoefficient + ', \n';
+                }
+
+                var rollCoefficient = document.getElementById('rollCoefficient').value
+                if (rollCoefficient !== "") {
+                    output += ' "rollCoefficient":' + rollCoefficient + ', \n';
+                }
+
+                var rollVariationCoefficient = document.getElementById('rollVariationCoefficient').value
+                if (rollVariationCoefficient !== "") {
+                    output += ' "rollVariationCoefficient":' + rollVariationCoefficient + ', \n';
+                }
+
+                var rollWidthCoefficient = document.getElementById('rollWidthCoefficient').value
+                if (rollWidthCoefficient !== "") {
+                    output += ' "rollWidthCoefficient":' + rollWidthCoefficient + ', \n';
+                }
+
+                var useCustomColor = document.getElementById('useCustomColor').value
+                if (useCustomColor !== "") {
+                    output += ' "useCustomColor":' + useCustomColor + ', \n';
+                }
+
+                var defaultData = document.getElementById('defaultData').value
+                if (defaultData !== "") {
+                    output += ' "defaultData":' + defaultData + ', \n';
+                }
+
+                var scale = document.getElementById('scale').value
+                if (scale !== "") {
+                    output += ' "scale":"' + scale + '", \n';
+                }
+
+                var offset1 = document.getElementById('offset1').value
+                var offset2 = document.getElementById('offset2').value
+                var offset3 = document.getElementById('offset3').value
+                if (offset3 !== "") {
+                    output += ' "offset": [' + offset1 + ',' + offset2 + ',' + offset3 + '], \n';
+                } 
+
+                var smoothing = document.getElementById('smoothing').value
+                if (smoothing !== "") {
+                    output += ' "smoothing":' + smoothing + ', \n';
+                }
+
+                var doCulling = document.getElementById('doCulling').value
+                if (doCulling !== "") {
+                    output += ' "doCulling":' + doCulling + ', \n';
+                }
+
+                var serverScriptPath = document.getElementById('serverScriptPath').value
+                if (serverScriptPath !== "") {
+                    output += ' "serverScriptPath": "' + serverScriptPath + '", \n';
+                }
+
+                var guiScriptPath = document.getElementById('guiScriptPath').value
+                if (guiScriptPath !== "") {
+                    output += ' "guiScriptPath": "' + guiScriptPath + '", \n';
+                }
+
+                var renderAABB1 = document.getElementById('renderAABB1').value
+                var renderAABB2 = document.getElementById('renderAABB2').value
+                var renderAABB3 = document.getElementById('renderAABB3').value
+                var renderAABB4 = document.getElementById('renderAABB4').value
+                var renderAABB5 = document.getElementById('renderAABB5').value
+                var renderAABB6 = document.getElementById('renderAABB6').value
+                if (renderAABB6 !== "") {
+                    output += ' "renderAABB": [' + renderAABB1 + ',' + renderAABB2 + ',' + renderAABB3 + ',' + renderAABB4 + ',' + renderAABB5 + ',' + renderAABB6 + '], \n';
+                }
+
+                var size1 = document.getElementById('size1').value
+                var size2 = document.getElementById('size2').value
+                if (size2 !== "") {
+                    output += ' "size": [' + size1 + ',' + size2 + '], \n';
+                }
+
+                var soundScriptPath = document.getElementById('soundScriptPath').value
+                if (soundScriptPath !== "") {
+                    output += ' "soundScriptPath": "' + soundScriptPath + '", \n';
+                }
+
+                var smokex = document.getElementById('smokex').value
+                var smokey = document.getElementById('smokey').value
+                var smokez = document.getElementById('smokez').value
+                var smoke1 = document.getElementById('smoke1').value
+                var smoke2 = document.getElementById('smoke2').value
+                var smoke3 = document.getElementById('smoke3').value
+                if (smoke1 !== "") {
+                    output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',"' + smoke1 + '",' + smoke2 + ',' + smoke3 + ']], \n';
+                }
+
+                var notDisplayCab = document.getElementById('notDisplayCab').value
+                if (notDisplayCab !== "") {
+                    output += ' "notDisplayCab":' + notDisplayCab + ', \n';
+                }
+
+                var wheelRotationSpeed = document.getElementById('wheelRotationSpeed').value
+                if (wheelRotationSpeed !== "") {
+                    output += ' "wheelRotationSpeed":' + wheelRotationSpeed + ', \n';
+                }
+
+                var sound_BrakeRelease = document.getElementById('sound_BrakeRelease').value
+                if (sound_BrakeRelease !== "") {
+                    output += ' "sound_BrakeRelease":"' + sound_BrakeRelease + '", \n';
+                }
+
+                var sound_BrakeRelease2 = document.getElementById('sound_BrakeRelease2').value
+                if (sound_BrakeRelease2 !== "") {
+                    output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
+                }
+
+                var isSingleTrain = document.getElementById('isSingleTrain').value
+                if (isSingleTrain !== "") {
+                    output += ' "isSingleTrain":' + isSingleTrain + ',\n';
+                }
             
             output += ' "accuracy": "' + accuracy + '"\n';
 

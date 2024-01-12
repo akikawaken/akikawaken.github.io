@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rtm_Json_Creator - TrainJson - v1.2w</title>
+    <title>Rtm_Json_Creator - TrainJson - v1.3wl</title>
     <meta charset=utf-8>
     <meta name="author" content="akikawa9616" />
     <meta name="description" content="RealTrainMod向けJson作成支援ツール:RtmJsonCreatorのブラウザ版 - train" />
+    <link rel="stylesheet" href="../css/lightmode.css" />
     <!--JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>列車の json を作成します</h1>
     <p>注意:このページではJavaScriptを使用します。</p>
-    <a href="https://akikawaken.github.io/">←Back</a>
+    <button id="back">←前ページに戻る</button> <a href="../index.html">←Indexに戻る</a>
+    <script>
+        document.getElementById("back").addEventListener("click", () => {
+        history.back();
+        });
+    </script>
     <hr>
     <form id="form" onsubmit="event.preventDefault();">
         <label for="trainname">trainNameを決めてください。 使用可能:半角英数字(英語は小文字のみ可能)</label><br>

@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rtm_Json_Creator - SignJson - v1.2w</title>
+    <title>Rtm_Json_Creator - SignJson - v1.3wl</title>
     <meta charset=utf-8>
     <meta name="author" content="akikawa9616" />
     <meta name="description" content="RealTrainMod向けJson作成支援ツール:RtmJsonCreatorのブラウザ版 - sign" />
+    <link rel="stylesheet" href="../css/lightmode.css" />
 </head>
 <body>
     <h1>看板の json を作成します</h1>
     <p>注意:このページではJavaScriptを使用します。</p>
-    <a href="https://akikawaken.github.io/">←Back</a>
+    <button id="back">←前ページに戻る</button> <a href="../index.html">←Indexに戻る</a>
+    <script>
+        document.getElementById("back").addEventListener("click", () => {
+        history.back();
+        });
+    </script>
     <hr>
     <form id="form">
         <label for="texture">texture を決めてください。(先に保存しておいた看板の png ファイル名を拡張子なしで入力してください。)</label><br>

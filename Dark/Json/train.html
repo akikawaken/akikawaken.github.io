@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rtm_Json_Creator - TrainJson - v1.3wd</title>
+    <meta charset=utf-8>
+    <meta name="author" content="akikawa9616" />
+    <meta name="description" content="RealTrainMod向けJson作成支援ツール:RtmJsonCreatorのブラウザ版 - train - Darkmode" />
+    <link rel="stylesheet" href="../../css/darkmode.css" />
+    <!--JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>列車の json を作成します</h1>
+    <p>注意:このページではJavaScriptを使用します。</p>
+    <button id="back">←前ページに戻る</button> <a href="../index.html">←Indexに戻る</a>
+    <script>
+        document.getElementById("back").addEventListener("click", () => {
+        history.back();
+        });
+    </script>
+    <hr>
+    <form id="form" onsubmit="event.preventDefault();">
+        <label for="trainname">trainNameを決めてください。 使用可能:半角英数字(英語は小文字のみ可能)</label><br>
+        <input type="text" id="trainname" name="trainname"><br><br>
+        <label for="traintype">traintypeを決めてください。 使用可能:EC,DC,CC,TC</label><br>
+        <input type="text" id="traintype" name="traintype"><br><br>
+        <label for="tags">tagsを決めてください。 使用可能:半角英数字(英語は小文字のみ可能)と","<br>複数指定する場合は","で区切って入力してください。(例:tag1,tag2,tag3)</label><br>
+        <input type="text" id="tags" name="tags"><br><br>
+        <label for="modelfile">modelFileを決めてください。 列車の3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
+        <input type="text" id="modelfile" name="modelfile"><br><br>
+        <h2>列車材質設定</h2>
+        <button type="button" onclick="addTrainMat()">材質を追加</button>
+        <button type="button" onclick="removeTrainMat()">最後の材質を削除</button>
+
+        <div id="trainMatSettings"></div>
+<hr>
+        <label for="bogiemodelfile">modelFileを決めてください。 ボギーの3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
+        <input type="text" id="bogiemodelfile" name="bogiemodelfile"><br><br>
+
+        <h2>ボギー材質設定</h2>
+        <button type="button" onclick="addBogieMat()">材質を追加</button>
+        <button type="button" onclick="removeBogieMat()">最後の材質を削除</button>
+
+        <div id="bogieMatSettings"></div>
+<hr>
+        <label for="buttontexture">buttontextureを決めてください。<br>車輌選択画面のボタンのテクスチャへのパスを記述してください。(普通であれば、 textures/train/button_train.png などになります。)</label><br>
+        <input type="text" id="buttontexture" name="buttontexture"><br><br>
+        <label for="playerposx">playerposを決めてください。 x</label><br>
+        <input type="text" id="playerposx" name="playerposx"><br><br>
+        <label for="playerposy">playerposを決めてください。 y</label><br>
+        <input type="text" id="playerposy" name="playerposy"><br><br>
+        <label for="playerposz">playerposを決めてください。 z</label><br>
+        <input type="text" id="playerposz" name="playerposz"><br><br>
+        <label for="playerposx2">反対側のplayerposを決めてください。 x</label><br>
+        <input type="text" id="playerposx2" name="playerposx2"><br><br>
+        <label for="playerposy2">反対側のplayerposを決めてください。 y</label><br>
+        <input type="text" id="playerposy2" name="playerposy2"><br><br>
+        <label for="playerposz2">反対側のplayerposを決めてください。 z</label><br>
+        <input type="text" id="playerposz2" name="playerposz2"><br><br>
+        <label for="trainDistance">trainDistanceを決めてください。</label><br>
+        <input type="text" id="trainDistance" name="trainDistance"><br><br>
+        <label for="accuracy">accuracyを決めてください。</label><br>
+        <input type="text" id="accuracy" name="accuracy"><br><br>
+        <h2>これより下はオプションです。 必要ない場合は空にしてください。</h2>
+        <hr>
+        <label for="accelerateion">accelerateionを決めてください。</label><br>
+        <input type="text" id="accelerateion" name="accelerateion"><br><br>
+        <label for="maxSpeed1">maxSpeedの1つめを決めてください。</label><br>
+        <input type="text" id="maxSpeed1" name="maxSpeed1"><br><br>
+        <label for="maxSpeed2">maxSpeedの2つめを決めてください。</label><br>
+        <input type="text" id="maxSpeed2" name="maxSpeed2"><br><br>
+        <label for="maxSpeed3">maxSpeedの3つめを決めてください。</label><br>
+        <input type="text" id="maxSpeed3" name="maxSpeed3"><br><br>
+        <label for="maxSpeed4">maxSpeedの4つめを決めてください。</label><br>
+        <input type="text" id="maxSpeed4" name="maxSpeed4"><br><br>
+        <label for="maxSpeed5">maxSpeedの5つめを決めてください。</label><br>
+        <input type="text" id="maxSpeed5" name="maxSpeed5"><br><br>
+        <label for="sound_Horn">sound_Hornを決めてください。</label><br>
+        <input type="text" id="sound_Horn" name="sound_Horn"><br><br>
+        <label for="sound_DoorOpen">sound_DoorOpenを決めてください。</label><br>
+        <input type="text" id="sound_DoorOpen" name="sound_DoorOpen"><br><br>
+        <label for="sound_DoorClose">sound_DoorCloseを決めてください。</label><br>
+        <input type="text" id="sound_DoorClose" name="sound_DoorClose"><br><br>
+        <label for="sound_Stop">sound_Stopを決めてください。</label><br>
+        <input type="text" id="sound_Stop" name="sound_Stop"><br><br>
+        <label for="sound_S_A">sound_S_Aを決めてください。</label><br>
+        <input type="text" id="sound_S_A" name="sound_S_A"><br><br>
+        <label for="sound_Deceleration">sound_Decelerationを決めてください。</label><br>
+        <input type="text" id="sound_Deceleration" name="sound_Deceleration"><br><br>
+        <label for="sound_D_S">sound_D_Sを決めてください。</label><br>
+        <input type="text" id="sound_D_S" name="sound_D_S"><br><br>
+        <label for="rolling">rollingを決めてください。</label><br>
+        <input type="text" id="rolling" name="rolling"><br><br>
+        <label for="mutejointsound">mutejointsoundを決めてください。</label><br>
+        <input type="text" id="mutejointsound" name="mutejointsound"><br><br>
+        <label for="rollSpeedCoefficient">rollSpeedCoefficientを決めてください。</label><br>
+        <input type="text" id="rollSpeedCoefficient" name="rollSpeedCoefficient"><br><br>
+        <label for="rollCoefficient">rollCoefficientを決めてください。</label><br>
+        <input type="text" id="rollCoefficient" name="rollCoefficient"><br><br>
+        <label for="rollVariationCoefficient">rollVariationCoefficientを決めてください。</label><br>
+        <input type="text" id="rollVariationCoefficient" name="rollVariationCoefficient"><br><br>
+        <label for="rollWidthCoefficient">rollWidthCoefficientを決めてください。</label><br>
+        <input type="text" id="rollWidthCoefficient" name="rollWidthCoefficient"><br><br>
+        <label for="useCustomColor">useCustomColorを決めてください。</label><br>
+        <input type="text" id="useCustomColor" name="useCustomColor"><br><br>
+        <label for="defaultData">defaultDataを決めてください。</label><br>
+        <input type="text" id="defaultData" name="defaultData"><br><br>
+        <label for="scale">scaleを決めてください。</label><br>
+        <input type="text" id="scale" name="scale"><br><br>
+        <label for="offset1">offsetの1つめを決めてください。</label><br>
+        <input type="text" id="offset1" name="offset1"><br><br>
+        <label for="offset2">offsetの2つめを決めてください。</label><br>
+        <input type="text" id="offset2" name="offset2"><br><br>
+        <label for="offset3">offsetの3つめを決めてください。</label><br>
+        <input type="text" id="offset3" name="offset3"><br><br>
+        <label for="smoothing">smoothingを決めてください。</label><br>
+        <input type="text" id="smoothing" name="smoothing"><br><br>
+        <label for="doCulling">doCullingを決めてください。</label><br>
+        <input type="text" id="doCulling" name="doCulling"><br><br>
+        <label for="serverScriptPath">serverScriptPathを決めてください。</label><br>
+        <input type="text" id="serverScriptPath" name="serverScriptPath"><br><br>
+        <label for="guiScriptPath">guiScriptPathを決めてください。</label><br>
+        <input type="text" id="guiScriptPath" name="guiScriptPath"><br><br>
+        <label for="renderAABB1">renderAABBの1つめを決めてください。</label><br>
+        <input type="text" id="renderAABB1" name="renderAABB1"><br><br>
+        <label for="renderAABB2">renderAABBの2つめを決めてください。</label><br>
+        <input type="text" id="renderAABB2" name="renderAABB2"><br><br>
+        <label for="renderAABB3">renderAABBの3つめを決めてください。</label><br>
+        <input type="text" id="renderAABB3" name="renderAABB3"><br><br>
+        <label for="renderAABB4">renderAABBの4つめを決めてください。</label><br>
+        <input type="text" id="renderAABB4" name="renderAABB4"><br><br>
+        <label for="renderAABB5">renderAABBの5つめを決めてください。</label><br>
+        <input type="text" id="renderAABB5" name="renderAABB5"><br><br>
+        <label for="renderAABB6">renderAABBの6つめを決めてください。</label><br>
+        <input type="text" id="renderAABB6" name="renderAABB6"><br><br>
+        <label for="size1">sizeの1つめを決めてください。</label><br>
+        <input type="text" id="size1" name="size1"><br><br>
+        <label for="size2">sizeの2つめを決めてください。</label><br>
+        <input type="text" id="size2" name="size2"><br><br>
+        <label for="soundScriptPath">soundScriptPathを決めてください。</label><br>
+        <input type="text" id="soundScriptPath" name="soundScriptPath"><br><br>
+        <label for="smokex">smokeの出るx座標を決めてください。</label><br>
+        <input type="text" id="smokex" name="smokex"><br><br>
+        <label for="smokey">smokeの出るy座標を決めてください。</label><br>
+        <input type="text" id="smokey" name="smokey"><br><br>
+        <label for="smokez">smokeの出るz座標を決めてください。</label><br>
+        <input type="text" id="smokez" name="smokez"><br><br>
+        <label for="smoke1">smokeを決めてください。</label><br>
+        <input type="text" id="smoke1" name="smoke1"><br><br>
+        <label for="smoke2">smokeを決めてください。</label><br>
+        <input type="text" id="smoke2" name="smoke2"><br><br>
+        <label for="smoke3">smokeを決めてください。</label><br>
+        <input type="text" id="smoke3" name="smoke3"><br><br>
+        <label for="notDisplayCab">notDisplayCabを決めてください。</label><br>
+        <input type="text" id="notDisplayCab" name="notDisplayCab"><br><br>
+        <label for="wheelRotationSpeed">wheelRotationSpeedを決めてください。</label><br>
+        <input type="text" id="wheelRotationSpeed" name="wheelRotationSpeed"><br><br>
+        <label for="sound_BrakeRelease">sound_BrakeReleaseを決めてください。</label><br>
+        <input type="text" id="sound_BrakeRelease" name="sound_BrakeRelease"><br><br>
+        <label for="sound_BrakeRelease2">sound_BrakeRelease2を決めてください。</label><br>
+        <input type="text" id="sound_BrakeRelease2" name="sound_BrakeRelease2"><br><br>
+        <label for="isSingleTrain">isSingleTrainを決めてください。</label><br>
+        <input type="text" id="isSingleTrain" name="isSingleTrain"><br><br>
+        
+        <button onclick="outputMats()">出力</button>
+
+    </form>
+    <hr>
+    <h2 id="filename">------ファイル名:TrainName_.json-------</h2>
+
+    <pre id="output"></pre>
+
+    <script>
+        // 列車材質設定
+        function addTrainMat() {
+            var count = $('#trainMatSettings').children().length + 1;
+            var matSetting = $('<div>').attr('id', 'trainMat' + count);
+
+            matSetting.append($('<strong>').text("列車の3Dモデルの材質," + count + "つめの名前を決めてください。"));
+            matSetting.append($('<p>').text("材質名を入力してください。"));
+            matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
+            matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
+            matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatTexture'));
+            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
+            matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatOption'));
+
+            $('#trainMatSettings').append(matSetting);
+        }
+
+        function removeTrainMat() {
+            var count = $('#trainMatSettings').children().length;
+            if (count > 0) {
+                $('#trainMat' + count).remove();
+            }
+        }
+
+        // ボギー材質設定
+        function addBogieMat() {
+            var count = $('#bogieMatSettings').children().length + 1;
+            var matSetting = $('<div>').attr('id', 'bogieMat' + count);
+
+            matSetting.append($('<strong>').text("ボギーの3Dモデルの材質," + count + "つめの名前を決めてください。"));
+            matSetting.append($('<p>').text("材質名を入力してください。"));
+            matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMat'));
+            matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
+            matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMatTexture'));
+            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
+            matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMatOption'));
+
+            $('#bogieMatSettings').append(matSetting);
+        }
+
+        function removeBogieMat() {
+            var count = $('#bogieMatSettings').children().length;
+            if (count > 0) {
+                $('#bogieMat' + count).remove();
+            }
+        }
+
+        // 出力
+        function outputMats() {
+            var output = "{ \n";
+            var trainname = $('#trainname').val();
+            output += ' "trainName": "' + trainname + '", \n';
+            
+            var traintype = $('#traintype').val();
+            output += ' "trainType": "' + traintype + '", \n';
+
+            var tags = $('#tags').val();
+            output += ' "tags": "' + tags + '", \n';
+
+            output += ' "trainModel2":{ \n';
+            
+            var modelfile = $('#modelfile').val();
+            output += '  "modelFile": "' + modelfile + '", \n';
+
+            output += '  "textures":[ \n';
+
+            var count = $('#trainMatSettings').children().length;
+            for (var i = 1; i <= count; i++) {
+                var trainMat = $('#trainMat' + i + ' .trainMat').val();
+                var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
+                var trainMatOption = $('#trainMat' + i + ' .trainMatOption').val();
+
+                if (i == count) {
+                    output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
+                } else {
+                    output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
+                }
+            }
+
+            output += ' "bogieModel2":{ \n';
+            var bogiemodelfile = $('#bogiemodelfile').val();
+            output += '  "modelFile": "' + bogiemodelfile + '", \n';
+            output += '  "textures": [ \n';
+
+            count = $('#bogieMatSettings').children().length;
+            for (var i = 1; i <= count; i++) {
+                var bogieMat = $('#bogieMat' + i + ' .bogieMat').val();
+                var bogieMatTexture = $('#bogieMat' + i + ' .bogieMatTexture').val();
+                var bogieMatOption = $('#bogieMat' + i + ' .bogieMatOption').val();
+
+                if (i == count) {
+                    output += '   ["' + bogieMat + '", "' + bogieMatTexture + '", "' + bogieMatOption + '"] \n  ] \n }, \n';
+                } else {
+                    output += '   ["' + bogieMat + '", "' + bogieMatTexture+ '", "'+ bogieMatOption +'"],';
+                }
+            }
+
+            var buttontexture = $('#buttontexture').val();
+            output += ' "buttontexture": "' + buttontexture + '", \n';
+            var playerposx = $('#playerposx').val();
+            var playerposy = $('#playerposy').val();
+            var playerposz = $('#playerposz').val();
+            var playerposx2 = $('#playerposx2').val();
+            var playerposy2 = $('#playerposy2').val();
+            var playerposz2 = $('#playerposz2').val();
+            output += ' "playerPos": [[' + playerposx +',' + playerposy +',' + playerposz +',' + playerposx2 +',' + playerposy2 +',' + playerposz2 +']], \n';
+            var trainDistance = $('#trainDistance').val();
+            output += ' "trainDistance": ' + trainDistance + ', \n';
+            var accuracy = $('#accuracy').val();
+
+            // おぷしょんとゆかいななかまたち
+
+                var accelerateion = document.getElementById('accelerateion').value
+                if (accelerateion !== "") {
+                    output += ' "accelerateion":' + accelerateion + ', \n';
+                }
+
+                var maxSpeed1 = document.getElementById('maxSpeed1').value
+                var maxSpeed2 = document.getElementById('maxSpeed2').value
+                var maxSpeed3 = document.getElementById('maxSpeed3').value
+                var maxSpeed4 = document.getElementById('maxSpeed4').value
+                var maxSpeed5 = document.getElementById('maxSpeed5').value
+                if (maxSpeed5 !== "") {
+                    output += ' "maxSpeed": [' + maxSpeed + ',' + maxSpeed2 + ',' + maxSpeed3 + ',' + maxSpeed4 + ',' + maxSpeed5 + ' \n';
+                }
+
+                var sound_DoorOpen = document.getElementById('sound_DoorOpen').value
+                if (sound_DoorOpen !== "") {
+                    output += ' "sound_DoorOpen": "' + sound_DoorOpen + '", \n';
+                }
+
+                var sound_Horn = document.getElementById('sound_Horn').value
+                if (sound_Horn !== "") {
+                    output += ' "sound_Horn": "' + sound_Horn + '", \n';
+                }
+
+                var sound_DoorClose = document.getElementById('sound_DoorClose').value
+                if (sound_DoorClose !== "") {
+                    output += ' "sound_DoorClose": "' + sound_DoorClose + '", \n';
+                }
+
+                var sound_Stop = document.getElementById('sound_Stop').value
+                if (sound_Stop !== "") {
+                    output += ' "sound_Stop": "' + sound_Stop + '", \n';
+                }
+
+                var sound_S_A = document.getElementById('sound_S_A').value
+                if (sound_S_A !== "") {
+                    output += ' "sound_S_A": "' + sound_S_A + '", \n';
+                }
+
+                var sound_Deceleration = document.getElementById('sound_Deceleration').value
+                if (sound_Deceleration !== "") {
+                    output += ' "sound_Deceleration": "' + sound_Deceleration + '", \n';
+                }
+
+                var sound_D_S = document.getElementById('sound_D_S').value
+                if (sound_D_S !== "") {
+                    output += ' "sound_D_S": "' + sound_D_S + '", \n';
+                }
+
+                var rolling = document.getElementById('rolling').value
+                if (rolling !== "") {
+                    output += ' "rolling":' + rolling + ', \n';
+                }
+
+                var mutejointsound = document.getElementById('mutejointsound').value
+                if (mutejointsound !== "") {
+                    output += ' "mutejointsound":' + mutejointsound + ', \n';
+                }
+
+                var rollSpeedCoefficient = document.getElementById('rollSpeedCoefficient').value
+                if (rollSpeedCoefficient !== "") {
+                    output += ' "rollSpeedCoefficient":' + rollSpeedCoefficient + ', \n';
+                }
+
+                var rollCoefficient = document.getElementById('rollCoefficient').value
+                if (rollCoefficient !== "") {
+                    output += ' "rollCoefficient":' + rollCoefficient + ', \n';
+                }
+
+                var rollVariationCoefficient = document.getElementById('rollVariationCoefficient').value
+                if (rollVariationCoefficient !== "") {
+                    output += ' "rollVariationCoefficient":' + rollVariationCoefficient + ', \n';
+                }
+
+                var rollWidthCoefficient = document.getElementById('rollWidthCoefficient').value
+                if (rollWidthCoefficient !== "") {
+                    output += ' "rollWidthCoefficient":' + rollWidthCoefficient + ', \n';
+                }
+
+                var useCustomColor = document.getElementById('useCustomColor').value
+                if (useCustomColor !== "") {
+                    output += ' "useCustomColor":' + useCustomColor + ', \n';
+                }
+
+                var defaultData = document.getElementById('defaultData').value
+                if (defaultData !== "") {
+                    output += ' "defaultData":' + defaultData + ', \n';
+                }
+
+                var scale = document.getElementById('scale').value
+                if (scale !== "") {
+                    output += ' "scale":"' + scale + '", \n';
+                }
+
+                var offset1 = document.getElementById('offset1').value
+                var offset2 = document.getElementById('offset2').value
+                var offset3 = document.getElementById('offset3').value
+                if (offset3 !== "") {
+                    output += ' "offset": [' + offset1 + ',' + offset2 + ',' + offset3 + '], \n';
+                } 
+
+                var smoothing = document.getElementById('smoothing').value
+                if (smoothing !== "") {
+                    output += ' "smoothing":' + smoothing + ', \n';
+                }
+
+                var doCulling = document.getElementById('doCulling').value
+                if (doCulling !== "") {
+                    output += ' "doCulling":' + doCulling + ', \n';
+                }
+
+                var serverScriptPath = document.getElementById('serverScriptPath').value
+                if (serverScriptPath !== "") {
+                    output += ' "serverScriptPath": "' + serverScriptPath + '", \n';
+                }
+
+                var guiScriptPath = document.getElementById('guiScriptPath').value
+                if (guiScriptPath !== "") {
+                    output += ' "guiScriptPath": "' + guiScriptPath + '", \n';
+                }
+
+                var renderAABB1 = document.getElementById('renderAABB1').value
+                var renderAABB2 = document.getElementById('renderAABB2').value
+                var renderAABB3 = document.getElementById('renderAABB3').value
+                var renderAABB4 = document.getElementById('renderAABB4').value
+                var renderAABB5 = document.getElementById('renderAABB5').value
+                var renderAABB6 = document.getElementById('renderAABB6').value
+                if (renderAABB6 !== "") {
+                    output += ' "renderAABB": [' + renderAABB1 + ',' + renderAABB2 + ',' + renderAABB3 + ',' + renderAABB4 + ',' + renderAABB5 + ',' + renderAABB6 + '], \n';
+                }
+
+                var size1 = document.getElementById('size1').value
+                var size2 = document.getElementById('size2').value
+                if (size2 !== "") {
+                    output += ' "size": [' + size1 + ',' + size2 + '], \n';
+                }
+
+                var soundScriptPath = document.getElementById('soundScriptPath').value
+                if (soundScriptPath !== "") {
+                    output += ' "soundScriptPath": "' + soundScriptPath + '", \n';
+                }
+
+                var smokex = document.getElementById('smokex').value
+                var smokey = document.getElementById('smokey').value
+                var smokez = document.getElementById('smokez').value
+                var smoke1 = document.getElementById('smoke1').value
+                var smoke2 = document.getElementById('smoke2').value
+                var smoke3 = document.getElementById('smoke3').value
+                if (smoke1 !== "") {
+                    output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',"' + smoke1 + '",' + smoke2 + ',' + smoke3 + ']], \n';
+                }
+
+                var notDisplayCab = document.getElementById('notDisplayCab').value
+                if (notDisplayCab !== "") {
+                    output += ' "notDisplayCab":' + notDisplayCab + ', \n';
+                }
+
+                var wheelRotationSpeed = document.getElementById('wheelRotationSpeed').value
+                if (wheelRotationSpeed !== "") {
+                    output += ' "wheelRotationSpeed":' + wheelRotationSpeed + ', \n';
+                }
+
+                var sound_BrakeRelease = document.getElementById('sound_BrakeRelease').value
+                if (sound_BrakeRelease !== "") {
+                    output += ' "sound_BrakeRelease":"' + sound_BrakeRelease + '", \n';
+                }
+
+                var sound_BrakeRelease2 = document.getElementById('sound_BrakeRelease2').value
+                if (sound_BrakeRelease2 !== "") {
+                    output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
+                }
+
+                var isSingleTrain = document.getElementById('isSingleTrain').value
+                if (isSingleTrain !== "") {
+                    output += ' "isSingleTrain":' + isSingleTrain + ',\n';
+                }
+            
+            output += ' "accuracy": "' + accuracy + '"\n';
+
+            output += "}";
+            
+
+            document.getElementById('output').textContent = output;
+            
+            $('#output').text(output);
+            document.getElementById("filename").innerHTML = "------ファイル名:ModelTrain_" + trainname+ ".json-------";
+        }
+    </script>
+</body>
+</html>

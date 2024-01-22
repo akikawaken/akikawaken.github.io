@@ -49,12 +49,27 @@
 
     </form>
 
-    <button onclick="generateJson()">jsonをつくる</button>
+    <button onclick="generateJson()">jsonをつくる</button><br><br><button id="download">Download Json</button>
     <hr>
     <h2>------ファイル名:signboard_<span id="textureOutput"></span>.json-------</h2>
     <pre id="output"></pre>
 
     <script>
+document.getElementById("download").addEventListener("click", downloadJson);
+
+function downloadJson() {
+    var jsonString = document.getElementById("output").innerText;
+    var texture = document.getElementById("texture").value;
+    download(jsonString, 'SignBoard_' + texture + '.json', 'application/json');
+}
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
 function generateJson() {
     var texture = document.getElementById("texture").value;
     var backTexture = document.getElementById("backTexture").value;
@@ -78,9 +93,10 @@ function generateJson() {
         "lightValue": lightValue
     };
 
-    document.getElementById("textureOutput").innerHTML = texture;
-    document.getElementById("output").innerHTML = JSON.stringify(json, null, 2);
+    var jsonString = JSON.stringify(json, null, 2);
+    document.getElementById("output").innerText = jsonString;
 }
+
 </script>
 </body>
 </html>

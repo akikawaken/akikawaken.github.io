@@ -62,7 +62,21 @@
         <input type="text" id="playerposy2" name="playerposy2"><br><br>
         <label for="playerposz2">反対側のplayerposを決めてください。 z</label><br>
         <input type="text" id="playerposz2" name="playerposz2"><br><br>
+        
+        <label for="bogieposx">bogieposを決めてください。 x</label><br>
+        <input type="text" id="bogieposx" name="bogieposx"><br><br>
+        <label for="bogieposy">bogieposを決めてください。 y</label><br>
+        <input type="text" id="bogieposy" name="bogieposy"><br><br>
+        <label for="bogieposz">bogieposを決めてください。 z</label><br>
+        <input type="text" id="bogieposz" name="bogieposz"><br><br>
+        <label for="bogieposx2">反対側のbogieposを決めてください。 x</label><br>
+        <input type="text" id="bogieposx2" name="bogieposx2"><br><br>
+        <label for="bogieposy2">反対側のbogieposを決めてください。 y</label><br>
+        <input type="text" id="bogieposy2" name="bogieposy2"><br><br>
+        <label for="bogieposz2">反対側のbogieposを決めてください。 z</label><br>
+        <input type="text" id="bogieposz2" name="bogieposz2"><br><br>
         <label for="trainDistance">trainDistanceを決めてください。</label><br>
+
         <input type="text" id="trainDistance" name="trainDistance"><br><br>
         <label for="accuracy">accuracyを決めてください。</label><br>
         <input type="text" id="accuracy" name="accuracy"><br><br>
@@ -165,7 +179,13 @@
         <label for="sound_BrakeRelease2">sound_BrakeRelease2を決めてください。</label><br>
         <input type="text" id="sound_BrakeRelease2" name="sound_BrakeRelease2"><br><br>
         <label for="isSingleTrain">isSingleTrainを決めてください。</label><br>
-        <input type="text" id="isSingleTrain" name="isSingleTrain"><br><br>
+        <input type="radio" id="isSingleTrainTrue" name="isSingleTrain" value="true">
+        <label for="isSingleTrainTrue">True</label><br>
+        <input type="radio" id="isSingleTrainFalse" name="isSingleTrain" value="false">
+        <label for="isSingleTrainFalse">False</label><br>
+        <input type="radio" id="isSingleTrainNone" name="isSingleTrain" value="None">
+        <label for="isSingleTrainNone">なし</label><br><br>
+        
         
         <button onclick="outputMats()">出力</button><br><br><button id="download">Download Json</button>
 
@@ -192,21 +212,23 @@ function download(content, fileName, contentType) {
     a.click();
 }
 
-        // 列車材質設定
-        function addTrainMat() {
-            var count = $('#trainMatSettings').children().length + 1;
-            var matSetting = $('<div>').attr('id', 'trainMat' + count);
-
-            matSetting.append($('<strong>').text("列車の3Dモデルの材質," + count + "つめの名前を決めてください。"));
-            matSetting.append($('<p>').text("材質名を入力してください。"));
-            matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
-            matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
-            matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatTexture'));
-            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
-            matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatOption'));
-
-            $('#trainMatSettings').append(matSetting);
-        }
+    // 列車材質設定
+function addTrainMat() {
+    var count = $('#trainMatSettings').children().length + 1;
+    var matSetting = $('<div>').attr('id', 'trainMat' + count);
+    matSetting.append($('<strong>').text("列車の3Dモデルの材質," + count + "つめの名前を決めてください。"));
+    matSetting.append($('<p>').text("材質名を入力してください。"));
+    matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
+    matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
+    matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatTexture'));
+    matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
+    var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "OneTex", "なし"];
+    for (var j = 0; j < options.length; j++) {
+      matSetting.append($('<input>').attr('type', 'radio').attr('class', 'trainMatOption').attr('name', 'trainMatOption' + count).attr('value', options[j]));
+      matSetting.append($('<label>').attr('for', 'trainMatOption' + count).text(options[j]));
+    }
+    $('#trainMatSettings').append(matSetting);
+}
 
         function removeTrainMat() {
             var count = $('#trainMatSettings').children().length;
@@ -225,11 +247,14 @@ function download(content, fileName, contentType) {
             matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMat'));
             matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
             matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMatTexture'));
-            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
-            matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMatOption'));
-
-            $('#bogieMatSettings').append(matSetting);
-        }
+            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\", \"なし\" "));
+            var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "OneTex", "なし"];
+              for (var j = 0; j < options.length; j++) {
+              matSetting.append($('<input>').attr('type', 'radio').attr('class', 'bogieMatOption').attr('name', 'bogieMatOption' + count).attr('value', options[j]));
+           matSetting.append($('<label>').attr('for', 'bogieMatOption' + count).text(options[j]));
+          }
+   $('#bogieMatSettings').append(matSetting);
+}
 
         function removeBogieMat() {
             var count = $('#bogieMatSettings').children().length;
@@ -256,19 +281,20 @@ function download(content, fileName, contentType) {
             output += '  "modelFile": "' + modelfile + '", \n';
 
             output += '  "textures":[ \n';
-
             var count = $('#trainMatSettings').children().length;
-            for (var i = 1; i <= count; i++) {
-                var trainMat = $('#trainMat' + i + ' .trainMat').val();
-                var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
-                var trainMatOption = $('#trainMat' + i + ' .trainMatOption').val();
 
-                if (i == count) {
-                    output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
-                } else {
-                    output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
-                }
-            }
+        for (var i = 1; i <= count; i++) {
+          var trainMat = $('#trainMat' + i + ' .trainMat').val();
+          var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
+          var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
+           var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
+         if (i == count) {
+           output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
+           } else {
+           output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
+           }
+        }
+
 
             output += ' "bogieModel2":{ \n';
             var bogiemodelfile = $('#bogiemodelfile').val();
@@ -297,6 +323,13 @@ function download(content, fileName, contentType) {
             var playerposy2 = $('#playerposy2').val();
             var playerposz2 = $('#playerposz2').val();
             output += ' "playerPos": [[' + playerposx +',' + playerposy +',' + playerposz +',' + playerposx2 +',' + playerposy2 +',' + playerposz2 +']], \n';
+            var bogieposx = $('#bogieposx').val();
+            var bogieposy = $('#bogieposy').val();
+            var bogieposz = $('#bogieposz').val();
+            var bogieposx2 = $('#bogieposx2').val();
+            var bogieposy2 = $('#bogieposy2').val();
+            var bogieposz2 = $('#bogieposz2').val();
+            output += ' "bogiePos": [[' + bogieposx +',' + bogieposy +',' + bogieposz +',' + bogieposx2 +',' + bogieposy2 +',' + bogieposz2 +']], \n';
             var trainDistance = $('#trainDistance').val();
             output += ' "trainDistance": ' + trainDistance + ', \n';
             var accuracy = $('#accuracy').val();
@@ -475,10 +508,13 @@ function download(content, fileName, contentType) {
                     output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
                 }
 
-                var isSingleTrain = document.getElementById('isSingleTrain').value
+                var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
+                var isSingleTrain = isSingleTrainRadio ? (isSingleTrainRadio.value === "None" ? "" : isSingleTrainRadio.value) : "";
                 if (isSingleTrain !== "") {
                     output += ' "isSingleTrain":' + isSingleTrain + ',\n';
                 }
+
+
             
             output += ' "accuracy": "' + accuracy + '"\n';
 

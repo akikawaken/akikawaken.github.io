@@ -1,0 +1,64 @@
+body {
+    text-align: center;
+
+}
+
+p {
+    line-height: 1.4;
+}
+
+blockquote {
+	background: rgba(207, 207, 207, 0.8);
+    color: black;
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+blockquote {
+	margin: 0 275px 0 275px;
+	padding: 1 0px 1 0px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+pre {
+	background: rgba(207, 207, 207, 0.8);
+    color: black;
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+pre {
+	margin: 0 275px 0 275px;
+	padding: 1 0px 1 0px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+/* Below Style From Darkmode */
+
+hr {
+  color:rgb(182, 182, 182);
+}
+
+a:link {
+    color: rgb(175, 210, 255);
+  }
+  
+  a:visited {
+    color: rgb(151, 44, 250);
+  }
+    
+  a:focus {
+    color:rgb(59, 139, 243);
+  }
+
+  a:hover {
+      text-decoration: none;
+    }
+  a:active {
+    color:rgb(59, 139, 243);
+  }
+
+  body {
+   background-color: rgb(43, 43, 43);
+   color:white;
+  }

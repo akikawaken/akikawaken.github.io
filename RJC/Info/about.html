@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1 class="WhatIsRJC">RtmJsonCreatorとは?</h1>
+    <button id="back">←前ページに戻る</button> <a href="../Json/index.html">←RJCWのIndexに戻る</a>
+    <script>
+        document.getElementById("back").addEventListener("click", () => {
+        history.back();
+        });
+    </script>
     <hr>
     <p>RtmJsonCreatorは<abbr title="RealTrainMod">RTM</abbr>のアドオン用Json作成支援ツールです。<br>
         <a href="../Dark/index.html">ウェブ版</a>と<a href="https://github.com/akikawaken/Rtm_Json_Creator">CLI版</a>の二種類があります。<br>
@@ -17,8 +23,9 @@
         <p>注意: ウェブ版は現在開発中です! 完成している部分は利用できます! <br>2024/1/20時点でコマンドライン版のバージョン0.9相当の開発が完了しています。</p>
         </blockquote></p>
     <h3>利用可能なJsonタイプ</h3>
-    <p>- <a href="../Dark/Json/train.html">列車</a><br>
-    - <a href="../Dark/Json/sign.html">看板</a><br>
+    <p> - <a href="../Json/Create/train.html">列車</a><br>
+        - <a href="../Json/Create/sign.html">看板</a><br>
+        - <a href="../Json/Create/machine.htm">機能あり/なし設置物</a><br>
     </p>
     <h3>備考</h3>
     <p>CLI版の"自動材質設定"機能に相当する機能は利用できません。<br>

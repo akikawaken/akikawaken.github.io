@@ -104,7 +104,7 @@ function download(content, fileName, contentType) {
 function addTrainMat() {
     var count = $('#trainMatSettings').children().length + 1;
     var matSetting = $('<div>').attr('id', 'trainMat' + count);
-    matSetting.append($('<strong>').text("列車の3Dモデルの材質," + count + "つめの名前を決めてください。"));
+    matSetting.append($('<strong>').text("3Dモデルの材質," + count + "つめの名前を決めてください。"));
     matSetting.append($('<p>').text("材質名を入力してください。"));
     matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
     matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));

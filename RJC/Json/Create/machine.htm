@@ -146,6 +146,10 @@ function addTrainMat() {
                 if (isSingleTrainRadio.value == "Turnstile") {
                     output += ' "machineType": "Turnstile",\n';
                 }
+                var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
+                if (isSingleTrainRadio.value == "Vendor") {
+                    output += ' "machineType": "Vendor",\n';
+                }
             var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
                 if (isSingleTrainRadio.value == "Light") {
                     output += ' "machineType": "Light",\n';

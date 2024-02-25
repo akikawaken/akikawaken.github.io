@@ -30,36 +30,36 @@
         <label for="tags">tagsを決めてください。 使用可能:半角英数字(英語は小文字のみ可能)と","<br>複数指定する場合は","で区切って入力してください。(例:tag1,tag2,tag3)</label><br>
         <input type="text" id="tags" name="tags"><br><br>
 
-        <label for="isSingleTrain">設置物の種類を決めてください。</label><br>
-        <input type="radio" id="isSingleTrainGate" name="isSingleTrain" value="Gate">
-        <label for="isSingleTrainGate">遮断機</label><br>
-        <input type="radio" id="isSingleTrainPoint" name="isSingleTrain" value="Point">
-        <label for="isSingleTrainPoint">転轍機</label><br>
-        <input type="radio" id="isSingleTrainTurnstile" name="isSingleTrain" value="Turnstile">
-        <label for="isSingleTrainTurnstile">改札機</label><br>
-        <input type="radio" id="isSingleTrainVendor" name="isSingleTrain" value="Vendor">
-        <label for="isSingleTrainVendor">券売機</label><br>
-        <input type="radio" id="isSingleTrainLight" name="isSingleTrain" value="Light">
-        <label for="isSingleTrainLight">照明(機能あり)</label><br>
-        <input type="radio" id="isSingleTrainBumpingPost" name="isSingleTrain" value="BumpingPost">
-        <label for="isSingleTrainBumpingPost">車止め</label><br>
-        <input type="radio" id="isSingleTrainAntenna_Send" name="isSingleTrain" value="Antenna_Send">
-        <label for="isSingleTrainAntenna_Send">ATC</label><br>
-        <input type="radio" id="isSingleTrainAntenna_Receive" name="isSingleTrain" value="Antenna_Receive">
-        <label for="isSingleTrainAntenna_Receive">列車検出器(Train detector)</label><br>
+        <label for="type">設置物の種類を決めてください。</label><br>
+        <input type="radio" id="typeGate" name="type" value="Gate">
+        <label for="typeGate">遮断機</label><br>
+        <input type="radio" id="typePoint" name="type" value="Point">
+        <label for="typePoint">転轍機</label><br>
+        <input type="radio" id="typeTurnstile" name="type" value="Turnstile">
+        <label for="typeTurnstile">改札機</label><br>
+        <input type="radio" id="typeVendor" name="type" value="Vendor">
+        <label for="typeVendor">券売機</label><br>
+        <input type="radio" id="typeLight" name="type" value="Light">
+        <label for="typeLight">照明(機能あり)</label><br>
+        <input type="radio" id="typeBumpingPost" name="type" value="BumpingPost">
+        <label for="typeBumpingPost">車止め</label><br>
+        <input type="radio" id="typeAntenna_Send" name="type" value="Antenna_Send">
+        <label for="typeAntenna_Send">ATC</label><br>
+        <input type="radio" id="typeAntenna_Receive" name="type" value="Antenna_Receive">
+        <label for="typeAntenna_Receive">列車検出器(Train detector)</label><br>
 
-        <input type="radio" id="isSingleTrainLamp" name="isSingleTrain" value="Lamp">
-        <label for="isSingleTrainLamp">照明(機能なし)</label><br>
-        <input type="radio" id="isSingleTrainStair" name="isSingleTrain" value="Stair">
-        <label for="isSingleTrainStair">階段</label><br>
-        <input type="radio" id="isSingleTrainScaffold" name="isSingleTrain" value="Scaffold">
-        <label for="isSingleTrainScaffold">足場</label><br>
-        <input type="radio" id="isSingleTrainPoint" name="isSingleTrain" value="Pole">
-        <label for="isSingleTrainPole">架線柱</label><br>
-        <input type="radio" id="isSingleTrainPoint" name="isSingleTrain" value="Pipe">
-        <label for="isSingleTrainPipe">パイプ</label><br>
-        <input type="radio" id="isSingleTrainPoint" name="isSingleTrain" value="Plant">
-        <label for="isSingleTrainPlant">植物</label><br><br>
+        <input type="radio" id="typeLamp" name="type" value="Lamp">
+        <label for="typeLamp">照明(機能なし)</label><br>
+        <input type="radio" id="typeStair" name="type" value="Stair">
+        <label for="typeStair">階段</label><br>
+        <input type="radio" id="typeScaffold" name="type" value="Scaffold">
+        <label for="typeScaffold">足場</label><br>
+        <input type="radio" id="typePoint" name="type" value="Pole">
+        <label for="typePole">架線柱</label><br>
+        <input type="radio" id="typePoint" name="type" value="Pipe">
+        <label for="typePipe">パイプ</label><br>
+        <input type="radio" id="typePoint" name="type" value="Plant">
+        <label for="typePlant">植物</label><br><br>
 
         <label for="modelfile">modelを決めてください。 設置物の3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
         <input type="text" id="modelfile" name="modelfile"><br><br>
@@ -134,60 +134,60 @@ function addTrainMat() {
             var tags = $('#tags').val();
             output += ' "tags": "' + tags + '", \n';
             
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Gate") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Gate") {
                     output += ' "machineType": "Gate",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Point") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Point") {
                     output += ' "machineType": "Point",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Turnstile") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Turnstile") {
                     output += ' "machineType": "Turnstile",\n';
                 }
-                var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Vendor") {
+                var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Vendor") {
                     output += ' "machineType": "Vendor",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Light") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Light") {
                     output += ' "machineType": "Light",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "BumpingPost") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "BumpingPost") {
                     output += ' "machineType": "BumpingPost",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Antenna_Send") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Antenna_Send") {
                     output += ' "machineType": "Antenna_Send",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Antenna_Receive") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Antenna_Receive") {
                     output += ' "machineType": "Antenna_Receive",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Lamp") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Lamp") {
                     output += ' "ornamentType": "Lamp",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Stair") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Stair") {
                     output += ' "ornamentType": "Stair",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.ornamentType == "Scaffold") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.ornamentType == "Scaffold") {
                     output += ' "ornamentType": "Scaffold",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Pole") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Pole") {
                     output += ' "ornamentType": "Pole",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Pipe") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Pipe") {
                     output += ' "ornamentType": "Pipe",\n';
                 }
-            var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                if (isSingleTrainRadio.value == "Plant") {
+            var typeRadio = document.querySelector('input[name="type"]:checked');
+                if (typeRadio.value == "Plant") {
                     output += ' "ornamentType": "Plant",\n';
                 }
 

@@ -33,39 +33,30 @@ pre {
 	border-left-style: solid;
 }
 
-/* Below Style From Darkmode */
-
-hr {
-  color:rgb(182, 182, 182);
-}
-
-  @media (prefers-color-scheme: dark){
-  body {
-   background-color: rgb(43, 43, 43);
-   color:rgb(255, 255, 255);
-   a:link {
-    color: rgb(175, 210, 255);
-  }
-  
-  a:visited {
-    color: rgb(151, 44, 250);
-  }
-    
-  a:focus {
-    color:rgb(59, 139, 243);
-  }
-
-  a:hover {
-      text-decoration: none;
+@media (prefers-color-scheme: dark){
+  a:link {
+      color: rgb(175, 210, 255);
     }
-  a:active {
-    color:rgb(59, 139, 243);
-  }
-  }
+    
+    a:visited {
+      color: rgb(151, 44, 250)
+    }
+  
+    a:hover {
+        text-decoration: none;
+      }
+    
+    body {
+     background-color: rgb(43, 43, 43);
+     color:white;
+    }
+    
+    hr {
+      color:rgb(182, 182, 182);
+    }
   }
   @media (prefers-color-scheme: light){
-  body {
-   background-color: white;
-   color:black;
-  }
+    a:hover {
+        text-decoration: none;
+      }
   }

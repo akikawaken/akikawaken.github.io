@@ -305,8 +305,8 @@ function addTrainMat() {
             for (var i = 1; i <= count; i++) {
                 var bogieMat = $('#bogieMat' + i + ' .bogieMat').val();
                 var bogieMatTexture = $('#bogieMat' + i + ' .bogieMatTexture').val();
-                var bogieMatOption = $('#bogieMat' + i + ' .bogieMatOption').val();
-
+                var bogieMatOptionRadio = document.querySelector('input[name="bogieMatOption' + i + '"]:checked');
+                var bogieMatOption = bogieMatOptionRadio ? (bogieMatOptionRadio.value === "なし" ? "" : bogieMatOptionRadio.value) : "";
                 if (i == count) {
                     output += '   ["' + bogieMat + '", "' + bogieMatTexture + '", "' + bogieMatOption + '"] \n  ] \n }, \n';
                 } else {

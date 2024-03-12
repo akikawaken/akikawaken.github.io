@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>Rtm_Json_Creator - FlagJson</title>
+    <meta charset=utf-8>
+    <link rel="stylesheet" href="../../css/all-mode.css" />
+    <meta name="author" content="akikawa9616" />
+    <meta name="description" content="RealTrainMod向けJson作成支援ツール:RtmJsonCreatorのブラウザ版 - train" />
+</head>
+<body>
+    <noscript>
+        <h1 color="red">注意: JavaScriptが無効化されています。</h1>
+        <h2 color="red">Jsonの作成はJavaScriptを必須とします。</h2>
+        <h2 color="red">JavaScriptの有効化方法は利用しているブラウザの利用案内を参照してください。</h2>
+        <hr>
+    </noscript>
+    <h1>旗の json を作成します</h1>
+    <button id="back">←前ページに戻る</button> <a href="../index.html">←Indexに戻る</a>
+    <script>
+        document.getElementById("back").addEventListener("click", () => {
+        history.back();
+        });
+    </script>
+    <hr>
+    <form id="form">
+        <label for="texture">texture を決めてください。(先に保存しておいた旗の png ファイル名を拡張子なしで入力してください。)</label><br>
+        <input type="text" id="texture" name="texture"><br><br>
+        <label for="height">height を決めてください。(1.0で1mになります。)</label><br>
+        <input type="number" step="0.1" id="height" name="height" min="0"><br><br>
+        <label for="width">width を決めてください。(1.0で1mになります。)</label><br>
+        <input type="number" step="0.1" id="width" name="width" min="0"><br><br>
+        <label for="resolutionV">resolutionV を決めてください。</label><br>
+        <input type="number" step="1" id="resolutionV" name="resolutionV" min="0"><br><br>
+        <label for="resolutionU">resolutionU を決めてください。</label><br>
+        <input type="number" step="1" id="resolutionU" name="resolutionU" min="0"><br><br>
+        <label for="poleLength">poleLength を決めてください。 </label><br>
+        <input type="number" step="0.1" id="poleLength" name="poleLength"><br><br>
+
+    </form>
+
+    <button onclick="generateJson()">jsonをつくる</button><br><br><button id="download">Download Json</button>
+    <hr>
+    <h2>------ファイル名:Flag_<span id="textureOutput"></span>.json-------</h2>
+    <pre id="output"></pre>
+
+<script>
+    document.getElementById("download").addEventListener("click", downloadJson);
+
+function downloadJson() {
+    var jsonString = document.getElementById("output").innerText;
+    var texture = document.getElementById("texture").value;
+    download(jsonString, 'Flag_' + texture + '.json', 'application/json');
+}
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+function generateJson() {
+    var texture = document.getElementById("texture").value;
+    var height = document.getElementById("height").value;
+    var width = document.getElementById("width").value;
+    var resolutionV = document.getElementById("resolutionV").value;
+    var resolutionU = document.getElementById("resolutionU").value;
+    var poleLength = document.getElementById("poleLength").value;
+
+    var json = {
+        "texture": texture,
+        "height": height,
+        "width": width,
+        "resolutionV": resolutionV,
+        "resolutionU": resolutionU,
+        "poleLength": poleLength
+    };
+
+    var jsonString = JSON.stringify(json, null, 2);
+    document.getElementById("output").innerText = jsonString;
+}
+
+</script>
+</body>
+</html>

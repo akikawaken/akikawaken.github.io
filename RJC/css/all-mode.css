@@ -19,9 +19,15 @@ a:link {
   hr {
     color:rgb(182, 182, 182);
   }
+  .hidden {
+    color:rgb(43, 43, 43)
+  }
 }
 @media (prefers-color-scheme: light){
   a:hover {
       text-decoration: none;
+    }
+    .hidden {
+      color:rgb(255, 255, 255)
     }
 }

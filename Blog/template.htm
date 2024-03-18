@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../../css/Blog.css" />
+    </head>
+<body>
+    <div class="title">
+    <h1>[タイトル]</h1>
+    <p>執筆: [執筆者], [日付]
+    <hr>
+    </div>
+    <div class="main">
+        <h2>[小タイトル1]</h2>
+        <p>本文</p>
+        <h2>[小タイトル2]</h2>
+        <p>本文</p>
+        <h2>[小タイトル3]</h2>
+        <p>本文</p>
+        <h2>[小タイトル4]</h2>
+        <p>本文</p>
+        <h2>[小タイトル5]</h2>
+        <p>本文</p>
+        <h2>[小タイトル6]</h2>
+        <p>本文</p>
+    </div>
+    <div class="sidebar"><iframe src="../../../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../frame/copyright.htm"></iframe></div>
+    <script>
+        window.onload = function() {
+          var mainHeight = document.querySelector('.main').offsetHeight;
+          document.querySelector('.sidebar').style.height = mainHeight + 'px';
+        };
+    </script>
+</body>
+</html>
+
+Blog\PR\Dev\2024配下の場合は上記のコード。
+Blog\PR\Dev配下の場合は各パスの../を一つ減らすこと。

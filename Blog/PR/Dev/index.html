@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/Blog.css" />
+    </head>
+<body>
+    <div class="title">
+    <h1>インデックス</h1>
+    <p>執筆: akikawa9616, 03-12-2024, 03-19-2024更新</p>
+    <hr>
+    </div>
+    <div class="main">
+    <h2>開発進捗報告ページについて</h2>
+    <p>こんにちは。私です。<br>
+        唐突ですが、広報はやればやるほどいいと思ってるので、始めてみました。進捗報告。<br>
+        思い立ったが吉日とかっていうしね。<br>
+        でも、思い立ってから本文書くまで1週間かかってるんですが、まだ"吉日"ってやつは続いてますかね?<br>
+        そんなわけでこれから気が向いたらやる"かも"しれないので、よろしくお願いします~<br>
+        <br>
+    <h2>動作確認環境</h2>
+    <p>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.mozilla.org/ja/firefox/developer/">Firefox Developer Edition</a> - 118.0b9 (64 ビット) - aurora<br>
+    <br>
+    <strong>モバイル外見はありません。</strong>
+    </p>
+    </div>
+    <div class="sidebar"><iframe src="../../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../frame/copyright.htm"></iframe></div>
+    <script>
+        window.onload = function() {
+          var mainHeight = document.querySelector('.main').offsetHeight;
+          document.querySelector('.sidebar').style.height = mainHeight + 'px';
+        };
+        </script>
+</body>
+</html>

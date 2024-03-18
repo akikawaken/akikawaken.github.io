@@ -1,0 +1,74 @@
+a:link {
+    color: rgb(175, 210, 255);
+    } 
+a:visited {
+    color: rgb(151, 44, 250)
+}
+a:hover {
+      text-decoration: none;
+    }
+div.nosticky * {
+      position: static;
+  }
+  h1 {
+    background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    top: 0;
+    left: 0;
+    margin: 1em 0;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+  }
+h2 {
+    background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
+    color: rgb(255, 255, 255);
+    position: sticky;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    margin: 1em 0;
+  }
+  h3 {
+      background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
+      color: rgb(255, 255, 255);
+      position: sticky;
+      padding: 5px;
+      top: 0;
+      left: 0;
+      margin: 1em 0;
+    }
+
+hr {
+    border: none;
+    height: 5px;
+    background: linear-gradient(to top, #B1D1D7 50%, #7B98AD 50%);
+}
+body {
+   background-color: rgb(38, 38, 38);
+   color:white;
+  }
+div.sidebar {
+  position: sticky;
+  float: left;
+  width: 15%;
+  border: 1px solid #298086;
+}
+div.main {
+  width: 84%;
+  float: right;
+  line-height: 1.3;
+}
+div.copyright {
+  clear: both;
+  width: 100%;
+}
+iframe {
+  border: none;
+  width:100%;
+  height: 100%;
+}
+pre {
+  border: 2px solid #298086;
+  padding: 3px;
+}

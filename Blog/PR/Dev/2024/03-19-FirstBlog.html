@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../../css/Blog.css" />
+    </head>
+<body>
+    <div class="title">
+    <h1>初めての進捗報告</h1>
+    <p>執筆: akikawa9616, 03-19-2024, </p>
+        <hr>
+    </div>
+    <div class="main">
+        <h2>初めての進捗報告</h2>
+        <p>こんにちは。私です。<br>
+            記念すべき1回目の進捗報告はこの進捗報告ページです。(進捗報告というか完成報告だけど。)<br>
+            HTMLからCSS,JavaScript全て手打ちしたので「進捗報告ページ欲しいなあ」と思ってた頃から1週間も経ってしまいました。まあ、RJC-Wの開発でHTMLやCSS,JSを使うので、それらの勉強だと考えればいい経験じゃないですかね?<br></p>
+        <h2>進捗報告ページのデザイン</h2>
+        <p>イメージは"これぞブログサイト!"みたいな感じの、左側にサイドバー,上にタイトル,そして一番下にコピーライトが表示してあるようなアレです。<br>
+            <br>
+            色味はダークモード,深い青を基調とし、タイトル(h1~h3)は下側に深い青から背景色への線形グラデーションをかけ、さらにh1には下側左右に丸みを持たせました。<br>
+            ちなみに、h2要素は上側についてきます。<br>
+            <br>
+            また、hrはライトブルーとすこし暗い青の二色を使用し、アクセントを付けました。<!--hrは代理ｸﾝのおめめの色です。 気づいた人はいるかな?--><br>
+            <br>
+            左側のサイドバーはirame要素で<a href="../../../frame/sidebar.htm">別の場所</a>から内容を引っ張ってきています。<br>
+            iframeにして1つのファイルをいろんな場所から参照するようにすれば、お知らせとかも一括で出せて楽々ってわけです。<small>ソースコードは複雑になったりするデメリットもあるけどね。</small><br>
+            サイドバーの長さは本文の大きさで決まります。本文が長いページだとサイドバーも引き延ばされますが、短いとスクロールバーが出てきてフレームが小さくなります。<br>
+            <br>
+            一番下のコピーライト欄ですが、これもiframeになってます。いろんな所で同じ内容書くならiframeにして
+            <pre>&lt;div class="copyright"&gt;&lt;iframe src="../../../frame/copyright.htm"&gt;&lt;iframe&gt;&lt;/div&gt;</pre>
+            の一行を置くだけの方が楽なんですよね。 iframe様様かもしれん。<br>
+            <br>
+            JavaScriptは相変わらずscript要素です。JSこそlink要素にした方がいいと思うけど、いつもの癖でscript要素に詰め込んじゃうんですよね~<br>
+        <h2>もう3時間</h2>
+        <p>ここまでの1300文字くらいを書くのに3時間もかけちゃって眠いので今日は終わりです、次回があるといいですね<br>
+        それでは。</p>
+
+        </p>
+        </p>
+    </div>
+    <div class="sidebar"><iframe src="../../../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../frame/copyright.htm"></iframe></div>
+    <script>
+        window.onload = function() {
+          var mainHeight = document.querySelector('.main').offsetHeight;
+          document.querySelector('.sidebar').style.height = mainHeight + 'px';
+        };
+    </script>
+</body>
+</html>

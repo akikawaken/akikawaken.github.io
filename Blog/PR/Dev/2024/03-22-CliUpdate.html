@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RtmJsonCreator バージョン1.1</title>
+        <link rel="stylesheet" href="../../../css/Blog.css" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="開発進捗報告: 03-22-2024" />
+        <meta name="twitter:description" content="開発進捗報告: タイトル:RtmJsonCreator バージョン1.1, 作成: 03-22-2024, 更新: [更新日]" />
+        <!--add:一番最近に投稿されたファイル,normal:それ以外のファイル-->
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/akikawaken/images/main/Blog/icon/normal_icon.png" />
+    </head>
+<body>
+    <div class="title">
+    <h1>RtmJsonCreator バージョン1.1</h1>
+    <p>執筆: akikawa9616, 03-22-2024
+    <hr>
+    </div>
+    <div class="main">
+        <h2>RtmJsonCreator バージョン1.1</h2>
+        <p> こんにちは。私です。<br>
+            この文字列を生成している時点では 2日前 にリリースされた、<strong><a href="https://github.com/akikawaken/Rtm_Json_Creator/releases/tag/v1.1">RtmJsonCreator バージョン1.1</a></strong>についてお知らせします。</p>
+        <h2>変わったところとか</h2>
+        <p> まずは新機能。 今回は1つしか追加機能がありません。GUI版今頑張ってるからねしょうがないね<br>
+            その唯一の新機能は<strong>"CLI アップデート機能"</strong>。 これは名前の通りCLI内でアップデートを実行できちゃうやつです。<br>
+            実際には最新版をダウンロードしてそれを同じ画面内で実行させてるだけなので、アップデートと呼べるかどうかは不明。 あと%releaseversion%って言う変数が<code>1</code>のRtmJsonCreatorで<code>2</code>にアップデートした後に<code>3</code>にアップデートできるかどうかも不明。<br>
+            <br>
+            次は変更点。 ユーザフレンドリーになるような変更が多めです。<br>
+            まずは地味だけど大切な<strong>sounds.jsonの内部処理変更。</strong>"終了したい時"に<code>\\\</code>を入力するとその時点で終了するようになった。 元々は<code>\\\</code>を入力してから最後の情報を入力してたから、それに比べればとても分かりやすくなった... はず。<br>
+            次に列車の旧式材質設定(自動材質設定じゃないほう)の<strong>オプション選択画面の入力方式変更。</strong><br>
+            "オプションなし"は<code>0</code>、"AlphaBlend"は<code>1</code>、"Light"は<code>2</code>、"AlphaBlend,Light"は<code>3</code>のキーを押すだけでオプションが決定されるようになった。これは初期起動時の設定で"CHOICE"コマンドが利用できないことを検知したら以前の入力方式を利用するようにできてる。<br>
+            そして作った人もあまり触れたくない<strong>自動材質設定。</strong> 自動材質設定くんには今回のアプデでエラーハンドリングを追加。<br>
+            例えば、ファイルパスに空白が含まれていても正常に動作するようになったり、<code>"</code>(ダブルクォーテーション)が両側に付いているパスは一回外して、再度付け直すようになったり。<br>
+            それと、行動選択画面の2番が<code>exit /b</code>コマンドに戻ったり、Typoを修正したりもした。<br>
+            <br>
+            最後に、機能削除。<br>
+            壊れて使い物にならなかった<strong>アドオンフォルダzip機能(10番)が削除された。</strong>
+        </p>
+        <h2>技術的?な解説</h2>
+        <p> ここから先は03-22-2024時点で最新の<a href="https://github.com/akikawaken/Rtm_Json_Creator/blob/c4be36f58b5c97b6eecf158ea2720cf5ad79ff44/rtm_json_creator.bat">RtmJsonCreatorのファイル</a>を閲覧しながら読むのを強くお勧めします。<br>
+            また、Windows Batch Fileの知識が必要になります。</p>
+        <h3>CLI Updateの流れと解説</h3>
+        <p> CLI アップデート機能はCurlがキーになるようなアレです。<br>
+            <strong>現在の状況: 2回目の起動で、<code>https://akikawaken.github.io/RJC/VC/version.txt</code>には2が格納されており、互換モードではない。</strong><br>
+            <br>
+            <code>call %userprofile%\rjc\RtmJsonCreator.bat</code><br>
+            <br>
+            まずは 5 行目の<code>set releaseversion=1</code>を覚えておきましょう。 この変数はとても利用します。<br>
+            15 行目、ここで osc.tscf (互換モード確認ファイル)が存在する場合はアップデート機能が利用できないため、welcomeに進めます。 互換モードの真偽は 2656 ~ 2665 行目で設定しています。 確認はしなくてもこの先を理解できるはずです。<br>
+            16 ~ 18行目、ここでは<a href="https://akikawaken.github.io/RJC/VC/version.txt">https://akikawaken.github.io/RJC/VC/version.txt</a>を参照し、内容を<code>latestver</code>として格納しています。 この変数は重要になります。<br>
+            19 行目、<code>rjcupdate.tscf</code>はアップデートを実行しないと作成されないので、現状、存在しません。その為、welcomeへ進みます。<br>
+            22 行目のwelcomeに進んだ後、 23 行目の<code>if %releaseversion% == %latestver% ( echo; ) ELSE ( set notlatest=true )</code>を実行します。変数を展開すると<code>if 1 == 2 ( echo; ) ELSE ( set notlatest=true )</code>となるので、<code>set notlatest=true</code>が実行され、<code>notlatest</code>に<code>true</code>が格納されます。<br>
+            そして 55 行目、<code>%notlatest%</code>が<code>true</code>なので<code>echo  update        RtmJsonCreatorを最新版にアップデートします。</code>の選択肢がユーザに明示されます。<br>
+            59 行目の<code>set /p start=</code>で<code>start</code>にupdateが格納されると 83 行目の<code>if %start% == update goto update</code>が実行されます。<br>
+            2711 行目にある<code>updateラベル</code>に飛び、 2712 ~ 2715 行目の確認でユーザがアップデートを認証した場合、 2717 行目から先が実行されます。<br>
+            <code>%temp%</code>にパスを通した後、アップデート後のRJCとの競合回避の為に<code>%temp%\.RJC\</code>を削除します。<br>
+            2721 行目では次のRtmJsonCreatorが格納されるファイル名を決定します。 2723 行目では前回のアップデートで作成されたフォルダと競合している場合のみもう一度ファイル名を作り直します。<small>あれ、もしかして2719行目で消してるから競合発生することない..?</small><br>
+            2725 行目でアップデートされたRtmJsonCreatorが保存されるフォルダパスを<code>%temp%\rjcupdate.tscf</code>に<code>%temp%\.RJC\update\%nextpath%</code>の形式で格納します。<br>
+            2727 行目、<code>md %temp%\.RJC\update\%nextpath%\</code>を実行し、次のRtmJsonCreatorが保存されるフォルダを作成します。<br>
+            次の行で<code>%temp%\.RJC\update\%nextpath%\</code>にパスを通した後、 2729 行目の<code>curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat</code>を実行し、最新版のRtmJsonCreatorをダウンロードします。<br>
+            ダウンロードが完了したら、ユーザに再起動を求めます。(ファイルを読んでいる場合はコードの1行目に戻ってください。)<br>
+            この間、初期設定が入りますが省略します。<br>
+            18 行目まで同じように進め、 19 行目で<code>%temp%\rjcupdate.tscf</code>が存在するため、 20 行目へ進むことが可能です。<br>
+            20 行目ではファイル固有のリリースバージョンと最新版を照らし合わせ、そうである場合は<code>welcome</code>へ、そうでない場合はそのまま進みます。 現状、<code>if 2 == 1 goto welcome</code>として扱われているため、21行目に進みます。<br>
+            21 行目で保存したRtmJsonCreatorのパスを<code>%temp%\rjcupdate.tscf</code>から読み出し、<code>call %%a\RtmJsonCreator.bat</code>として、保存したRtmJsonCreatorをコールします。<br>
+            コールしたRtmJsonCreatorでは、 5 行目が<code>set releaseversion=2</code>の様になるはずです。 その為、 20 行目で<code>welcome</code>ラベルへ移動し、 23 行目の<code>if %releaseversion% == %latestver% ( echo; ) ELSE ( set notlatest=true )</code>も<code>if 2 == 2 ( echo; ) ELSE ( set notlatest=true )</code>として扱われ、<code>echo;</code>が実行されます。<br>
+            55 行目のif文は<code>notlatest</code>変数が存在しないため、updateが表示されず、完璧に最新版となります。
+        </p>
+    </div>
+    <div class="sidebar"><iframe src="../../../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../frame/copyright.htm"></iframe></div>
+    <script>
+        window.onload = function() {
+          var mainHeight = document.querySelector('.main').offsetHeight;
+          document.querySelector('.sidebar').style.height = mainHeight + 'px';
+        };
+    </script>
+</body>
+</html>

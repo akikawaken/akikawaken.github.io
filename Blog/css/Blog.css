@@ -57,7 +57,9 @@ div.sidebar {
 div.main {
   width: 84%;
   float: right;
-  line-height: 1.3;
+}
+div.main *:not(h2) {
+  line-height: 1.4;
 }
 div.copyright {
   clear: both;
@@ -71,4 +73,10 @@ iframe {
 pre {
   border: 2px solid #298086;
   padding: 3px;
+  background-color: rgb(65, 65, 65);
+}
+code {
+  border: 1px solid #298086;
+  padding: 2px;
+  background-color: rgb(65, 65, 65);
 }

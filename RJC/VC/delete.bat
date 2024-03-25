@@ -4,9 +4,6 @@
  set confirm=n
  set /p confirm=Y/N:
  if not %confirm% == y exit /b
- pushd %temp%
- del delete.bat
- pushd %temp%
  echo %temp%\.RJC\”z‰º‚ğíœ’†...
  rd /S /Q %temp%\.RJC\
  echo %temp%\.RJC\”z‰º‚ğíœ‚µ‚Ü‚µ‚½B

@@ -1,26 +1,26 @@
 @echo off
- echo æœ¬å½“ã«ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’å®Ÿè¡Œã—ã¾ã™ã‹?
- echo ä»Šã¾ã§ä½œæˆã—ãŸJson(%temp%\.RJC\é…ä¸‹ã«ç½®ã‹ã‚Œã¦ã„ã‚‹ã‚‚ã®)ã¯å‰Šé™¤ã•ã‚Œã¾ã™ã€‚
+ echo –{“–‚ÉƒAƒbƒvƒf[ƒg‚ğÀs‚µ‚Ü‚·‚©?
+ echo ¡‚Ü‚Åì¬‚µ‚½Json(%temp%\.RJC\”z‰º‚É’u‚©‚ê‚Ä‚¢‚é‚à‚Ì)‚Ííœ‚³‚ê‚Ü‚·B
  set confirm=n
  set /p confirm=Y/N:
  if not %confirm% == y exit /b
  pushd %temp%
  del delete.bat
  pushd %temp%
- echo %temp%\.RJC\é…ä¸‹ã‚’å‰Šé™¤ä¸­...
+ echo %temp%\.RJC\”z‰º‚ğíœ’†...
  rd /S /Q %temp%\.RJC\
- echo %temp%\.RJC\é…ä¸‹ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚
+ echo %temp%\.RJC\”z‰º‚ğíœ‚µ‚Ü‚µ‚½B
  set nextpath=%random%
- echo nextpathã¯%nextpath%ã§ã™ã€‚
+ echo nextpath‚Í%nextpath%‚Å‚·B
  if exist %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat set nextpath=%random%
- echo %temp%\rjcupdate.tscfã‚’ä½œæˆ... [%temp%\.RJC\update\%nextpath%]
+ echo %temp%\rjcupdate.tscf‚ğì¬... [%temp%\.RJC\update\%nextpath%]
  echo %temp%\.RJC\update\%nextpath%>%temp%\rjcupdate.tscf
- echo %temp%\.RJC\update\%nextpath%\ã‚’ä½œæˆ...
+ echo %temp%\.RJC\update\%nextpath%\‚ğì¬...
  md %temp%\.RJC\update\%nextpath%\
  pushd %temp%\.RJC\update\%nextpath%\
  curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat
- echo ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒå®Œäº†ã—ã¾ã—ãŸã€‚
- echo RtmJsonCreatorã‚’å†èµ·å‹•ã—ã¦ãã ã•ã„ã€‚
+ echo ƒAƒbƒvƒf[ƒg‚ªŠ®—¹‚µ‚Ü‚µ‚½B
+ echo RtmJsonCreator‚ğÄ‹N“®‚µ‚Ä‚­‚¾‚³‚¢B
  pushd %userprofile%
  pause
 exit

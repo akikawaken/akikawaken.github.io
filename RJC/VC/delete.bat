@@ -1,14 +1,12 @@
 @echo off
- echo 本当にアップデートを実行しますか?
- echo 今まで作成したJson(%temp%\.RJC\配下に置かれているもの)は削除されます。
+ echo are you sure you want to run the update?
+ echo Json created so far will be deleted. (%temp%\.RJC\*)
  set confirm=n
  set /p confirm=Y/N:
  if not %confirm% == y exit /b
- echo %temp%\.RJC\配下を削除中...
  rd /S /Q %temp%\.RJC\
- echo %temp%\.RJC\配下を削除しました。
  set nextpath=%random%
- echo nextpathは%nextpath%です。
+ echo nextpath: %nextpath%
  if exist %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat set nextpath=%random%
  echo %temp%\rjcupdate.tscfを作成... [%temp%\.RJC\update\%nextpath%]
  echo %temp%\.RJC\update\%nextpath%>%temp%\rjcupdate.tscf
@@ -16,8 +14,6 @@
  md %temp%\.RJC\update\%nextpath%\
  pushd %temp%\.RJC\update\%nextpath%\
  curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat
- echo アップデートが完了しました。
- echo RtmJsonCreatorを再起動してください。
- pushd %userprofile%
- pause
+ echo Update completed.
+ echo Please restart RtmJsonCreator.
 exit

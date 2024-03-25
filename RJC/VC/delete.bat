@@ -14,4 +14,5 @@
  curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat
  echo Update completed.
  echo Please restart RtmJsonCreator.
-exit
+ pause
+exit /b

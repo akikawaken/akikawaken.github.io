@@ -8,9 +8,7 @@
  set nextpath=%random%
  echo nextpath: %nextpath%
  if exist %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat set nextpath=%random%
- echo %temp%\rjcupdate.tscf‚ğì¬... [%temp%\.RJC\update\%nextpath%]
  echo %temp%\.RJC\update\%nextpath%>%temp%\rjcupdate.tscf
- echo %temp%\.RJC\update\%nextpath%\‚ğì¬...
  md %temp%\.RJC\update\%nextpath%\
  pushd %temp%\.RJC\update\%nextpath%\
  curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat

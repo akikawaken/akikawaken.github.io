@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>Rtm_Json_Creator - PackJson</title>
+    <meta charset=utf-8>
+    <link rel="stylesheet" href="../../css/all-mode.css" />
+    <meta name="author" content="akikawa9616" />
+    <meta name="description" content="RealTrainMod向けJson作成支援ツール:RtmJsonCreatorのブラウザ版 - PackJson" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RtmJsonCreatorのブラウザ版 Pack" />
+    <meta name="twitter:description" content="RealTrainMod向けJson作成支援ツール: RtmJsonCreatorのブラウザ版です。" />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/akikawaken/images/d1e3327567f4774056a26efe51c49663af61e2c1/RJC/RJC-kun.png" />
+</head>
+<body>
+    <noscript>
+        <h1 color="red">注意: JavaScriptが無効化されています。</h1>
+        <h2 color="red">Jsonの作成はJavaScriptを必須とします。</h2>
+        <h2 color="red">JavaScriptの有効化方法は利用しているブラウザの利用案内を参照してください。</h2>
+        <hr>
+    </noscript>
+    <h1>旗の json を作成します</h1>
+    <button id="back">←前ページに戻る</button> <a href="../index.html">←Indexに戻る</a>
+    <script>
+        document.getElementById("back").addEventListener("click", () => {
+        history.back();
+        });
+    </script>
+    <hr>
+    <form id="form">
+        <label for="modelpackname">modelpackname を決めてください。</label><br>
+        <input type="text" id="modelpackname" name="modelpackname"><br><br>
+        <label for="updateurl">"アップデート確認用テキストの URL"を決めてください。</label><br>
+        <input type="text" id="updateurl" name="updateurl"><br><br>
+        <label for="version">バージョンを決めてください。</label><br>
+        <input type="text" id="version" name="version"><br><br>
+        <label for="homepageurl">アドオン配布場所のURL を決めてください。</label><br>
+        <input type="text" id="homepageurl" name="homepageurl"><br><br>
+
+    </form>
+
+    <button onclick="generateJson()">jsonをつくる</button><br><br><button id="download">Download Json</button>
+    <hr>
+    <h2>------ファイル名:pack.json-------</h2>
+    <pre id="output"></pre>
+
+<script>
+    document.getElementById("download").addEventListener("click", downloadJson);
+
+function downloadJson() {
+    var jsonString = document.getElementById("output").innerText;
+    download(jsonString, 'pack.json', 'application/json');
+}
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+function generateJson() {
+    var modelpackname = document.getElementById("modelpackname").value;
+    var updateurl = document.getElementById("updateurl").value;
+    var homepageurl = document.getElementById("homepageurl").value;
+    var version = document.getElementById("version").value;
+
+    var json = {
+        "name": modelpackname,
+        "homepageurl": homepageurl,
+        "updateURL": updateurl,
+        "version": version
+    };
+
+    var jsonString = JSON.stringify(json, null, 2);
+    document.getElementById("output").innerText = jsonString;
+}
+
+</script>
+</body>
+</html>

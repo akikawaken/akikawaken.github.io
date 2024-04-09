@@ -80,3 +80,10 @@ code {
   padding: 2px;
   background-color: rgb(65, 65, 65);
 }
+
+blockquote {
+  border: 1px solid #298086;
+	margin: 0 0% 0 1%;
+	border-left-width: 5px;
+	border-left-style: solid;
+}

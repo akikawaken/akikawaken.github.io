@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>開発進捗報告 - 自動材質設定のオプション - 04-09-2024</title>
+        <link rel="stylesheet" href="../../../css/Blog.css" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="開発進捗報告: 04-09-2024" />
+        <meta name="twitter:description" content="開発進捗報告: タイトル:自動材質設定のオプション, 作成: 04-09-2024, 更新: [更新日]" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/akikawaken/images/main/Blog/icon/normal_icon.png" />
+    </head>
+<body>
+    <div class="title">
+    <h1>自動材質設定のオプションが利用可能です!</h1>
+    <p>執筆: akikawa9616, 04-09-2024
+    <hr>
+    </div>
+    <div class="main">
+        <h2>自動材質設定でもオプション使えるようになったよ</h2>
+        <p>こんにちは。私です。<br>
+            今日は話すことが思いつかないので雑談はなしです。本題にすぐ入りましょう。<br>
+            といっても本題はタイトルのまんまです。 自動材質設定機能でもオプションを設定できるようになりました。<br>
+            参考画像:<br>
+            <img src="https://raw.githubusercontent.com/akikawaken/images/main/Blog/img/04-09-00001.png" /><br>
+            あと、MQOファイルの上2行が指定された形式ではない場合に強制終了を実行するようにしました。普通のユーザには関係ないはずです。<br>
+        </p>
+        <blockquote>
+            注意: まだ一般ユーザは利用できません。 masterをクローンすることで利用できます。(但し、現時点で既に未コミットの変更が存在するため、利用は自己責任)
+        </blockquote>
+        <h2>今作ってるやつ</h2>
+        <p>現在、Welcome画面(行動選択画面)の大幅改造に取り組んでいます。<br>
+            大幅改造といっても、<strong>並び替えができるようになる</strong>だけです。<br>
+            ほとんどのユーザからしたらどうでもいいかもしれませんが、カスタマイズが好きな人やよく使うものを一番上に置いておきたい人にとっては必要です。<br>
+            <br>
+            行動選択画面より大きな変更かもしれない設定画面についても匂わせておきます。<br>
+            設定画面からは<strong>互換モードのON/OFF</strong>、<strong>行動選択画面の並び替え</strong>等を行えるようにするはずです。<br>
+            <br>
+            最近サボり気味ってのもあるし設定画面でいっぱいいっぱいだしであまり書くことがないので今日は終わりです。<br>
+            それでは。
+        </p>
+    </div>
+    <div class="sidebar"><iframe src="../../../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../frame/copyright.htm"></iframe></div>
+    <script>
+        window.onload = function() {
+          var mainHeight = document.querySelector('.main').offsetHeight;
+          document.querySelector('.sidebar').style.height = mainHeight + 'px';
+        };
+    </script>
+</body>
+</html>

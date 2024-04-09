@@ -225,8 +225,8 @@ function addTrainMat() {
     matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
     matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
     matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatTexture'));
-    matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
-    var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "OneTex", "なし"];
+    matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\" "));
+    var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
     for (var j = 0; j < options.length; j++) {
       matSetting.append($('<input>').attr('type', 'radio').attr('class', 'trainMatOption').attr('name', 'trainMatOption' + count).attr('value', options[j]));
       matSetting.append($('<label>').attr('for', 'trainMatOption' + count).text(options[j]));
@@ -251,8 +251,8 @@ function addTrainMat() {
             matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMat'));
             matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
             matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMatTexture'));
-            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\", \"なし\" "));
-            var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "OneTex", "なし"];
+            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\", \"なし\" "));
+            var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
               for (var j = 0; j < options.length; j++) {
               matSetting.append($('<input>').attr('type', 'radio').attr('class', 'bogieMatOption').attr('name', 'bogieMatOption' + count).attr('value', options[j]));
            matSetting.append($('<label>').attr('for', 'bogieMatOption' + count).text(options[j]));

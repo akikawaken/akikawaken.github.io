@@ -13,6 +13,6 @@
  pushd %temp%\.RJC\update\%nextpath%\
  curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat
  echo Update completed.
- echo Please restart RtmJsonCreator.
- pause
+ timeout /t 3>nul
+ call %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat
 exit /b

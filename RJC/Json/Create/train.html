@@ -37,7 +37,17 @@
         <input type="text" id="tags" name="tags"><br><br>
         <label for="modelfile">modelFileを決めてください。 列車の3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
         <input type="text" id="modelfile" name="modelfile"><br><br>
-        <h2>列車材質設定</h2>
+
+        <h2>材質設定</h2>
+        <h2>自動材質設定</h2>
+        <p>mqoのみ利用できます。 mqozは使えません。<br>
+        これはベータ版です。 バグとか見つけたらIssue化頼む</p>
+        <input type="file" id="amsfile1"><br>
+        <input type="file" id="amsfile2">
+        <hr>
+
+        <h2>旧式材質設定</h2>
+        <h3>列車材質設定</h3>
         <button type="button" onclick="addTrainMat()">材質を追加</button>
         <button type="button" onclick="removeTrainMat()">最後の材質を削除</button>
 
@@ -46,7 +56,7 @@
         <label for="bogiemodelfile">modelFileを決めてください。 ボギーの3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
         <input type="text" id="bogiemodelfile" name="bogiemodelfile"><br><br>
 
-        <h2>ボギー材質設定</h2>
+        <h3>ボギー材質設定</h3>
         <button type="button" onclick="addBogieMat()">材質を追加</button>
         <button type="button" onclick="removeBogieMat()">最後の材質を削除</button>
 
@@ -191,7 +201,7 @@
         <label for="isSingleTrainNone">なし</label><br><br>
         
         
-        <button onclick="outputMats()">出力</button><br><br><button id="download">Download Json</button>
+        <button onclick="(async function() { var results = await getResults(); })()">出力</button><br><br><button id="download">Download Json</button>
 
     </form>
     <hr>
@@ -214,6 +224,12 @@ function download(content, fileName, contentType) {
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
+}
+
+async function getResults() {
+  var dataFromams1 = await ams1();
+  var dataFromams2 = await ams2();
+  outputMats(dataFromams1, dataFromams2);
 }
 
     // 列車材質設定
@@ -267,269 +283,356 @@ function addTrainMat() {
             }
         }
 
-        // 出力
-        function outputMats() {
-            var output = "{ \n";
-            var trainname = $('#trainname').val();
-            output += ' "trainName": "' + trainname + '", \n';
-            
-            var traintype = $('#traintype').val();
-            output += ' "trainType": "' + traintype + '", \n';
-
-            var tags = $('#tags').val();
-            output += ' "tags": "' + tags + '", \n';
-
-            output += ' "trainModel2":{ \n';
-            
-            var modelfile = $('#modelfile').val();
-            output += '  "modelFile": "' + modelfile + '", \n';
-
-            output += '  "textures":[ \n';
-            var count = $('#trainMatSettings').children().length;
-
-        for (var i = 1; i <= count; i++) {
-          var trainMat = $('#trainMat' + i + ' .trainMat').val();
-          var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
-          var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
-           var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
-         if (i == count) {
-           output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
-           } else {
-           output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
-           }
+        // AMS for GUI
+function ams1() {
+  return new Promise((resolve, reject) => {
+    var x = document.getElementById("amsfile1");
+    var txt = "";
+    if ('files' in x) {
+      if (x.files.length == 0) {
+        txt = "ファイルを選択してください。";
+      } else {
+        var file = x.files[0];
+        var filename1 = file.name;
+      }
+    } 
+    else {
+      if (x.value == "") {
+        txt += "ファイルを選択してください。";
+      } else {
+        txt += "ブラウザがFile APIを完全にサポートしていません。";
+      }
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var contents = e.target.result;
+      var lines = contents.split('\n');
+      var output1 = "";
+      var foundMaterial = false;
+      var lineCount = 0;
+      var storedLines = 0;
+      for(var i = 0; i < lines.length; i++){
+        if(lines[i].substring(0, 8) === "Material"){
+          foundMaterial = true;
+          var sections = lines[i].split(' ');
+          if(sections.length > 1){
+            lineCount = parseInt(sections[1]);
+          }
         }
-
-
-            output += ' "bogieModel2":{ \n';
-            var bogiemodelfile = $('#bogiemodelfile').val();
-            output += '  "modelFile": "' + bogiemodelfile + '", \n';
-            output += '  "textures": [ \n';
-
-            count = $('#bogieMatSettings').children().length;
-            for (var i = 1; i <= count; i++) {
-                var bogieMat = $('#bogieMat' + i + ' .bogieMat').val();
-                var bogieMatTexture = $('#bogieMat' + i + ' .bogieMatTexture').val();
-                var bogieMatOptionRadio = document.querySelector('input[name="bogieMatOption' + i + '"]:checked');
-                var bogieMatOption = bogieMatOptionRadio ? (bogieMatOptionRadio.value === "なし" ? "" : bogieMatOptionRadio.value) : "";
-                if (i == count) {
-                    output += '   ["' + bogieMat + '", "' + bogieMatTexture + '", "' + bogieMatOption + '"] \n  ] \n }, \n';
-                } else {
-                    output += '   ["' + bogieMat + '", "' + bogieMatTexture+ '", "'+ bogieMatOption +'"],';
-                }
+        else if(foundMaterial && storedLines < lineCount){
+          var parts = lines[i].split('"');
+          if(parts.length > 4){
+            if(storedLines+1 === lineCount){
+            var option = prompt('列車材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
+              output1 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"]]},\n';
+            }else{
+            var option = prompt('列車材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
+              output1 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"],\n';
             }
-
-            var buttontexture = $('#buttontexture').val();
-            output += ' "buttontexture": "' + buttontexture + '", \n';
-            var playerposx = $('#playerposx').val();
-            var playerposy = $('#playerposy').val();
-            var playerposz = $('#playerposz').val();
-            var playerposx2 = $('#playerposx2').val();
-            var playerposy2 = $('#playerposy2').val();
-            var playerposz2 = $('#playerposz2').val();
-            output += ' "playerPos": [[' + playerposx +',' + playerposy +',' + playerposz +',' + playerposx2 +',' + playerposy2 +',' + playerposz2 +']], \n';
-            var bogieposx = $('#bogieposx').val();
-            var bogieposy = $('#bogieposy').val();
-            var bogieposz = $('#bogieposz').val();
-            var bogieposx2 = $('#bogieposx2').val();
-            var bogieposy2 = $('#bogieposy2').val();
-            var bogieposz2 = $('#bogieposz2').val();
-            output += ' "bogiePos": [[' + bogieposx +',' + bogieposy +',' + bogieposz +',' + bogieposx2 +',' + bogieposy2 +',' + bogieposz2 +']], \n';
-            var trainDistance = $('#trainDistance').val();
-            output += ' "trainDistance": ' + trainDistance + ', \n';
-            var accuracy = $('#accuracy').val();
-
-            // おぷしょんとゆかいななかまたち
-
-                var accelerateion = document.getElementById('accelerateion').value
-                if (accelerateion !== "") {
-                    output += ' "accelerateion":' + accelerateion + ', \n';
-                }
-
-                var maxSpeed1 = document.getElementById('maxSpeed1').value
-                var maxSpeed2 = document.getElementById('maxSpeed2').value
-                var maxSpeed3 = document.getElementById('maxSpeed3').value
-                var maxSpeed4 = document.getElementById('maxSpeed4').value
-                var maxSpeed5 = document.getElementById('maxSpeed5').value
-                if (maxSpeed5 !== "") {
-                    output += ' "maxSpeed": [' + maxSpeed1 + ',' + maxSpeed2 + ',' + maxSpeed3 + ',' + maxSpeed4 + ',' + maxSpeed5 + '], \n';
-                }
-
-                var sound_DoorOpen = document.getElementById('sound_DoorOpen').value
-                if (sound_DoorOpen !== "") {
-                    output += ' "sound_DoorOpen": "' + sound_DoorOpen + '", \n';
-                }
-
-                var sound_Horn = document.getElementById('sound_Horn').value
-                if (sound_Horn !== "") {
-                    output += ' "sound_Horn": "' + sound_Horn + '", \n';
-                }
-
-                var sound_DoorClose = document.getElementById('sound_DoorClose').value
-                if (sound_DoorClose !== "") {
-                    output += ' "sound_DoorClose": "' + sound_DoorClose + '", \n';
-                }
-
-                var sound_Stop = document.getElementById('sound_Stop').value
-                if (sound_Stop !== "") {
-                    output += ' "sound_Stop": "' + sound_Stop + '", \n';
-                }
-
-                var sound_S_A = document.getElementById('sound_S_A').value
-                if (sound_S_A !== "") {
-                    output += ' "sound_S_A": "' + sound_S_A + '", \n';
-                }
-
-                var sound_Deceleration = document.getElementById('sound_Deceleration').value
-                if (sound_Deceleration !== "") {
-                    output += ' "sound_Deceleration": "' + sound_Deceleration + '", \n';
-                }
-
-                var sound_D_S = document.getElementById('sound_D_S').value
-                if (sound_D_S !== "") {
-                    output += ' "sound_D_S": "' + sound_D_S + '", \n';
-                }
-
-                var rolling = document.getElementById('rolling').value
-                if (rolling !== "") {
-                    output += ' "rolling":' + rolling + ', \n';
-                }
-
-                var mutejointsound = document.getElementById('mutejointsound').value
-                if (mutejointsound !== "") {
-                    output += ' "mutejointsound":' + mutejointsound + ', \n';
-                }
-
-                var rollSpeedCoefficient = document.getElementById('rollSpeedCoefficient').value
-                if (rollSpeedCoefficient !== "") {
-                    output += ' "rollSpeedCoefficient":' + rollSpeedCoefficient + ', \n';
-                }
-
-                var rollCoefficient = document.getElementById('rollCoefficient').value
-                if (rollCoefficient !== "") {
-                    output += ' "rollCoefficient":' + rollCoefficient + ', \n';
-                }
-
-                var rollVariationCoefficient = document.getElementById('rollVariationCoefficient').value
-                if (rollVariationCoefficient !== "") {
-                    output += ' "rollVariationCoefficient":' + rollVariationCoefficient + ', \n';
-                }
-
-                var rollWidthCoefficient = document.getElementById('rollWidthCoefficient').value
-                if (rollWidthCoefficient !== "") {
-                    output += ' "rollWidthCoefficient":' + rollWidthCoefficient + ', \n';
-                }
-
-                var useCustomColor = document.getElementById('useCustomColor').value
-                if (useCustomColor !== "") {
-                    output += ' "useCustomColor":' + useCustomColor + ', \n';
-                }
-
-                var defaultData = document.getElementById('defaultData').value
-                if (defaultData !== "") {
-                    output += ' "defaultData":' + defaultData + ', \n';
-                }
-
-                var scale = document.getElementById('scale').value
-                if (scale !== "") {
-                    output += ' "scale":"' + scale + '", \n';
-                }
-
-                var offset1 = document.getElementById('offset1').value
-                var offset2 = document.getElementById('offset2').value
-                var offset3 = document.getElementById('offset3').value
-                if (offset3 !== "") {
-                    output += ' "offset": [' + offset1 + ',' + offset2 + ',' + offset3 + '], \n';
-                } 
-
-                var smoothing = document.getElementById('smoothing').value
-                if (smoothing !== "") {
-                    output += ' "smoothing":' + smoothing + ', \n';
-                }
-
-                var doCulling = document.getElementById('doCulling').value
-                if (doCulling !== "") {
-                    output += ' "doCulling":' + doCulling + ', \n';
-                }
-
-                var serverScriptPath = document.getElementById('serverScriptPath').value
-                if (serverScriptPath !== "") {
-                    output += ' "serverScriptPath": "' + serverScriptPath + '", \n';
-                }
-
-                var guiScriptPath = document.getElementById('guiScriptPath').value
-                if (guiScriptPath !== "") {
-                    output += ' "guiScriptPath": "' + guiScriptPath + '", \n';
-                }
-
-                var renderAABB1 = document.getElementById('renderAABB1').value
-                var renderAABB2 = document.getElementById('renderAABB2').value
-                var renderAABB3 = document.getElementById('renderAABB3').value
-                var renderAABB4 = document.getElementById('renderAABB4').value
-                var renderAABB5 = document.getElementById('renderAABB5').value
-                var renderAABB6 = document.getElementById('renderAABB6').value
-                if (renderAABB6 !== "") {
-                    output += ' "renderAABB": [' + renderAABB1 + ',' + renderAABB2 + ',' + renderAABB3 + ',' + renderAABB4 + ',' + renderAABB5 + ',' + renderAABB6 + '], \n';
-                }
-
-                var size1 = document.getElementById('size1').value
-                var size2 = document.getElementById('size2').value
-                if (size2 !== "") {
-                    output += ' "size": [' + size1 + ',' + size2 + '], \n';
-                }
-
-                var soundScriptPath = document.getElementById('soundScriptPath').value
-                if (soundScriptPath !== "") {
-                    output += ' "soundScriptPath": "' + soundScriptPath + '", \n';
-                }
-
-                var smokex = document.getElementById('smokex').value
-                var smokey = document.getElementById('smokey').value
-                var smokez = document.getElementById('smokez').value
-                var smoke1 = document.getElementById('smoke1').value
-                var smoke2 = document.getElementById('smoke2').value
-                var smoke3 = document.getElementById('smoke3').value
-                if (smoke1 !== "") {
-                    output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',"' + smoke1 + '",' + smoke2 + ',' + smoke3 + ']], \n';
-                }
-
-                var notDisplayCab = document.getElementById('notDisplayCab').value
-                if (notDisplayCab !== "") {
-                    output += ' "notDisplayCab":' + notDisplayCab + ', \n';
-                }
-
-                var wheelRotationSpeed = document.getElementById('wheelRotationSpeed').value
-                if (wheelRotationSpeed !== "") {
-                    output += ' "wheelRotationSpeed":' + wheelRotationSpeed + ', \n';
-                }
-
-                var sound_BrakeRelease = document.getElementById('sound_BrakeRelease').value
-                if (sound_BrakeRelease !== "") {
-                    output += ' "sound_BrakeRelease":"' + sound_BrakeRelease + '", \n';
-                }
-
-                var sound_BrakeRelease2 = document.getElementById('sound_BrakeRelease2').value
-                if (sound_BrakeRelease2 !== "") {
-                    output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
-                }
-
-                var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
-                var isSingleTrain = isSingleTrainRadio ? (isSingleTrainRadio.value === "None" ? "" : isSingleTrainRadio.value) : "";
-                if (isSingleTrain !== "") {
-                    output += ' "isSingleTrain":' + isSingleTrain + ',\n';
-                }
-
-
-            
-            output += ' "accuracy": "' + accuracy + '"\n';
-
-            output += "}";
-            
-
-            document.getElementById('output').textContent = output;
-            
-            $('#output').text(output);
-            document.getElementById("filename").innerHTML = "------ファイル名:ModelTrain_" + trainname+ ".json-------";
+          }
+          storedLines++;
         }
+      }
+      var ams = true;
+      resolve({output1: output1, ams: ams, filename1: filename1});
+    }
+    reader.readAsText(x.files[0]);
+  });
+}
+
+// ボギー
+function ams2() {
+  return new Promise((resolve, reject) => {
+    var x = document.getElementById("amsfile2");
+    var txt = "";
+    if ('files' in x) {
+      if (x.files.length == 0) {
+        txt = "ファイルを選択してください。";
+      } else {
+        var file = x.files[0];
+        var filename2 = file.name;
+      }
+    } 
+    else {
+      if (x.value == "") {
+        txt += "ファイルを選択してください。";
+      } else {
+        txt += "ブラウザがFile APIを完全にサポートしていません。";
+      }
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var contents = e.target.result;
+      var lines = contents.split('\n');
+      var output2 = "";
+      var foundMaterial = false;
+      var lineCount = 0;
+      var storedLines = 0;
+      for(var i = 0; i < lines.length; i++){
+        if(lines[i].substring(0, 8) === "Material"){
+          foundMaterial = true;
+          var sections = lines[i].split(' ');
+          if(sections.length > 1){
+            lineCount = parseInt(sections[1]);
+          }
+        }
+        else if(foundMaterial && storedLines < lineCount){
+          var parts = lines[i].split('"');
+          if(parts.length > 4){
+            if(storedLines+1 === lineCount){
+            var option = prompt('ボギー材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
+              output2 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"]]},\n';
+            }else{
+            var option = prompt('ボギー材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
+              output2 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"],\n';
+            }
+          }
+          storedLines++;
+        }
+      }
+      resolve({output2: output2, filename2: filename2});
+    }
+    reader.readAsText(x.files[0]);
+  });
+}
+
+        // 出力
+function outputMats(dataFromams1, dataFromams2) {
+    var ams = dataFromams1.ams;
+    var output = "{ \n";
+    var trainname = $('#trainname').val();
+    output += ' "trainName": "' + trainname + '", \n';
+    
+    var traintype = $('#traintype').val();
+    output += ' "trainType": "' + traintype + '", \n';
+    var tags = $('#tags').val();
+    output += ' "tags": "' + tags + '", \n';
+    var modelfile = $('#modelfile').val();
+    if (ams !== true) {
+    //旧式
+    output += ' "trainModel2":{ \n';
+    output += '  "modelFile": "' + modelfile + '", \n';
+    output += '  "textures":[ \n';
+    var count = $('#trainMatSettings').children().length;
+    for (var i = 1; i <= count; i++) {
+    var trainMat = $('#trainMat' + i + ' .trainMat').val();
+    var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
+    var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
+    var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
+    if (i == count) {
+      output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
+      } else {
+      output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
+    }
+}
+    output += ' "bogieModel2":{ \n';
+    var bogiemodelfile = $('#bogiemodelfile').val();
+    output += '  "modelFile": "' + bogiemodelfile + '", \n';
+    output += '  "textures": [ \n';
+    count = $('#bogieMatSettings').children().length;
+    for (var i = 1; i <= count; i++) {
+    var bogieMat = $('#bogieMat' + i + ' .bogieMat').val();
+    var bogieMatTexture = $('#bogieMat' + i + ' .bogieMatTexture').val();
+    var bogieMatOptionRadio = document.querySelector('input[name="bogieMatOption' + i + '"]:checked');
+    var bogieMatOption = bogieMatOptionRadio ? (bogieMatOptionRadio.value === "なし" ? "" : bogieMatOptionRadio.value) : "";
+    if (i == count) {
+        output += '   ["' + bogieMat + '", "' + bogieMatTexture + '", "' + bogieMatOption + '"] \n  ] \n }, \n';
+    } else {
+        output += '   ["' + bogieMat + '", "' + bogieMatTexture+ '", "'+ bogieMatOption +'"],';
+    }
+    }
+    }
+    if (ams) {
+    output += ' "trainModel2":{ \n';
+    var filename1 = dataFromams1.filename1;
+    output += '  "modelFile": "' + filename1 + '", \n';
+    output += '  "textures":[ \n';
+    var output1 = dataFromams1.output1;
+    output += ' '+ output1 +' '
+    
+    output += ' "bogieModel2":{ \n';
+    var filename2 = dataFromams2.filename2;
+    output += '  "modelFile": "' + filename2 + '", \n';
+    output += '  "textures":[ \n';
+    var output2 = dataFromams2.output2;
+    output += ' '+ output2 +' '
+    }
+
+    var buttontexture = $('#buttontexture').val();
+    output += ' "buttontexture": "' + buttontexture + '", \n';
+    var playerposx = $('#playerposx').val();
+    var playerposy = $('#playerposy').val();
+    var playerposz = $('#playerposz').val();
+    var playerposx2 = $('#playerposx2').val();
+    var playerposy2 = $('#playerposy2').val();
+    var playerposz2 = $('#playerposz2').val();
+    output += ' "playerPos": [[' + playerposx +',' + playerposy +',' + playerposz +',' + playerposx2 +',' + playerposy2 +',' + playerposz2 +']], \n';
+    var bogieposx = $('#bogieposx').val();
+    var bogieposy = $('#bogieposy').val();
+    var bogieposz = $('#bogieposz').val();
+    var bogieposx2 = $('#bogieposx2').val();
+    var bogieposy2 = $('#bogieposy2').val();
+    var bogieposz2 = $('#bogieposz2').val();
+    output += ' "bogiePos": [[' + bogieposx +',' + bogieposy +',' + bogieposz +',' + bogieposx2 +',' + bogieposy2 +',' + bogieposz2 +']], \n';
+    var trainDistance = $('#trainDistance').val();
+    output += ' "trainDistance": ' + trainDistance + ', \n';
+    var accuracy = $('#accuracy').val();
+    // おぷしょんとゆかいななかまたち
+        var accelerateion = document.getElementById('accelerateion').value
+        if (accelerateion !== "") {
+            output += ' "accelerateion":' + accelerateion + ', \n';
+        }
+        var maxSpeed1 = document.getElementById('maxSpeed1').value
+        var maxSpeed2 = document.getElementById('maxSpeed2').value
+        var maxSpeed3 = document.getElementById('maxSpeed3').value
+        var maxSpeed4 = document.getElementById('maxSpeed4').value
+        var maxSpeed5 = document.getElementById('maxSpeed5').value
+        if (maxSpeed5 !== "") {
+            output += ' "maxSpeed": [' + maxSpeed1 + ',' + maxSpeed2 + ',' + maxSpeed3 + ',' + maxSpeed4 + ',' + maxSpeed5 + '], \n';
+        }
+        var sound_DoorOpen = document.getElementById('sound_DoorOpen').value
+        if (sound_DoorOpen !== "") {
+            output += ' "sound_DoorOpen": "' + sound_DoorOpen + '", \n';
+        }
+        var sound_Horn = document.getElementById('sound_Horn').value
+        if (sound_Horn !== "") {
+            output += ' "sound_Horn": "' + sound_Horn + '", \n';
+        }
+        var sound_DoorClose = document.getElementById('sound_DoorClose').value
+        if (sound_DoorClose !== "") {
+            output += ' "sound_DoorClose": "' + sound_DoorClose + '", \n';
+        }
+        var sound_Stop = document.getElementById('sound_Stop').value
+        if (sound_Stop !== "") {
+            output += ' "sound_Stop": "' + sound_Stop + '", \n';
+        }
+        var sound_S_A = document.getElementById('sound_S_A').value
+        if (sound_S_A !== "") {
+            output += ' "sound_S_A": "' + sound_S_A + '", \n';
+        }
+        var sound_Deceleration = document.getElementById('sound_Deceleration').value
+        if (sound_Deceleration !== "") {
+            output += ' "sound_Deceleration": "' + sound_Deceleration + '", \n';
+        }
+        var sound_D_S = document.getElementById('sound_D_S').value
+        if (sound_D_S !== "") {
+            output += ' "sound_D_S": "' + sound_D_S + '", \n';
+        }
+        var rolling = document.getElementById('rolling').value
+        if (rolling !== "") {
+            output += ' "rolling":' + rolling + ', \n';
+        }
+        var mutejointsound = document.getElementById('mutejointsound').value
+        if (mutejointsound !== "") {
+            output += ' "mutejointsound":' + mutejointsound + ', \n';
+        }
+        var rollSpeedCoefficient = document.getElementById('rollSpeedCoefficient').value
+        if (rollSpeedCoefficient !== "") {
+            output += ' "rollSpeedCoefficient":' + rollSpeedCoefficient + ', \n';
+        }
+        var rollCoefficient = document.getElementById('rollCoefficient').value
+        if (rollCoefficient !== "") {
+            output += ' "rollCoefficient":' + rollCoefficient + ', \n';
+        }
+        var rollVariationCoefficient = document.getElementById('rollVariationCoefficient').value
+        if (rollVariationCoefficient !== "") {
+            output += ' "rollVariationCoefficient":' + rollVariationCoefficient + ', \n';
+        }
+        var rollWidthCoefficient = document.getElementById('rollWidthCoefficient').value
+        if (rollWidthCoefficient !== "") {
+            output += ' "rollWidthCoefficient":' + rollWidthCoefficient + ', \n';
+        }
+        var useCustomColor = document.getElementById('useCustomColor').value
+        if (useCustomColor !== "") {
+            output += ' "useCustomColor":' + useCustomColor + ', \n';
+        }
+        var defaultData = document.getElementById('defaultData').value
+        if (defaultData !== "") {
+            output += ' "defaultData":' + defaultData + ', \n';
+        }
+        var scale = document.getElementById('scale').value
+        if (scale !== "") {
+            output += ' "scale":"' + scale + '", \n';
+        }
+        var offset1 = document.getElementById('offset1').value
+        var offset2 = document.getElementById('offset2').value
+        var offset3 = document.getElementById('offset3').value
+        if (offset3 !== "") {
+            output += ' "offset": [' + offset1 + ',' + offset2 + ',' + offset3 + '], \n';
+        } 
+        var smoothing = document.getElementById('smoothing').value
+        if (smoothing !== "") {
+            output += ' "smoothing":' + smoothing + ', \n';
+        }
+        var doCulling = document.getElementById('doCulling').value
+        if (doCulling !== "") {
+            output += ' "doCulling":' + doCulling + ', \n';
+        }
+        var serverScriptPath = document.getElementById('serverScriptPath').value
+        if (serverScriptPath !== "") {
+            output += ' "serverScriptPath": "' + serverScriptPath + '", \n';
+        }
+        var guiScriptPath = document.getElementById('guiScriptPath').value
+        if (guiScriptPath !== "") {
+            output += ' "guiScriptPath": "' + guiScriptPath + '", \n';
+        }
+        var renderAABB1 = document.getElementById('renderAABB1').value
+        var renderAABB2 = document.getElementById('renderAABB2').value
+        var renderAABB3 = document.getElementById('renderAABB3').value
+        var renderAABB4 = document.getElementById('renderAABB4').value
+        var renderAABB5 = document.getElementById('renderAABB5').value
+        var renderAABB6 = document.getElementById('renderAABB6').value
+        if (renderAABB6 !== "") {
+            output += ' "renderAABB": [' + renderAABB1 + ',' + renderAABB2 + ',' + renderAABB3 + ',' + renderAABB4 + ',' + renderAABB5 + ',' + renderAABB6 + '], \n';
+        }
+        var size1 = document.getElementById('size1').value
+        var size2 = document.getElementById('size2').value
+        if (size2 !== "") {
+            output += ' "size": [' + size1 + ',' + size2 + '], \n';
+        }
+        var soundScriptPath = document.getElementById('soundScriptPath').value
+        if (soundScriptPath !== "") {
+            output += ' "soundScriptPath": "' + soundScriptPath + '", \n';
+        }
+        var smokex = document.getElementById('smokex').value
+        var smokey = document.getElementById('smokey').value
+        var smokez = document.getElementById('smokez').value
+        var smoke1 = document.getElementById('smoke1').value
+        var smoke2 = document.getElementById('smoke2').value
+        var smoke3 = document.getElementById('smoke3').value
+        if (smoke1 !== "") {
+            output += ' "smoke": [[' + smokex + ',' + smokey + ',' + smokez + ',"' + smoke1 + '",' + smoke2 + ',' + smoke3 + ']], \n';
+        }
+        var notDisplayCab = document.getElementById('notDisplayCab').value
+        if (notDisplayCab !== "") {
+            output += ' "notDisplayCab":' + notDisplayCab + ', \n';
+        }
+        var wheelRotationSpeed = document.getElementById('wheelRotationSpeed').value
+        if (wheelRotationSpeed !== "") {
+            output += ' "wheelRotationSpeed":' + wheelRotationSpeed + ', \n';
+        }
+        var sound_BrakeRelease = document.getElementById('sound_BrakeRelease').value
+        if (sound_BrakeRelease !== "") {
+            output += ' "sound_BrakeRelease":"' + sound_BrakeRelease + '", \n';
+        }
+        var sound_BrakeRelease2 = document.getElementById('sound_BrakeRelease2').value
+        if (sound_BrakeRelease2 !== "") {
+            output += ' "sound_BrakeRelease2":"' + sound_BrakeRelease2 + '", \n';
+        }
+        var isSingleTrainRadio = document.querySelector('input[name="isSingleTrain"]:checked');
+        var isSingleTrain = isSingleTrainRadio ? (isSingleTrainRadio.value === "None" ? "" : isSingleTrainRadio.value) : "";
+        if (isSingleTrain !== "") {
+            output += ' "isSingleTrain":' + isSingleTrain + ',\n';
+        }
+    
+    output += ' "accuracy": "' + accuracy + '"\n';
+    output += "}";
+    
+    document.getElementById('output').textContent = output;
+    
+    $('#output').text(output);
+    document.getElementById("filename").innerHTML = "------ファイル名:ModelTrain_" + trainname+ ".json-------";
+}
     </script>
 </body>
 </html>

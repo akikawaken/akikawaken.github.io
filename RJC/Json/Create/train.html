@@ -34,20 +34,23 @@
         <label for="traintype">traintypeを決めてください。 使用可能:EC,DC,CC,TC</label><br>
         <input type="text" id="traintype" name="traintype"><br><br>
         <label for="tags">tagsを決めてください。 使用可能:半角英数字(英語は小文字のみ可能)と","<br>複数指定する場合は","で区切って入力してください。(例:tag1,tag2,tag3)</label><br>
-        <input type="text" id="tags" name="tags"><br><br>
-        <label for="modelfile">modelFileを決めてください。 列車の3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
-        <input type="text" id="modelfile" name="modelfile"><br><br>
+        <input type="text" id="tags" name="tags">
 
         <h2>材質設定</h2>
         <h2>自動材質設定</h2>
         <p>mqoのみ利用できます。 mqozは使えません。<br>
-        これはベータ版です。 バグとか見つけたらIssue化頼む</p>
-        <input type="file" id="amsfile1"><br>
+        これはベータ版です。 バグとか見つけたらIssue化頼む<br><br>
+        列車モデルファイル
+      </p>
+        <input type="file" id="amsfile1">
+        <p><br>ボギーモデルファイル</p>
         <input type="file" id="amsfile2">
         <hr>
 
         <h2>旧式材質設定</h2>
         <h3>列車材質設定</h3>
+        <label for="modelfile">modelFileを決めてください。 列車の3Dモデルのファイル名を"拡張子あり"で入力してください。</label><br>
+        <input type="text" id="modelfile" name="modelfile"><br><br>
         <button type="button" onclick="addTrainMat()">材質を追加</button>
         <button type="button" onclick="removeTrainMat()">最後の材質を削除</button>
 
@@ -300,7 +303,7 @@ function ams1() {
       if (x.value == "") {
         txt += "ファイルを選択してください。";
       } else {
-        txt += "ブラウザがFile APIを完全にサポートしていません。";
+        txt += "ブラウザがFile APIをサポートしていません。";
       }
     }
     var reader = new FileReader();
@@ -357,7 +360,7 @@ function ams2() {
       if (x.value == "") {
         txt += "ファイルを選択してください。";
       } else {
-        txt += "ブラウザがFile APIを完全にサポートしていません。";
+        txt += "ブラウザがFile APIをサポートしていません。";
       }
     }
     var reader = new FileReader();

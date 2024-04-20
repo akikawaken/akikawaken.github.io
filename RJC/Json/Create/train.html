@@ -204,7 +204,7 @@
         <label for="isSingleTrainNone">なし</label><br><br>
         
         
-        <button onclick="(async function() { var results = await getResults(); })()">出力</button><br><br><button id="download">Download Json</button>
+        <button onclick="(async function() { var results = await getResults(); })()">自動材質設定用出力</button>  <button onclick="outputMats()">旧式材質設定用出力</button><br><br><button id="download">Download Json</button>
 
     </form>
     <hr>
@@ -401,7 +401,12 @@ function ams2() {
 
         // 出力
 function outputMats(dataFromams1, dataFromams2) {
-    var ams = dataFromams1.ams;
+  var ams;
+    try {
+        ams = dataFromams1.ams;
+    } catch (error) {
+        ams = false;
+    }
     var output = "{ \n";
     var trainname = $('#trainname').val();
     output += ' "trainName": "' + trainname + '", \n';

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>開発進捗報告 - 強化されたアップデート機能 - 04-30-2024</title>
+        <link rel="stylesheet" href="../../../css/Blog.css" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="開発進捗報告: 04-30-2024" />
+        <meta name="twitter:description" content="開発進捗報告: タイトル:強化されたアップデート機能, 作成: 04-30-2024, 更新: [更新日]" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/akikawaken/images/main/Blog/icon/normal_icon.png" />
+    </head>
+<body>
+    <div class="title">
+    <h1>強化されたアップデート機能</h1>
+    <p>執筆: akikawa9616, 04-30-2024
+    <hr>
+    </div>
+    <div class="main">
+        <h2>進捗報告サボってすまん</h2>
+        <p>こんにちは。私です。<br>
+            3週間ぶりに進捗報告を書いています。 すこしサボりすぎましたかね?<br>
+            今回の内容は<i>"強化されたアップデート機能"</i>です。
+        </p>
+        <h2>強化されたアップデート機能</h2>
+        <p>"強化" と言っても普段のアップデート同様、大したことではないように感じますが、今回の"強化"は一味違います。<br>
+            <br>
+            強化内容一つ目は、<strong>アップデートではなく、ダウングレードができるようになります。</strong>
+            <br>
+            つまり、今まで通りの最新版へのCLIアップデートに加え、最初期版であるv0.1(<code>sign_json_v0.1.bat</code>)等をCLI上でダウンロード、そして次回の起動時からダウンロードしたバージョンとして動作します。<br>
+            これは、現在のアップデート機能を応用したものであるため、v1.0.1.2以前のバージョンを指定して実行すると<strong>RtmJsonCreator自身では元のバージョンに戻せなくなります。</strong><br>
+            この問題はユーザが手動で<code>%temp%\.RJC</code>配下と<code>%temp%\rjcupdate.tscf</code>,<code>%temp%\rjcversion.tscf</code>の削除を行うことで元のバージョンへ戻すことで解決することができます。
+        </p>
+        <blockquote>
+            元のバージョンに戻せなくなる問題は、RtmJsonCreator実行時に元のバージョンかダウンロードしたバージョンのどちらを起動するか聞くだけで対策できますが、開発者が<i>起動のテンポが悪いソフトウェアが嫌い</i>な人なので、その様な選択メッセージは作成しない方針でいます。
+        </blockquote>
+        <br>
+        <p>強化内容二つ目: バージョン選択<br>
+            実質的には、一つ目のダウングレードと同様です。 例えば、"v1.0を利用している時に、最新版のv3.0ではなくv2.0にアップデートを行う"といったことが可能になります。
+        </p>
+        <blockquote class="warn">
+            将来的に、コミットごとのファイルをダウンロード可能とする予定ですが、04-30-2024現在は開発進捗が0%になっています。
+        </blockquote>
+        <br>
+        <p>強化内容三つ目: 再起動の不要化<br>
+            もう再起動させる必要はありません..<br>
+            自動的にセルフ呼び出しを行うようになりました。
+        </p>
+    </div>
+    <div class="sidebar"><iframe src="../../../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../frame/copyright.htm"></iframe></div>
+</body>
+<script src="../../../js/SidebarHeight.js"></script>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RtmJsonCreator - RTMアドオン用Json作成支援ツール</title>
+        <link rel="stylesheet" href="../css/index.css" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="RtmJsonCreator - RTMアドオン用Json作成支援ツール" />
+        <meta name="twitter:description" content="RealTrainModアドオン用のJson作成支援ツール、RtmJsonCreatorです。" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/akikawaken/images/main/Blog/icon/add_icon.png" />
+    </head>
+<body>
+    <div class="title">
+        <div class="SuperUltraHyperSugoiTokoro">
+            <p><br>
+                <br>
+                Json構文エラーとおさらばしましょう。<br>
+                <img src="https://raw.githubusercontent.com/akikawaken/images/main/RJC/Banner/RJC_Banner_CLI.png"><img src="https://raw.githubusercontent.com/akikawaken/images/main/RJC/Banner/RJC_Banner_GUI.png"><br>
+                RtmJsonCreatorシリーズがあなたのアドオン制作を支援します。<br>
+                <br>
+            </p>
+        </div>
+        <div class="download">
+            <p>インストール<br>
+                For Windows<br>
+                <code>curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call RtmJsonCreator.bat</code> <button onclick="copy()">copy</button><br>
+                または、<a class="haikei" target="_blank" rel="noopener noreferrer" href="https://github.com/akikawaken/Rtm_Json_Creator/releases">GitHubからダウンロード。</a><br>
+                上記コマンドを利用してインストールすると自動で初期設定が走り、利用開始が可能です。
+                <br>
+                <br>
+                MacまたはLinuxをお使いですか?<br>
+                <a class="haikei" target="_blank" rel="noopener noreferrer" href="../Json/index.html">GUI版が利用可能です。</a><br>
+                (GUI版は開発途中の為、CLI版の一部機能のみ利用可能です)<br>
+                <br>
+                <br>
+            </p>
+        </div>
+    </div>
+    <div class="main">
+        <h2 id="WhatIsRJC">RtmJsonCreatorとは?</h2>
+    
+        <p>RtmJsonCreatorは<i><abbr title="RealTrainMod">RTM</abbr></i>のアドオン用Json作成支援ツールです。<br>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/akikawaken/Rtm_Json_Creator">CLI版</a>と<a href="../Json/index.html">GUI版</a>の二種類があります。<br>
+        <h2 class="CmdVersion">コマンドライン版</h2>
+        <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/akikawaken/Rtm_Json_Creator"><img src="https://raw.githubusercontent.com/akikawaken/images/main/RJC/Banner/RJC_Banner_CLI.png"></a>&lt;-バナークリックでGitHubにリンクします。</p>
+        <h3>利用可能なJsonタイプ</h3>
+        <p>- 列車<br>
+        - 看板<br>
+        - 機能あり設置物<br>
+        - 機能なし設置物<br>
+        - NPC<br>
+        - 旗<br>
+        - 信号機<br>
+        - レール<br>
+        - コンテナ<br>
+        - 火器<br>
+        - コネクタ<br>
+        - ワイヤ<br>
+        - 乗り物(自動車,航空機,船舶,リフト)<br>
+        - sounds.json<br>
+        - pack.json</p>
+        <h3>RtmJsonCreator(CLI版)の特徴</h3>
+        <p>
+        - 値を入力するだけなので Json構文エラー の可能性が低くなる<br>
+        - キーボードだけで操作でき、普段のコマンドライン操作と同じ感覚で利用できる (一部は補完が利用可能!)<br>
+        - オフライン環境でも実行できる<br>
+        - MITLicenseで利用できる<br>
+        - MQOファイルパスを入力するだけで自動でモデルファイル設定を完了してくれる、<i>自動材質設定</i>が利用できる</p>
+        <h3>動作環境</h3>
+        <p>Windowsなら大体動く</p>
+        <h4>動作確認済み:</h4>
+        Windows10 21H2<br>
+        Windows10 22H2,Windows11 22H2<br>
+        Windows11 23H2<br></p>
+        <h3>使い方</h3>
+        <p>バッチファイルを起動し、表示された内容に従って入力するだけ。</p>
+        <h3>備考</h3>
+        <p>自動材質設定機能が利用可能です。</p>
+        <h2 class="GUIVersion">GUI版</h2>
+        <p><a href="../Json/index.html"><img src="https://raw.githubusercontent.com/akikawaken/images/main/RJC/Banner/RJC_Banner_GUI.png"></a>&lt;-バナークリックで作成ページ一覧にリンクします。</p>
+            <blockquote class="warn">
+            <p>GUI版は現在開発中です! 完成している部分は利用できます!</p>
+            </blockquote></p>
+        <h3>利用可能なJsonタイプ</h3>
+        <p> - <a href="../Json/Create/train.html">列車</a><br>
+            - <a href="../Json/Create/sign.html">看板</a><br>
+            - <a href="../Json/Create/machine.htm">機能あり/なし設置物</a><br>
+            - <a href="../Json/Create/npc.htm">NPC</a><br>
+            - <a href="../Json/Create/flag.html">旗</a><br>
+            - <a href="../Json/Create/pack.html">pack.json</a>
+        </p>
+        <h3>RtmJsonCreator(GUI版)の特徴</h3>
+        <p>
+        - Windows以外でもネットが繋がれば利用できる<br>
+        - 外出中でもスマートフォンから利用できる<br>
+        - MITLicenseで利用できる<br></p>
+        <h3>備考</h3>
+        <p>自動材質設定は列車のみ有効です。<br>
+        <strong>モバイル外見はありません。</strong></p>
+        <h3>動作確認済みブラウザ</h3>
+        <p>デスクトップ</p>
+        <blockquote>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.mozilla.org/ja/firefox/developer/">Firefox Developer Edition</a> - 118.0b9 (64 ビット) - aurora<br>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.microsoft.com/ja-jp/edge">Microsoft Edge</a> - 120.0.2210.144 (公式ビルド) (64 ビット)
+            </blockquote>
+        <p>モバイル(iOSで確認)</p>
+        <blockquote>
+            Firefox - 124.0 (39709)<br>
+            Google Chrome - 113.0.6312.52<br>
+            Safari - 15.4
+        </blockquote>
+        </p><br><br>
+    </div>
+    <div class="sidebar"><iframe src="../../Blog/frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../Blog/frame/copyright.htm"></iframe></div>
+    <script>
+    function copy() {
+        var text = "curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call RtmJsonCreator.bat";
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+    }
+    </script>
+</body>
+<script src="../../Blog/js/SidebarHeight.js"></script>
+</html>

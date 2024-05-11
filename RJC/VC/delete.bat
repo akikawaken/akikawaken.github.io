@@ -4,7 +4,9 @@
  set confirm=n
  set /p confirm=Y/N:
  if not %confirm% == y exit /b
- rd /S /Q %temp%\.RJC\
+ rd /S /Q %temp%\.RJC\json
+ del /q %temp%\.RJC\rjc.tscf
+ del /q %temp%\.RJC\OSC.tscf
  set nextpath=%random%
  echo nextpath: %nextpath%
  if exist %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat set nextpath=%random%

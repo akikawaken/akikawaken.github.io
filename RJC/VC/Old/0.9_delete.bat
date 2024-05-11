@@ -4,7 +4,9 @@
  set confirm=n
  set /p confirm=Y/N:
  if not %confirm% == y exit /b
- rd /S /Q %temp%\.RJC\
+ rd /S /Q %temp%\.RJC\json
+ del /q %temp%\.RJC\rjc.tscf
+ del /q %temp%\.RJC\OSC.tscf
  echo;>%temp%\rjcversion.tscf
  set nextpath=%random%
  echo nextpath: %nextpath%

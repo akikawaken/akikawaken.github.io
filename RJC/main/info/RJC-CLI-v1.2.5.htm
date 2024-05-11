@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CLI版 バージョン1.2.5について</title>
+        <link rel="stylesheet" href="../../css/Blog.css" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="CLI版 バージョン1.2.5について" />
+        <meta name="twitter:description" content="CLI版 バージョン1.2.5について" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/akikawaken/images/main/Blog/icon/normal_icon.png" />
+    </head>
+<body>
+    <div class="title">
+    <h1>CLI版 バージョン1.2.5について</h1>
+    <hr>
+    </div>
+    <div class="main">
+        <h2>CLI版 バージョン1.2.5について</h2>
+        <p>CLI版 バージョン1.2.5は開発者の不手際により、初期設定時にループを引き起こし、起動不能に陥るバグが存在しています。<br>
+            現在開発者はこの問題に取り組んでおり、05/13までにリリースする予定のv1.3-aで解消する予定です。</p>
+        <h2>対処法</h2>
+        <h3>v1.2.5以前から、CLIアップデートを利用してv1.2.5にアップデートした場合</h3>
+        <p>次のコマンドを利用してバージョン1.2.5を削除してください。 初回ダウンロード時のバージョンにダウングレードされます。<br>
+            <code>del %temp%\rjcupdate.tscf & rd /s %temp%\.RJC\update\</code></p>
+        <h3>v1.2.5をGitHubまたはCLIダウンロードした場合</h3>
+        <p>バージョン1.2.5を削除した後に、バージョン1.2を<a href="https://github.com/akikawaken/Rtm_Json_Creator/releases/tag/v1.1">GitHubのリリースページ</a>からダウンロードするか、CLIダウンロードを行うことでダウングレードが可能です。</p>
+        <blockquote class="warn">
+            CLIダウンロードのコマンドは変わりません。
+        </blockquote>
+        <h2>現象</h2>
+        <p>初期設定時、cURLコマンドのループが発生する。</p>
+        <h2>原因</h2>
+        <p>調査中</p>
+        <h2>時系列</h2>
+        <p>05/07 20:52 バージョン1.2.5リリース<br>
+            05/12 00:25頃 cURLによるループを開発者が発見<br>
+            05/12 00:30 アップデートシグナルを停止(2)<br>
+            05/12 00:36 "あきさばmc"Discordへお知らせを投稿<br>
+            05/12 00:40 akikawaken.github.ioへお知らせを掲載<br>
+            05/12 01:11 CLI版 バージョン1.2.5についての掲載<br>
+            05/12 01:11 Twitterによる告知</p>
+    </div>
+    <div class="sidebar"><iframe src="../../../Blog/frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../Blog/frame/copyright.htm"></iframe></div>
+    <script src="../../../Blog/js/SidebarHeight.js"></script>
+</body>
+<script src="../../../Blog/js/SidebarHeight.js"></script>
+</html>

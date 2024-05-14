@@ -1,8 +1,14 @@
 @echo off
+ :hogehoge
+ for /F %%a in ('echo prompt $E ^| cmd') do set "ESC=%%a"
+ echo;
  echo are you sure you want to run the update?
  echo Json created so far will be deleted. (%temp%\.RJC\*)
+ echo;
+ echo if you type R , can see release note.(Japanese)
  set confirm=n
- set /p confirm=Y/N:
+ set /p confirm=Y/N/R:
+ if %confirm% == r goto release
  if not %confirm% == y exit /b
  rd /S /Q %temp%\.RJC\json
  del /q %temp%\.RJC\rjc.tscf
@@ -18,3 +24,6 @@
  pause
  call %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat
 exit /b
+:release
+ curl https://akikawaken.github.io/RJC/VC/Releasenote.txt
+ goto hogehoge

@@ -109,3 +109,12 @@ img {
   border: 1px solid #298086;
   padding: 5px
 }
+summary{
+  background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
+  color: rgb(255, 255, 255);
+  position: sticky;
+  padding: 5px;
+  top: 0;
+  left: 0;
+  margin: 1em 0;
+}

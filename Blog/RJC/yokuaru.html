@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>よくある質問</title>
+        <link rel="stylesheet" href="../css/Blog.css" />
+    </head>
+<body>
+    <div class="title">
+    <h1>よくある質問</h1>
+    <hr>
+    </div>
+    <div class="main">
+        <h2>はじめに</h2>
+        <p>これは RtmJsonCreator の <strong>よくある質問</strong> をまとめたページです。
+        </p>
+        <h2>目次</h2>
+        <ul>
+            <li><a href="#HowToUpdate">アップデートはどうやってやるの?</a></li>
+            <li><a href="#BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ?</a></li>
+            <li><a href="#SuperUpdate">強化されたアップデートって何?</a></li>
+            <li><a href="#CrashRJC">クラッシュしたんだけど、作成途中のJsonファイルどっかに残ってない?</a></li>
+            <li><a href="#WhatIsOSCMode">互換モードって何?</a></li>
+            <li><a href="#JsonSavedFolder">作成したJsonはどこにあるの?</a></li>
+        </ul>
+
+        <h2 id="HowToUpdate">アップデートはどうやってやるの?</h2>
+        <blockquote class="warn">
+            バージョン1.2以降が対象です。<br>
+            それ以前のバージョンを利用中の場合はGitHubのリリースからセルフダウンロードしてください。
+        </blockquote>
+        <p>アップデートが利用可能な場合は行動選択画面の一番下に<code> update        RtmJsonCreatorを最新版にアップデートします。</code>が追加されます。 存在しない場合はすでに最新版になっているか、互換モードがオンになっている,またはインターネット環境に接続出来ていない可能性があります。<br>
+            互換モードが有効化されている場合は、v1.3.3.3以降、設定画面から強制的に無効化することができます。 無効化した状態でアップデートを利用する場合はcurlコマンドが利用可能であることを確認してからアップデートしてください。
+            <br>
+            <img src="https://raw.githubusercontent.com/akikawaken/images/main/Blog/img/yokuaru-00001.png" />
+            <br>
+            <br>
+            v1.3.3.3以降を利用している場合、設定画面から強化されたアップデートを利用可能です。<br>
+            <br>
+            updateを選択すると<strong>別ウィンドウ</strong>で本当にアップデートするか聞かれます。<br>
+            聞かれてることは要するに
+            <blockquote>
+                本当にアップデートする?<br>
+                今までRJCで作ったJsonは全部消えるけど大丈夫そ? ([Jsonが保存されているフォルダパス])
+            </blockquote>
+            ってことです。<br>
+            <br>
+            <img src="https://raw.githubusercontent.com/akikawaken/images/main/Blog/img/yokuaru-00002.png" />
+            <br>
+            <br>
+            v1.3.3.3以降、アップデートが終わると、勝手にアップデートしたRtmJsonCreatorを起動、初期設定、再起動を実行し、再度利用可能になります。<br>
+            v1.3.3.3以前の場合は初期設定後にユーザがもう一度RtmJsonCreatorを起動してあげる必要があるはずです。<br>
+            <br>
+            これ以上の手順はありません! アップデート成功です!<br>
+            初期設定では<code>4</code>に設定されているスペシャルサンクス表示でバージョンが確認できるので<code>releaseversion</code>とかが上がっていることを確認しましょう。
+        </p>
+
+        <h2 id="SuperUpdate">強化されたアップデートって何?</h2>
+        <blockquote class="warn">
+            バージョン1.3.3.3以降が対象です。
+        </blockquote>
+        <p>強化されたアップデートは設定画面からアクセスできます。 <strong>Welcome画面のupdateは強化されたアップデートではありません。</strong><br>
+            強化されたアップデートは設定画面の"3"、"アップデート/ダウングレード"という名前で存在しています。<br>
+            <br>
+            "強制的に最新版へアップデートする"は現在利用中のRtmJsonCreatorが最新版であるかどうかを確認せずに、アップデートを実行させます。 なぜこの機能を追加したのかは謎です。誰得<br>
+            <br></a>
+            "強制的に特定のバージョンへ移行させる"はv0.1、つまり看板しか作れなかった初期版時代から、GitHubリリースでパブリッシングされたRtmJsonCreatorをダウンロードし、それを実行します。 <a href="../../RJC/VC/DownloadList.tscf">ダウンロードリスト(tscf)</a><br>
+            v1.0.1.2を含めたそれより前のバージョンはアップデート機能が搭載されていないため、現在利用中のバージョンをまた利用するには特定のファイルの削除が必要になります。 これらについてはダウングレード時に警告が表示されますので、それらの危険性を確認してから行うようにして下さい。<br>
+            
+        </p>
+
+        <h2 id="BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ?</h2>
+        <p>Windowsは多くの場合、インターネット上からダウンロードしたファイルを初めて起動しようとすると、それらをブロックする事があります。<br>
+            RtmJsonCreatorもこれにより警告画面が表示されますが、<code>詳細情報-&gt;実行</code>の手順で利用を続行することができます。<br>
+            RtmJsonCreatorが怪しいと思うのならば、GitHubで<a href="https://github.com/akikawaken/Rtm_Json_Creator/blob/master/rtm_json_creator.bat">ソースコード</a>を読んで危険かどうか判断してください。<br>
+            <br>
+            <img src="https://raw.githubusercontent.com/akikawaken/images/main/Blog/img/yokuaru-00003.gif" />
+        </p>
+
+        <h2 id="CrashRJC">クラッシュしたんだけど、作成途中のJsonファイルどっかに残ってない?</h2>
+        <p><code>%temp%\.RJC\json\[trainnameなどの名前]</code>または<code>%temp%\.Rtm_Json_Creator_json.tscf</code>を確認してください。<br>
+            自動材質設定機能中にクラッシュした場合は、<code>%temp%\.ams1.tscf</code>と<code>%temp%\.ams2.tscf</code>も確認してみてください。<br>
+            <code>%temp%\.Rtm_Json_Creator_json.tscf</code>に保存されていた場合、そのファイルは次回のRJC起動時に削除されますので、注意してください。
+        </p>
+
+        <h2 id="WhatIsOSCMode">互換モードって何?</h2>
+        <blockquote class="warn">
+            バージョン1.0.2以降が対象です。
+        </blockquote>
+        <p>OSCモードとは、<code>Old System Compatibility</code>の頭文字を取ったもので、古いWindowsでは搭載していない可能性のある<code>CHOICE</code>や<code>CURL</code>コマンドを実行しないようにするためのものです。<br>
+            <strong>バージョン1.0.2以前はCHOICEやCURLを実行しないため、OSCモードが不要です。</strong><br>
+            初期設定時に<code>WHERE</code>コマンドでCHOICEとCURLの両方が存在するかどうかを判断し、どちらかまたは両方が存在しない場合は<code>%temp%\.RJC\OSC.tscf</code>が作成され、OSCが有効であることが記録されます。<br>
+            もし、何らかの理由でOSCモードを解除したい場合は<code>%temp%\.RJC\OSC.tscf</code>を削除してください。<br>
+            自分のRtmJsonCreatorがOSCに該当しているかどうかを確認するには、スペシャルサンクス画面から確認(v1.3~)、または、行動選択画面で<code>cmd</code>を入力し、<code>if exist %temp%\.RJC\OSC.tscf ( echo osc_true ) ELSE ( echo osc_false )</code>を実行してください。 実行後に出力される文字列が osc_true の場合はOSCに該当しています。 osc_false の場合は互換モードではありません。<br>
+
+            
+        </p>
+        <h2 id="JsonSavedFolder">作成したJsonはどこにあるの?</h2>
+        <p>作成したJsonは規定の設定を利用中の場合、<code>%temp%\.RJC\Json\</code>にあります。
+        </p>
+    </div>
+    <div class="sidebar"><iframe src="../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../frame/copyright.htm"></iframe></div>
+    <script src="../js/SidebarHeight.js"></script>
+</body>
+</html>

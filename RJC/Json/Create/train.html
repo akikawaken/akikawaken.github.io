@@ -321,11 +321,13 @@ function ams1() {
           var parts = lines[i].split('"');
           if(parts.length > 4){
             if(storedLines+1 === lineCount){
+            var texturepath = prompt('テクスチャ' + parts[3] + 'へのパスを入力してください。\n記述方式は textures/train/ です。(textures/train/' + parts[3] + 'の場合はtextures/train/と入力。)');
             var option = prompt('列車材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
-              output1 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"]]},\n';
+              output1 += '  ["' + parts[1] + '", "' + texturepath +'' + parts[3] + '", "' + option + '"]]},\n';
             }else{
+            var texturepath = prompt('テクスチャ' + parts[3] + 'へのパスを入力してください。\n記述方式は textures/train/ です。(textures/train/' + parts[3] + 'の場合はtextures/train/と入力。)');
             var option = prompt('列車材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
-              output1 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"],\n';
+              output1 += '  ["' + parts[1] + '", "' + texturepath +'' + parts[3] + '", "' + option + '"],\n';
             }
           }
           storedLines++;
@@ -378,11 +380,13 @@ function ams2() {
           var parts = lines[i].split('"');
           if(parts.length > 4){
             if(storedLines+1 === lineCount){
+            var texturepath = prompt('テクスチャ' + parts[3] + 'へのパスを入力してください。\n記述方式は textures/train/ です。(textures/train/' + parts[3] + 'の場合はtextures/train/と入力。)');
             var option = prompt('ボギー材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
-              output2 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"]]},\n';
+              output2 += '  ["' + parts[1] + '", "' + texturepath +'' + parts[3] + '", "' + option + '"]]},\n';
             }else{
+            var texturepath = prompt('テクスチャ' + parts[3] + 'へのパスを入力してください。\n記述方式は textures/train/ です。(textures/train/' + parts[3] + 'の場合はtextures/train/と入力。)');
             var option = prompt('ボギー材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
-              output2 += '  ["' + parts[1] + '", "' + parts[3] + '", "' + option + '"],\n';
+              output2 += '  ["' + parts[1] + '", "' + texturepath +'' + parts[3] + '", "' + option + '"],\n';
             }
           }
           storedLines++;

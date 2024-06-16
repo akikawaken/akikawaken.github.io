@@ -8,7 +8,7 @@ User-agent: *
 Disallow: /Blog/css/
 Disallow: /Blog/frame/
 Disallow: /Blog/js/
-Disallow: /Blog/PR/Dev/*
+Disallow: /Blog/PR/Dev/
 Disallow: /Blog/template.htm
 Disallow: /RJC/css/
 Disallow: /RJC/js/

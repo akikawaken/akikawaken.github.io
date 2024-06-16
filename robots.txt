@@ -1,0 +1,20 @@
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: AdsBot-Google
+Disallow: /
+
+User-agent: *
+Disallow: /Blog/css/
+Disallow: /Blog/frame/
+Disallow: /Blog/js/
+Disallow: /Blog/PR/Dev/terminology.html
+Disallow: /Blog/template.htm
+Disallow: /RJC/css/
+Disallow: /RJC/js/
+Disallow: /RJC/main/template.htm
+Disallow: /RJC/VC/
+Disallow: /index.html
+Disallow: /sitemap.htm
+
+Sitemap: https://akikawaken.github.io/sitemap.xml

@@ -14,6 +14,8 @@ Disallow: /RJC/css/
 Disallow: /RJC/js/
 Disallow: /RJC/main/template.htm
 Disallow: /RJC/VC/
+Disallow: /RTM/frame/
+Disallow: /404.html
 Disallow: /index.html
 Disallow: /sitemap.htm
 

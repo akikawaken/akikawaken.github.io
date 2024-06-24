@@ -19,5 +19,8 @@ Disallow: /RTM/frame/
 Disallow: /404.html
 Disallow: /index.html
 Disallow: /sitemap.htm
+Disallow: /RTM/DB/
+Disallow: /RTM/frame/
+
 
 Sitemap: https://akikawaken.github.io/sitemap.xml

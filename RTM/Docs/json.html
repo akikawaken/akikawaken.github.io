@@ -1,0 +1,3160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>RealTrainModのJsonについてのドキュメント</title>
+        <meta name="description" content="RealTrainModのJsonで利用可能なキーについてのドキュメント。" />
+        <link rel="stylesheet" href="../../Blog/css/Blog.css" />
+    </head>
+<body>
+    <div class="title">
+    <h1>RealTrainModのJsonについてのドキュメント</h1>
+    <p>執筆: akikawa9616, 06-24-2024</p>
+    <hr>
+    </div>
+    <div class="main h3nosticky">
+        <h2>はじめに</h2>
+        <p>情報は間違っていたり、古くなっている場合があります。 必ずユーザ自身でも情報が正しいかどうかを確認するようにしてください。<br>
+            また、このドキュメントはRtmJsonCreator関連ドキュメント整備の一環として作成されたものであり、RealTrainModで利用可能な設定事項すべてを記載しているわけではないことに注意する必要がある。</p>
+        </p>
+        <h2>共通</h2>
+        <p>多分ほとんどの場合で利用可能な設定事項。</p>
+        <h3 id="tags">tags</h3>
+        <p>
+            <blockquote>
+                "tags": "hoge fuga",
+            </blockquote>
+            tagsは、車両選択画面等の検索機能で利用する、検索キーワード機能です。 例えば:列車Json内に、<code>"tags": "JNR passengerCar",</code>と記述した場合、検索機能で"JNR"と入力されると"JNR"タグが付いた車両のみが車両選択画面に出現します。<br>
+            スペース区切りで複数を指定します。
+            <table><caption>情報</caption><tbody>
+            <tr>
+                <th class="head">省略可否</th>
+                <th>はい、おそらく</th>
+            </tr>
+            <tr>
+                <th class="head">動作</th>
+                <th>はい</th>
+            </tr>
+            <tr>
+                <th class="head">記述方法</th>
+                <th>文字列</th>
+            </tr>
+            </tbody></table>
+        </p>
+        <h3 id="useCustomColor">useCustomColor</h3>
+        <p>
+            <blockquote>
+                "useCustomColor": true,
+            </blockquote>
+            useCustomColorは、モデルの色を変更可能とするかどうかの設定値です。 これは、実際のモデルテクスチャを変更するのではなく、Minecraft内での表示を変更するのみです。
+            このキーに対する値は真偽で指定するべきであり、規定はおそらくfalseです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="defaultData">defaultData</h3>
+        <p>
+            <blockquote>
+                "defaultData": "scale=(Double)1.0,type=(String)Normal",
+            </blockquote>
+            DataMapの既定を設定するキーです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="scale">scale</h3>
+        <p>
+            <blockquote>
+                "scale": 1.0,
+            </blockquote>
+            NGTOをモデルとして使用する場合にのみ利用可能な、縮尺設定キーです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="offset">offset</h3>
+        <p>
+            <blockquote>
+                "offset": [0.0, 0.0, 0.0],
+            </blockquote>
+            モデルの描画位置を指定するキーです。<br>
+            これらはエンティティの中心からの相対的座標です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="smoothing">smoothing</h3>
+        <p>
+            <blockquote>
+                "smoothing": true,
+            </blockquote>
+            スムージングを有効にするかどうかです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="doCulling">doCulling</h3>
+        <p>
+            <blockquote>
+                "doCulling": true,
+            </blockquote>
+            片面表示にするかどうかです。 MQOの材質を両面表示に設定した場合でかつ、doCullingをtrueにした場合の優先順位は不明です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="accuracy">accuracy</h3>
+        <p>
+            <blockquote>
+                "accuracy": "LOW",
+            </blockquote>
+            モデルの頂点座標精度を指定します。"LOW"または"MEDIUM"で指定してください。<br>
+            LOWの場合、-16.000~16.000の範囲で頂点がズレます。 基本的にはLOWを使用し、メモリ使用量の削減に貢献してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列、LOW/MEDIUM</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="serverScriptPath">serverScriptPath</h3>
+        <p>
+            <blockquote>
+                "serverScriptPath": "scripts/server/hogehoge.js",
+            </blockquote>
+            サーバ側で実行すべきスクリプトのパスを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="guiScriptPath">guiScriptPath</h3>
+        <p>
+            <blockquote>
+                "guiScriptPath": "scripts/gui/hogehoge.js",
+            </blockquote>
+            GUIスクリプトのパスを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="renderAABB">renderAABB</h3>
+        <p>
+            <blockquote>
+                "renderAABB": [-0.5, 0.0, -0.5, 0.5, 1.0, 0.5],
+            </blockquote>
+            描画を行うかどうかを判定する箱の場所を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="buttonTexture">buttonTexture</h3>
+        <p>
+            <blockquote>
+                "buttonTexture": "textures/button/button_hoge.png",
+            </blockquote>
+            車両選択画面等で使用する選択ボタンを決定します。<br>
+            ボタンのテクスチャサイズは"ﾀﾃ256 x ﾖｺ256"で、実際に表示される範囲は左上、"ﾀﾃ32 x ﾖｺ160"です。<br>
+            ボタンのファイル名は"button_[車両名].png"にする必要があります。(車両名部分は、競合しない名前に設定する必要があります。)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、但し、NPC,看板の場合は記述してはいけません。</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>共通(列車+乗り物のみ)</h2>
+        <h3 id="size">size</h3>
+        <p>
+            <blockquote>
+                "size": [1.0, 1.0],
+            </blockquote>
+            当たり判定のサイズを指定します。 幅,高さの順で設定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、但しリフトの場合はおそらく必須</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollsignTexture">rollsignTexture</h3>
+        <p>
+            <blockquote>
+                "rollsignTexture": "textures/rollsign/destination.png"
+            </blockquote>
+            方向幕/行き先表示器/サボ/ヘッドマークに使用する、テクスチャのパスです。            
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollsignNames">rollsignNames</h3>
+        <p>
+            <blockquote>
+                "rollsignNames": ["notinservice", "testrun", "local_station1", "local_station2", "rapid_station1", "rapid_station2", "express_station1", "express_station2"],
+            </blockquote>
+            方向幕の名前を決定します。<br>
+            列車スポーン時の初期位置は1つめの値です。<br>
+            種別と行き先を別で表示したい場合、上記サンプルのように、考えられる全てのパターンを作成してください。<br>
+            <blockquote class="warn">
+                "rollsignNames": ["notinservice", "testrun", "local_station1", "local_station2", "rapid_station1", "rapid_station2", "express_station1", "express_station2"],<br>
+                "rollsignNames": ["testrun", "notinservice", "local_station1", "local_station2", "rapid_station1", "rapid_station2", "express_station1", "express_station2"],<br>
+                上記2つのJsonはtestrunとnotinserviceの記述順が入れ替わっています。<br>
+                1号車に上のJson、2号車には下のJsonを指定させた編成を組ませると、1号車には回送が表示されていても、2号車には試運転が表示されてしまいます。 この状態で方向幕を一つ送ると1号車には試運転,2号車には回送が表示されます。<br>
+                この問題を避けるために、自身が作成した車両の中でも、異車種かどうかを問わず、方向幕テクスチャは統一したものにするか、種別と行き先を方向幕ではなく、カスタムボタンで実装することを検討してください。<br>
+                また、"回送,試運転,各停,快速"が搭載されている車両(1号車)と、"回送,試運転,各停"のみが搭載されている車両(2号車)を連結し、1号車で"快速"を表示しようとすると、2号車では回送が表示されます。<br>
+                これは、2号車が4つめの方向幕を持っていないため、1つめの方向幕まで戻った結果です。 この問題を避けるために、自身が作成した車両の中でも、異車種かどうかを問わず、方向幕テクスチャは統一したものにするか、白幕を足りない側に挿入して調整を行ってください。
+            </blockquote>
+            <blockquote class="error">
+                後方互換性の為に、小文字アルファベット,アンダーバー,数字のみで記述するようにして下さい。<br>
+                <strong>日本語を使用しないでください。</strong>
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、但しrollsignTextureが設定されている場合は必須</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollsigns">rollsigns</h3>
+        <p>
+            <blockquote>
+                "rollsigns": [{<br>
+                    "uv": [0.0, 0.5, 0.0, 1.0],<br>
+                    "pos": [<br>
+                    [[1.0,1.0,1.0], [1.0,0.0,1.0], [-1.0,1.0,-1.0], [-1.0,0.0,-1.0]]<br>
+                    ],<br>
+                    "doAnimation": true,<br>
+                    "disableLighting": true<br>
+                },{<br>
+                    "uv": [0.5, 1.0, 0.0, 1.0],<br>
+                    "pos": [<br>
+                    [[1.0,2.0,1.0], [1.0,1.0,1.0], [-1.0,2.0,-1.0], [-1.0,1.0,-1.0]]<br>
+                    ],<br>
+                    "doAnimation": false,<br>
+                    "disableLighting": false<br>
+                }],
+            </blockquote>
+            方向幕の詳細設定を行います。
+            <blockquote>
+                --UV--<br>
+                rollsignTextureで設定した、方向幕テクスチャのどの部分を表示するかを指定します。<br>
+                <code>[Uの最小値, Uの最大値, Vの最小値, Vの最大値]</code>の形式で記述します。<br>
+                Uが横、Vが縦です。<br>
+                例えば、ﾖｺ100px,ﾀﾃ100pxの画像の内、左上から数えて横75pxまで、縦は全面を方向幕1として利用する場合、<code>[0.0, 0.75, 0.0, 1.0]</code>となります。<br>
+                UVの値は、1を絶対に超えません。(これは、アスペクト比/縦横比によらず、それぞれの方面で値が独立して指定されるためです。)<br>
+                方向幕を1モデルにつき、1つのみ使用する場合は、フルサイズでテクスチャを作成し、0.0,1.0,0.0,1.0を利用して構いませんが、2つ以上の場所に方向幕を設定するかつ、別々の内容を表示する場合は1テスクチャにすべての幕を記述し、0.0,1.0,0.0,0.5などにする必要があります。<br>
+                <img src="https://raw.githubusercontent.com/akikawaken/images/main/RTM/Docs/uv.png">
+            </blockquote>
+            <blockquote>
+                --pos--<br>
+                車両モデルにおける、方向幕の位置を指定します。<br>
+                "<code>"pos": [[[右上のx, 右上のy, 右上のz,], [右下のx, 右下のy, 右下のz,], [左上のx, 左上のy, 左上のz,], [左下のx, 左下のy, 左下のz]]]</code>"の形式で記述します。<br>
+                同じテクスチャを複数の場所に設定する場合は、"<code>"pos": [[[右上のx, 右上のy, 右上のz,], [右下のx, 右下のy, 右下のz,], [左上のx, 左上のy, 左上のz,], [左下のx, 左下のy, 左下のz]],[[右上のx, 右上のy, 右上のz,], [右下のx, 右下のy, 右下のz,], [左上のx, 左上のy, 左上のz,], [左下のx, 左下のy, 左下のz]]]</code>"のようにします。<br>
+                単位は㍍です。
+            </blockquote>
+            <blockquote>
+                --doAnimation--<br>
+                方向幕を回す際に回るモーションを挿入するかどうかです。<br>
+                通常の幕の場合はtrue,LEDの場合はfalseにしてください。
+            </blockquote>
+            <blockquote>
+                --disableLighting--<br>
+                方向幕を発光させないかどうかです。<br>
+                幕/LEDの場合はfalse,サボやヘッドマークに方向幕を使用する場合はtrueにしてください。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、但しrollsignTextureが設定されている場合は必須</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、数値、文字列、真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_Stop">sound_Stop</h3>
+        <p>
+            <blockquote>
+                "sound_Stop": "train.rtm_dc40r_stn",
+            </blockquote>
+            停車時にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_Stop": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_S_A">sound_S_A</h3>
+        <p>
+            <blockquote>
+                "sound_S_A": "train.rtm_dc40r_go-a",
+            </blockquote>
+            停車状態から発車(加速)する際にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_S_A": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_Acceleration">sound_Acceleration</h3>
+        <p>
+            <blockquote>
+                "sound_Acceleration": "train.rtm_dc40r_a",
+            </blockquote>
+            力行時にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_Acceleration": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_Deceleration">sound_Deceleration</h3>
+        <p>
+            <blockquote>
+                "sound_Deceleration": "train.rtm_dc40r_i",
+            </blockquote>
+            減速時にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_Deceleration": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_D_S">sound_D_S</h3>
+        <p>
+            <blockquote>
+                "sound_D_S": "train.rtm_dc40r_i-stop",
+            </blockquote>
+            減速から停車状態になる際にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_D_S": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_Horn">sound_Horn</h3>
+        <p>
+            <blockquote>
+                "sound_Horn": "train.rtm_wh_001",
+            </blockquote>
+            警笛(Pキー)を押した際にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_Horn": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_DoorOpen">sound_DoorOpen</h3>
+        <p>
+            <blockquote>
+                "sound_DoorOpen": "train.door",
+            </blockquote>
+            ドアが開く際にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_DoorOpen": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_DoorClose">sound_DoorClose</h3>
+        <p>
+            <blockquote>
+                "sound_DoorClose": "train.door",
+            </blockquote>
+            ドアが閉じる際にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_DoorClose": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_Announcement">sound_Announcement</h3>
+        <p>
+            <blockquote>
+                "sound_Announcement": [["hokurikuroman", "sound_hoge:train.hokurikuroman"], ["KankuRapid", "rtm:train.rtm_223_kankuRapid"]],
+            </blockquote>
+            車内放送の音声を指定します。<br>
+            音声を持っていない場合はキーごと省略してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="soundScriptPath">soundScriptPath</h3>
+        <p>
+            <blockquote>
+                "soundScriptPath": "scripts/sound_yo8000.js"
+            </blockquote>
+            音声を制御するスクリプトのパスを設定します。<br>
+            soundScriptPathで指定したJavaScriptファイルで音声を制御する場合は、<scode>sound_Acceleration</scode>などを省略することができます。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="smoke">smoke</h3>
+        <p>
+            <blockquote>
+                "smoke": [[-1.0, 3.0, 9.0, "explode", 1, 2]]
+            </blockquote>
+                パーティクルを表示させます。<br>
+                x,y,z,パーティクル名,min,max,speedで指定します。(min,max,speedとはなんぞや..?)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値、文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="headLights">headLights</h3>
+        <p>
+            <blockquote>
+                "headLights": [<br>
+                {<br>
+                    "type": 0,<br>
+                    "color": 16773328,<br>
+                    "pos": [0.0, 1.0, 7.5],<br>
+                    "r": 0.75<br>
+                },{<br>
+                    "type": 0,<br>
+                    "color": 16773328,<br>
+                    "pos": [0.0, 1.0, -7.5],<br>
+                    "r": 0.75<br>
+                }<br>
+                ]
+            </blockquote>
+            前照灯の指定を行います。<br>
+            <code>type</code>は0がフレア、1がボリュームライトです。<br>
+            <code>color</code>は他キーの色指定と同様に、<strong>Hexではなく、Decで表記</strong>する必要があります。<a href="HexToDec.html">Hex-&gt;Decの方法はコチラ</a><br>
+            <code>pos</code>は前照灯の光源発生源の中心位置です。㍍で指定します。<br>
+            <code>r</code>は半径を設定します。㍍で指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、オブジェクト、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="tailLights">tailLights</h3>
+        <p>
+            <blockquote>
+                "tailLights": [<br>
+                {<br>
+                    "type": 0,<br>
+                    "color": 16773328,<br>
+                    "pos": [0.0, 1.0, 7.5],<br>
+                    "r": 0.75<br>
+                },{<br>
+                    "type": 0,<br>
+                    "color": 16773328,<br>
+                    "pos": [0.0, 1.0, -7.5],<br>
+                    "r": 0.75<br>
+                }<br>
+                ]
+            </blockquote>
+            尾灯の指定を行います。<br>
+            <code>type</code>は0がフレア、1がボリュームライトです。<br>
+            <code>color</code>は他キーの色指定と同様に、<strong>Hexではなく、Decで表記</strong>する必要があります。<a href="HexToDec.html">Hex-&gt;Decの方法はコチラ</a><br>
+            <code>pos</code>は尾灯の光源発生源の中心位置です。㍍で指定します。<br>
+            <code>r</code>は半径を設定します。㍍で指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、オブジェクト、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="interiorLights">interiorLights</h3>
+        <p>
+            <blockquote>
+                "interiorLights": [<br>
+                {"pos": [0.0, 2.5, 9.0]},<br>
+                {"pos": [0.0, 2.5, -9.0]}<br>
+                ]
+            </blockquote>
+            車内照明の位置を指定します。<br>
+            posを使用して位置を設定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、オブジェクト、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="slotPos">slotPos</h3>
+        <p>
+            <blockquote>
+                "slotPos":[<br>
+                [-2.0, 3.0, 1.0, 2], [2.0, 3.0, 1.0, 2]<br>
+                ]
+            </blockquote>
+            座席の位置を指定します。<br>
+            x,y,z,タイプの形式で指定をし、タイプが 0:床のみ,1:デフォルト座席(リクライニングシートもどき),2:モデル表示なし です。<br>
+            床に当たり判定が存在し、座席が床にめり込んでる場合は着席不可の可能性があるため、+10cm~+25cmをyに追加してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="playerPos">playerPos</h3>
+        <p>
+            <blockquote>
+                "playerPos": [
+                [1.0, 2.75, -0.1],[-1.0, 2.75, -0.1]
+                ]
+            </blockquote>
+            台車をクリックした後にテレポートする、運転席の位置を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="notDisplayCab">notDisplayCab</h3>
+        <p>
+            <blockquote>
+                "notDisplayCab": false
+            </blockquote>
+            運転台(速度計や圧力計,時間などが表示される画面下部のGUI)を表示させるかどうかを指定します。<br>
+            真の場合は非表示にします。 省略時は偽として扱われます。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="wheelRotationSpeed">wheelRotationSpeed</h3>
+        <p>
+            <blockquote>
+                "wheelRotationSpeed": 0.8
+            </blockquote>
+            車輪の回転速度を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>3Dモデル設定</h2>
+        <p>列車やレール等のmodelキー設定について。</p>
+        <h3 id="model">model/trainModel2/bogieModel2</h3>
+        <p>
+        <blockquote>
+            "model" {<br>
+                "modelFile": "ModelRail_hoge.mqo",<br>
+                "textures": [<br>
+                ["mat1", "textures/rail/hoge1.png", ""],<br>
+                ["mat2", "textures/rail/hoge2.png", ""]<br>
+                ],<br>
+                "rendererPath": "scripts/hoge.js"<br>
+            }
+        </blockquote>
+        <blockquote class="warn">列車の場合は車体:"trainModel2",ボギー:"bogieModel2"です。bogieModel3は列車の項目で説明しています。それ以外の場合は"model"がキー名です。</blockquote>
+        列車やレール等の3Dモデルを設定します。
+        </p>
+        <h3>modelFile</h3>
+        <p>モデルファイル名を入力します。 ファイル名単体です。(これは、3Dモデルがassets/minecraft/models/に存在する必要がある為です。)</p>
+        <h3>textures</h3>
+        <p><strong>全ての材質に対するテクスチャを設定します。</strong><br>
+            これに例外はありません。 必ずすべてに設定してください。<br>
+            構文は<code>["材質名", "テクスチャパス", "オプション"]</code>です。<br>
+            オプションは以下の通りです。:
+            <blockquote>
+                "AlphaBlend"<br>
+                "Light"<br>
+                "AlphaBlend,Light"<br>
+                "AlphaBlend,Light,OneTex"
+            </blockquote>
+            <br>
+            OneTexオプションは特殊なオプションであるため、AlphaBlendとLightを併用する必要があります。 また、必ず材質数を1にしてください。
+            </p>
+        <h3>rendererPath</h3>
+        <p>レンダリングスクリプトのパスです。<br>
+        必須ではありません。</p>
+        <h3>おまけ</h3>
+        <p>RtmJsonCreatorにはAMSというとても素晴らしい機能が存在します。<br>
+        JavaScriptに移植したのでここで使うことができます。 ただし、"rendererPath"については対応をさぼってます。<br>
+        また、キー名は全てmodelとして出力されるため、列車Jsonで使用する場合はtrainModel2に変換する必要があります。</p>
+        <input type="file" id="amsfile1"><button onclick="(async function() { var results = await getResults(); })()">model部分出力</button>
+        <pre id="output"></pre>
+
+
+
+        <h2>列車</h2>
+        <p>列車の設定項目です。<br>
+        共通(乗り物)も参照するようにして下さい。</p>
+        <h3 id="trainName">trainName</h3>
+        <p>
+            <blockquote>
+                "trainName": "hogehoge",
+            </blockquote>
+            車両名を決定します。 ここで設定された車両名は、"アイテム電車"の説明文(選択された車両の名前が表示される)や、車両選択画面の並び順等に利用されます。
+            <blockquote class="error">
+                100%ユニークであると保証できる名前を付与してください。 同時に同一名の車両が読み込まれると、競合が発生します。<br>
+                但し、Base64で形式名を表したものなど、名前から車両を推測できないものはユーザ体験を大幅に下げます。
+            </blockquote>
+            <blockquote class="error">
+                後方互換性の為に、小文字アルファベット,アンダーバー,数字のみで記述するようにして下さい。<br>
+                <strong>日本語を使用しないでください。</strong>
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="trainType">trainType</h3>
+        <p>
+            <blockquote>
+                "trainType": "DC",
+            </blockquote>
+            列車のタイプを設定します。 "EC","DC","CC","TC"のいずれかを使用してください。 それぞれ、電車,気動車,貨車,タンク車です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="trainModel2">trainModel2</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="bogieModel2">bogieModel2</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+        オプションは省略可能です。
+        <table><caption>情報</caption><tbody>
+            <tr>
+                <th class="head">省略可否</th>
+                <th>いいえ、bogieModel3を指定する場合ははい</th>
+            </tr>
+            <tr>
+                <th class="head">動作</th>
+                <th>はい</th>
+            </tr>
+        </tbody></table></p>
+        <h3 id="bogieModel3">bogieModel3</h3>
+        <p>
+            <blockquote>
+                "bogieModel3": [<br>
+                {<br>
+                    "modelFile": "bogie_mae.mqo",<br>
+                    "textures": [<br>
+                    ["mat1", "textures/train/bogie_mae_1.png"],<br>
+                    ["mat2", "textures/train/bogie_mae_2.png"]<br>
+                    ]<br>
+                },{<br>
+                    "modelFile": "bogie_usiro.mqo",<br>
+                    "textures": [<br>
+                    ["mat1", "textures/train/bogie_usiro_1.png"],<br>
+                    ["mat2", "textures/train/bogie_usiro_2.png"]<br>
+                    ]<br>
+                }<br>
+                ],
+            </blockquote>
+            ボギーモデルを設定します。<br>
+            bogieModel2とbogieModel3の違いは"前後でボギーのモデルを変えるかどうか"です。<br>
+            ちょっと記述方法が違うだけで殆どの部分はbogieModel2と同じです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、bogieModel2を指定する場合ははい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、オブジェクト、文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_BrakeRelease">sound_BrakeRelease</h3>
+        <p>
+            <blockquote>
+                "sound_BrakeRelease": "train.o220_release",
+            </blockquote>
+            B1からNにした時にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。<br>
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_BrakeRelease": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_BrakeRelease2">sound_BrakeRelease2</h3>
+        <p>
+            <blockquote>
+                "sound_BrakeRelease2": "train.brakeR_w",
+            </blockquote>
+            ブレーキを1段階緩めた時にプレイする音声です。<br>
+            設定していない場合は無音になるので、音声を持っていない場合はRtmに元から入ってる音声を指定することが推奨されます。<br>
+            <blockquote class="error">
+                絶対に値を決めない状態(<code>"sound_BrakeRelease2": "",</code>)にしないでください。<br>
+                この音声キーがトリガーされた瞬間、エラーを吐いてMinecraftのすべての音声が再生されなくなるか、Minecraftがクラッシュします。
+            </blockquote>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="muteJointSound">muteJointSound</h3>
+        <p>
+            <blockquote>
+                "muteJointSound": false,
+            </blockquote>
+            ジョイント音を黙らせるかどうかを指定します。<br>
+            真の場合はジョイント音を再生しません。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="bogiePos">bogiePos</h3>
+        <p>
+            <blockquote>
+                "bogiePos": [[0.0, 0.0, 6.93], [0.0, 0.0, -6.93]],
+            </blockquote>
+            台車の位置を指定します。<br>
+            座標を前後の順で入力します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="trainDistance">trainDistance</h3>
+        <p>
+            <blockquote>
+                "trainDistance": 9.5,
+            </blockquote>
+            列車の連結間隔を指定します。<br>
+            Minecraft内で連結間隔を確認しながら設定することを推奨しますが、面倒な場合は車体長の半分くらいを指定しておきましょう。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="accelerateion">accelerateion</h3>
+        <p>
+            <blockquote>
+                "accelerateion": 0.0017,
+            </blockquote>
+            加速度を指定します。<br>
+            5 km/h/s = 5*0.0006944 = 0.003472
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="maxSpeed">maxSpeed</h3>
+        <p>
+            <blockquote>
+                "maxSpeed": [0.2, 0.4, 0.6, 0.8, 1.0]
+            </blockquote>
+            1ノッチごとの速度限界です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rolling">rolling</h3>
+        <p>
+            <blockquote>
+                "rolling": 0.5,
+            </blockquote>
+            カーブ時の車体傾斜を指定します。<br>
+            0.0~1.0の範囲で指定してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollSpeedCoefficient">rollSpeedCoefficient</h3>
+        <p>
+            <blockquote>
+                "rollSpeedCoefficient": 0.125,
+            </blockquote>
+            何のためのキーかわからんけど車両が左右に揺れる速度?を指定するんだと思う
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollVariationCoefficient">rollVariationCoefficient</h3>
+        <p>
+            <blockquote>
+                "rollVariationCoefficient": 0.51,
+            </blockquote>
+            マジでよくわからんけど、rollSpeedCoefficientと一緒に使わないといけないことだけわかってる
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、但しrollSpeedCoefficientが設定されている場合は必須</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollWidthCoefficient">rollWidthCoefficient</h3>
+        <p>
+            <blockquote>
+                "rollWidthCoefficient": 1.0,
+            </blockquote>
+            たしか車体が左右に揺れる幅を指定するやつだった気がする.. 
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、但しrollSpeedCoefficientが設定されている場合は必須</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>乗り物(自動車,航空機,船舶)</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="name">name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            乗り物の名前を指定します。<br>
+            trainNameの乗り物(自動車,航空機,船舶)版です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="vehicleType">vehicleType</h3>
+        <p>
+            <blockquote>
+                "vehicleType": "Car",
+            </blockquote>
+            乗り物のタイプを指定します。<br>
+            Car,Ship,Planeで指定してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="friction">friction</h3>
+        <p>
+            <blockquote>
+                "friction": [0.9, 0.9],
+            </blockquote>
+            乗り物のすべりやすさを指定します。<br>
+            それぞれ、地面にいる場合と空中にいる場合です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="accelerateion">accelerateion</h3>
+        <p>
+            <blockquote>
+                "accelerateion": [0.0125, 0.0125],
+            </blockquote>
+            加速度を指定します。<br>
+            それぞれ、地面にいる場合と空中にいる場合です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="maxSpeed">maxSpeed</h3>
+        <p>
+            <blockquote>
+                "maxSpeed": [0.8, 0.8],
+            </blockquote>
+            最大速度を指定します。<br>
+            それぞれ、地面にいる場合と空中にいる場合です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="maxYaw">maxYaw</h3>
+        <p>
+            <blockquote>
+                "maxYaw": [15.0, 15.0],
+            </blockquote>
+            Yaw係数を指定します。<br>
+            それぞれ、地面にいる場合と空中にいる場合です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="pitchCoefficient">pitchCoefficient</h3>
+        <p>
+            <blockquote>
+                "pitchCoefficient": [4.5, 4.5],
+            </blockquote>
+            Pitch係数を指定します。<br>
+            それぞれ、地面にいる場合と空中にいる場合です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rollCoefficient">rollCoefficient</h3>
+        <p>
+            <blockquote>
+                "rollCoefficient": [45.0, 45.0],
+            </blockquote>
+            Roll係数を指定します。<br>
+            それぞれ、地面にいる場合と空中にいる場合です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="changeYawOnStopping">changeYawOnStopping</h3>
+        <p>
+            <blockquote>
+                "changeYawOnStopping": true,
+            </blockquote>
+            停車中に旋回が可能かどうかを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>乗り物(リフト)</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="lift-name">name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            乗り物の名前を指定します。<br>
+            trainNameの乗り物(自動車,航空機,船舶)版です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="lift-vehicleType">vehicleType</h3>
+        <p>
+            <blockquote>
+                "vehicleType": "Lift",
+            </blockquote>
+            乗り物のタイプを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列(Lift)</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="vibration">vibration</h3>
+        <p>
+            <blockquote>
+                "vibration": [0.0, 0.0],
+            </blockquote>
+            これが何をするかよくわかってません! とりあえず上記のJsonにしとけ!
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="gripPos">gripPos</h3>
+        <p>
+            <blockquote>
+                "gripPos": [0.0, 3.5, 0.0]
+            </blockquote>
+            リフトの3Dモデルと、ワイヤーが接触する部分を指定します。<br>
+            それぞれ、x,y,zです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="collisionParts">collisionParts</h3>
+        <p>
+            <blockquote>
+                "collisionParts": ["seat1", "seat2"],
+            </blockquote>
+            当たり判定を有効化にする材質(もしくはオブジェクト名?)を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+        
+        <h2>レール</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="railName">railName</h3>
+        <p>
+            <blockquote>
+                "railName": "hoge",
+            </blockquote>
+            レールの名前を指定します。<br>
+            絶対に競合しない名前にしてください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="polygonType">polygonType</h3>
+        <p>
+            <blockquote>
+                "polygonType": 4,
+            </blockquote>
+            モデルファイルに三角で構成される面がある場合は3を指定し、全てが四角の場合は4を指定してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="ballastWidth">ballastWidth</h3>
+        <p>
+            <blockquote>
+                "ballastWidth": 3,
+            </blockquote>
+            バラストの幅を指定します。 1/3/5のどれかを強く推奨します。 単位はメートルです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="allowCrossing">allowCrossing</h3>
+        <p>
+            <blockquote>
+                "allowCrossing": true,
+            </blockquote>
+            Mobの通り抜けを許可するかどうかです。<br>
+            falseだとバニラのレールみたいになります。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="defaultBallast">defaultBallast</h3>
+        <p>
+            <blockquote>
+                "defaultBallast": [{<br>
+                    "blockName": "gravel",<br>
+                    "blockMetadata": 0,<br>
+                    "height": 0.0625<br>
+                },{<br>
+                    "blockName": "snow",<br>
+                    "blockMetadata": 0,<br>
+                    "height": 0.0625<br>
+                }]
+            </blockquote>
+            クリエイティブタブにレールを追加する場合の初期設定です。<br>
+            blockNameはブロック名(minecraft:stoneなどの"stone"の部分?)、blockMetadataはメタデータ(0001:2の2の部分?)、heightはバラストの高さを指定する。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>コンテナ</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="containerName">containerName</h3>
+        <p>
+            <blockquote>
+                "containerName": "hoge",
+            </blockquote>
+            コンテナの名前を指定します。<br>
+            絶対に競合しない名前にしてください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="containerModel">containerModel</h3>
+        <p>
+            <blockquote>
+                "containerModel": "ModelContainer_hogehoge.mqo",
+            </blockquote>
+            コンテナ用のモデル設定キーです。<br>
+            "model"キーは必要ありません。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="containerTexture">containerTexture</h3>
+        <p>
+            <blockquote>
+                "containerTexture": "textures/container/hogehoge.png",
+            </blockquote>
+            モデルに適用するテクスチャを指定します。<br>
+            1つのみの指定です。(つまり、コンテナのモデルは1材質で作成する必要があります!)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="containerWidth">containerWidth</h3>
+        <p>
+            <blockquote>
+                "containerWidth": 3.0,
+            </blockquote>
+            当たり判定の計算のために幅を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="containerHeight">containerHeight</h3>
+        <p>
+            <blockquote>
+                "containerHeight": 2.5,
+            </blockquote>
+            当たり判定の計算のために高さを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="containerLength">containerLength</h3>
+        <p>
+            <blockquote>
+                "containerLength": 3.71,
+            </blockquote>
+            コンテナの長さを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>火器</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="firearmName">firearmName</h3>
+        <p>
+            <blockquote>
+                "firearmName": "hoge",
+            </blockquote>
+            火器の名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="firearmModel">firearmModel</h3>
+        <p>
+            <blockquote>
+                "firearmModel": "Modelfirearm_hogehoge.mqo",
+            </blockquote>
+            火器用のモデル設定キーです。<br>
+            "model"キーは必要ありません。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="firearmTexture">firearmTexture</h3>
+        <p>
+            <blockquote>
+                "firearmTexture": "textures/firearm/hogehoge.png",
+            </blockquote>
+            モデルに適用するテクスチャを指定します。<br>
+            1つのみの指定です。(つまり、火器のモデルは1材質で作成する必要があります!)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="modelPartsY">modelPartsY</h3>
+        <p>
+            <blockquote>
+                "modelPartsY": {
+                    "objects": ["base"],
+                    "pos": [0.0, 0.0, 0.0]
+                },
+            </blockquote>
+            火器のパーツを指定します。(Y軸回転)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="modelPartsX">modelPartsX</h3>
+        <p>
+            <blockquote>
+                "modelPartsX": {
+                    "objects": ["body"],
+                    "pos": [0.0, 0.5, 0.0]
+                },
+            </blockquote>
+            火器のパーツを指定します。(X軸回転)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="modelPartsBarrel">modelPartsBarrel</h3>
+        <p>
+            <blockquote>
+                "modelPartsBarrel": {
+                    "objects": ["barrel"],
+                    "pos": [0.0, 3.0, -0.25]
+                },
+            </blockquote>
+            火器のパーツを指定します。(バレル)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="muzzlePos">muzzlePos</h3>
+        <p>
+            <blockquote>
+                "muzzlePos": [0.0, 3.0, 7.0],
+            </blockquote>
+            砲口の位置を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="playerPos_gun">playerPos</h3>
+        <p>
+            <blockquote>
+                "playerPos": [0.0, 0.5, 0.0],
+            </blockquote>
+            砲手の位置を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="yaw">yaw</h3>
+        <p>
+            <blockquote>
+                "yaw": [180.0, -180.0],
+            </blockquote>
+            旋回角度の最大値と最小値を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="pitch">pitch</h3>
+        <p>
+            <blockquote>
+                "pitch": [80.0, -5.0],
+            </blockquote>
+            仰俯角の最大値と最小値を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th></th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rotationSpeedY">rotationSpeedY</h3>
+        <p>
+            <blockquote>
+                "rotationSpeedY": 1.0,
+            </blockquote>
+            Y軸回転の速度を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rotationSpeedX">rotationSpeedX</h3>
+        <p>
+            <blockquote>
+                "rotationSpeedX": 1.0,
+            </blockquote>
+            X軸回転の速度を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="recoil">recoil</h3>
+        <p>
+            <blockquote>
+                "recoil": 0.8,
+            </blockquote>
+            リコイルの大きさを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="fpvMode">fpvMode</h3>
+        <p>
+            <blockquote>
+                "fpvMode": true,
+            </blockquote>
+            1人称視点の時に火器モデルを描画しないかどうかです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>信号機</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="signalName">signalName</h3>
+        <p>
+            <blockquote>
+                "signalName": "hoge",
+            </blockquote>
+            信号機の名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="signalModel">signalModel</h3>
+        <p>
+            <blockquote>
+                "signalModel": "Modelsignal_hogehoge.mqo",
+            </blockquote>
+            信号機用のモデル設定キーです。<br>
+            "model"キーは必要ありません。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="signalTexture">signalTexture</h3>
+        <p>
+            <blockquote>
+                "signalTexture": "textures/signal/hogehoge.png",
+            </blockquote>
+            モデルに適用するテクスチャを指定します。<br>
+            1つのみの指定です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="lightTexture">lightTexture</h3>
+        <p>
+            <blockquote>
+                "lightTexture": "textures/signal/hoge.png"
+            </blockquote>
+            ライト用(発光部)のテクスチャを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="modelPartsFixture">modelPartsFixture</h3>
+        <p>
+            <blockquote>
+                "modelPartsFixture": {<br>
+                    "objects": ["pole", "body2"],<br>
+                    "pos": [0.0, 0.0, 0.0]<br>
+                },
+            </blockquote>
+            固定具パーツを指定します。<br>
+            objectsにはパーツに使うオブジェクトの名称を指定し、posは回転の中心位置を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="modelPartsBody">modelPartsBody</h3>
+        <p>
+            <blockquote>
+                "modelPartsBody": {
+                    "objects": ["body", "light1", "light2", "light3"],
+                    "pos": [0.0, 0.0, 0.425]
+                },
+            </blockquote>
+            本体パーツを指定します。<br>
+            objectsとposは"modelPartsFixture"と同じ設定方法です。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>オブジェクト、配列、文字列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="lights">lights</h3>
+        <p>
+            <blockquote>
+                "lights": [
+                "S(1) I(0) P(light1, light4)",
+                "S(3) I(0) P(light2)",
+                "S(5) I(0) P(light3)"
+                ],
+            </blockquote>
+            ライトの発光設定です。<br>
+            "S([信号強度]) I([点滅の間隔をtick単位で入力.0は通常発光]) P([光らせるオブジェクト名])" で指定してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="rotateBody">rotateBody</h3>
+        <p>
+            <blockquote>
+                "rotateBody": true
+            </blockquote>
+            設置時の向きで回転させるかどうかです。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>真偽</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>NPC</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3>name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            NPCの名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="role">role</h3>
+        <p>
+            <blockquote>
+                "role": "passenger",
+            </blockquote>
+            NPCのロールを指定します。<br>
+            attendant,guard,mannequin,passengerから選択してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>看板</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="texture">texture</h3>
+        <p>
+            <blockquote>
+                "texture": "hoge",
+            </blockquote>
+            テクスチャのファイル名(拡張子、パスなし)を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="backTexture">backTexture</h3>
+        <p>
+            <blockquote>
+                "backTexture": 1,
+            </blockquote>
+            裏側テクスチャの扱いを指定します。<br>
+            0:裏表同じテクスチャにします。,1:テクスチャの内、右半分を裏側テクスチャとして扱います。,2:裏側は側面色に合わせます。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="height">height</h3>
+        <p>
+            <blockquote>
+                "height": 0.75,
+            </blockquote>
+            看板の高さを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="width">width</h3>
+        <p>
+            <blockquote>
+                "width": 2.25,
+            </blockquote>
+            看板の幅を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="depth">depth</h3>
+        <p>
+            <blockquote>
+                "depth": 0.375,
+            </blockquote>
+            看板の奥行を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="frame">frame</h3>
+        <p>
+            <blockquote>
+            "frame": 1,    
+            </blockquote>
+            看板のフレーム数を指定します。<br>
+            例えば、5フレームの場合は看板に表示されるのがテクスチャの縦px数/5になります。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="animationCycle">animationCycle</h3>
+        <p>
+            <blockquote>
+                "animationCycle": 1,
+            </blockquote>
+            アニメーション(フレームが切り替わる)間隔を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="color">color</h3>
+        <p>
+            <blockquote>
+                "color": 000000,
+            </blockquote>
+            側面の色をDecで指定します。<br>
+            HexからDecにする方法は<a href="HexToDec.html">コチラ</a>
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="lightValue">lightValue</h3>
+        <p>
+            <blockquote>
+                "lightValue": 0,
+            </blockquote>
+            発光強度を指定します。<br>
+            -16:ランダムに発光(非推奨),-15~-1:RS信号が入っているときのみ発光,0~15:常時発光します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>機能あり設置物</h2>
+        <h3>name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            機能あり設置物の名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="machineType">machineType</h3>
+        <p>
+            <blockquote>
+                "machineType": "Gate",
+            </blockquote>
+            機能あり設置物のタイプを指定します。<br>
+            遮断機,転轍機,改札機,券売機,照明R,車止め,ATC,列車検出器,照明 はそれぞれ、<br>
+            Gate,Point,Turnstile,Vendor,Light,BumpingPost,Antenna_Send,Antenna_Receive,Light として入力してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_OnActivate">sound_OnActivate</h3>
+        <p>
+            <blockquote>
+                "sound_OnActivate": "train.rtm_wh_001",
+            </blockquote>
+            右クリック時に再生するサウンドを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sound_Running">sound_Running</h3>
+        <p>
+            <blockquote>
+                "sound_Running": "rtm:block.rtm_crossingGate0",
+            </blockquote>
+            RS入力がされている場合にプレイする音声です。(リピート)
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>はい、おそらく</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        
+
+
+        <h2>機能なし設置物</h2>
+        <h3>name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            機能なし設置物の名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="ornamentType">ornamentType</h3>
+        <p>
+            <blockquote>
+                "ornamentType": "Gate",
+            </blockquote>
+            機能なし設置物のタイプを指定します。<br>
+            照明,階段,足場,架線柱,パイプ,植物 はそれぞれ、<br>
+            Lamp,Stair,Scaffold,Pole,Pipe,Plant として入力してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        
+
+
+        <h2>旗</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3>texture</h3>
+        <p>
+            <blockquote>
+                "texture": "textures/flag/flag_hoge.png",
+            </blockquote>
+            テクスチャのファイルパスを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>height</h3>
+        <p>
+            <blockquote>
+                "height": 0.75,
+            </blockquote>
+            旗の高さを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>width</h3>
+        <p>
+            <blockquote>
+                "width": 2.25,
+            </blockquote>
+            旗の幅を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="resolutionU">resolutionU</h3>
+        <p>
+            <blockquote>
+                "resolutionU": 32,
+            </blockquote>
+            何のキーかわからないランキング堂々の1位! まじでわからん!
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="resolutionV">resolutionV</h3>
+        <p>
+            <blockquote>
+                "resolutionV": 48,
+            </blockquote>
+            何のキーかわからないランキング堂々の2位! まじでわからん!
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>不明</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="poleLength">poleLength</h3>
+        <p>
+            <blockquote>
+                "poleLength": 2.0,
+            </blockquote>
+            旗のポールの長さを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>コネクタ</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3>name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            コネクタの名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="connectorType">connectorType</h3>
+        <p>
+            <blockquote>
+                "connectorType": "Relay"
+            </blockquote>
+            コネクタのタイプを指定します。<br>
+            Relay,Input,Outputから選択してください。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="wirePos">wirePos</h3>
+        <p>
+            <blockquote>
+            "wirePos": [0.0, 1.0, -0.25],
+            </blockquote>
+            ワイヤを接続した際の接続位置を指定します。<br>
+            ブロックの中心が原点となります。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>配列、数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+
+
+
+        <h2>ワイヤ</h2>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3>name</h3>
+        <p>
+            <blockquote>
+                "name": "hoge",
+            </blockquote>
+            ワイヤの名前を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>文字列</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3>model</h3>
+        <p><a href="#model">3Dモデル設定を参照してください。</a><br>
+            キー名はmodelです。
+        </p>
+        <h3 id="deflectionCoefficient">deflectionCoefficient</h3>
+        <p>
+            <blockquote>
+                "deflectionCoefficient": 0.125,
+            </blockquote>
+            カテナリー曲線の係数を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="lengthCoefficient">lengthCoefficient</h3>
+        <p>
+            <blockquote>
+                "lengthCoefficient": 0.0625,
+            </blockquote>
+            カテナリー曲線の係数を指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+        <h3 id="sectionLength">sectionLength</h3>
+        <p>
+            <blockquote>
+                "sectionLength": 0.25,
+            </blockquote>
+            曲線の1分割の長さを指定します。
+            <table><caption>情報</caption><tbody>
+                <tr>
+                    <th class="head">省略可否</th>
+                    <th>いいえ</th>
+                </tr>
+                <tr>
+                    <th class="head">動作</th>
+                    <th>はい</th>
+                </tr>
+                <tr>
+                    <th class="head">記述方法</th>
+                    <th>数値</th>
+                </tr>
+            </tbody></table>
+        </p>
+    <h2>参考文献</h2>
+    ngt5479 [RTMモデルパック作成マニュアル_2.4.8_1] 2019
+    </div>
+    <div class="sidebar"><iframe src="../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../Blog/frame/copyright.htm"></iframe></div>
+</body>
+<script src="../../Blog/js/SidebarHeight.js"></script>
+<script>
+async function getResults() {
+  var dataFromams1 = await ams1();
+  outputMats(dataFromams1);
+}
+
+
+function ams1() {
+  return new Promise((resolve, reject) => {
+    var x = document.getElementById("amsfile1");
+    var txt = "";
+    if ('files' in x) {
+      if (x.files.length == 0) {
+        txt = "ファイルを選択してください。";
+      } else {
+        var file = x.files[0];
+        var filename1 = file.name;
+      }
+    } 
+    else {
+      if (x.value == "") {
+        txt += "ファイルを選択してください。";
+      } else {
+        txt += "ブラウザがFile APIをサポートしていません。";
+      }
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var contents = e.target.result;
+      var lines = contents.split('\n');
+      var output1 = "";
+      var foundMaterial = false;
+      var lineCount = 0;
+      var storedLines = 0;
+      for(var i = 0; i < lines.length; i++){
+        if(lines[i].substring(0, 8) === "Material"){
+          foundMaterial = true;
+          var sections = lines[i].split(' ');
+          if(sections.length > 1){
+            lineCount = parseInt(sections[1]);
+          }
+        }
+        else if(foundMaterial && storedLines < lineCount){
+          var parts = lines[i].split('"');
+          if(parts.length > 4){
+            if(storedLines+1 === lineCount){
+            var texturepath = prompt('テクスチャ' + parts[3] + 'へのパスを入力してください。\n記述方式は textures/train/ です。(textures/train/' + parts[3] + 'の場合はtextures/train/と入力。)');
+            var option = prompt('列車材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
+              output1 += '  ["' + parts[1] + '", "' + texturepath +'' + parts[3] + '", "' + option + '"]]},\n';
+            }else{
+            var texturepath = prompt('テクスチャ' + parts[3] + 'へのパスを入力してください。\n記述方式は textures/train/ です。(textures/train/' + parts[3] + 'の場合はtextures/train/と入力。)');
+            var option = prompt('列車材質' + parts[1] + 'にオプションをつけますか? 使用可能: "AlphaBlend" , "Light" , "AlphaBlend,Light" , "AlphaBlend,Light,OneTex"\n\nオプションを付与しない場合は空白のまま続行してください。\nキャンセルまたはESCはエラーになりますから、絶対に実行しないでください。');
+              output1 += '  ["' + parts[1] + '", "' + texturepath +'' + parts[3] + '", "' + option + '"],\n';
+            }
+          }
+          storedLines++;
+        }
+      }
+      var ams = true;
+      resolve({output1: output1, ams: ams, filename1: filename1});
+    }
+    reader.readAsText(x.files[0]);
+  });
+}
+function outputMats(dataFromams1) {
+  var ams;
+    try {
+        ams = dataFromams1.ams;
+    } catch (error) {
+        ams = false;
+    }
+    if (ams) {
+    output = ' "model":{ \n';
+    var filename1 = dataFromams1.filename1;
+    output += '  "modelFile": "' + filename1 + '", \n';
+    output += '  "textures":[ \n';
+    var output1 = dataFromams1.output1;
+    output += ' '+ output1 +' '
+    
+    document.getElementById('output').textContent = output;
+    }}
+</script>
+</html>

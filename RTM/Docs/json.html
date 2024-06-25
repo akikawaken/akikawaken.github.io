@@ -3068,6 +3068,55 @@
                 </tr>
             </tbody></table>
         </p>
+
+
+
+        <h2>sounds.json</h2>
+        <p>
+            <blockquote>
+            {<br>
+            "train.hoge1": {<br>
+             "category": "neutral",<br>
+             "sounds": ["train.hoge1"]<br>
+            },<br>
+            "train.hoge2": {<br>
+             "category": "neutral",<br>
+             "sounds": ["train.hoge1"]<br>
+            }<br>
+            }
+            </blockquote>
+            キー名は"フォルダ名.ファイル名(.oggを省略)"に指定してください。<br>
+            categoryはneutral固定です。<br>
+            soundsにはキー名と同じ内容を指定します。(.は/に置き換え)
+        </p>
+
+
+
+        <h2>pack.json</h2>
+        <p>
+            <blockquote>
+                {<br>
+                    "name":"hoge",<br>
+                    "homepage":"https://example.org/",<br>
+                    "updateURL":"https://example.org/updatetext.txt",<br>
+                    "version":"1.0.0"<br>
+                  }
+            </blockquote>
+            nameにはアドオン名を指定します。 競合を避けなさい。<br>
+            homepageは省略することも可能です。<br>
+            updateURLにはアップデート確認用のテキストファイルURLを指定します。<br>
+            versionには現時点の最新バージョンを指定してください。
+        </p>
+        <h2>pack.json - アップデート確認用テキストファイル</h2>
+        <p>
+            <blockquote>
+                addon1:1.0.0
+                addon2:0.1
+            </blockquote>
+            アドオン名:バージョン の形式で記述します。<br>
+            複数アドオンを管理する場合は改行して続けてください。
+        </p>
+
     <h2>参考文献</h2>
     ngt5479 [RTMモデルパック作成マニュアル_2.4.8_1] 2019
     </div>
@@ -3158,3 +3207,24 @@ function outputMats(dataFromams1) {
     }}
 </script>
 </html>
+
+<p>
+    <blockquote>
+        
+    </blockquote>
+    
+    <table><caption>情報</caption><tbody>
+        <tr>
+            <th class="head">省略可否</th>
+            <th>いいえ</th>
+        </tr>
+        <tr>
+            <th class="head">動作</th>
+            <th>はい</th>
+        </tr>
+        <tr>
+            <th class="head">記述方法</th>
+            <th></th>
+        </tr>
+    </tbody></table>
+</p>

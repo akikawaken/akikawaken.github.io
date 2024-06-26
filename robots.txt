@@ -6,7 +6,6 @@ Disallow: /
 
 User-agent: *
 Disallow: /Blog/css/
-Disallow: /Blog/frame/
 Disallow: /Blog/js/
 Disallow: /Blog/PR/Dev/
 Disallow: /Blog/template.htm
@@ -15,10 +14,8 @@ Disallow: /RJC/js/
 Disallow: /RJC/main/template.htm
 Disallow: /RJC/VC/
 Disallow: /RJC/info.htm
-Disallow: /RTM/frame/
 Disallow: /404.html
 Disallow: /index.html
-Disallow: /sitemap.htm
 Disallow: /RTM/DB/
 Disallow: /RTM/frame/
 

@@ -24,7 +24,7 @@
  echo Update completed.
  pause
  call %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat
-exit /b
+exit
 :release
  curl https://akikawaken.github.io/RJC/VC/Releasenote.txt
  goto hogehoge

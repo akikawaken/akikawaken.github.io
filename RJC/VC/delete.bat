@@ -23,7 +23,7 @@
  curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat
  echo Update completed.
  pause
- call %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat
+ start %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat
 exit
 :release
  curl https://akikawaken.github.io/RJC/VC/Releasenote.txt

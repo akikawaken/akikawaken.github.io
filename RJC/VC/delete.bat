@@ -11,6 +11,7 @@
  if %confirm% == r goto release
  if not %confirm% == y exit /b
  rd /S /Q %temp%\.RJC\json
+ rd /S /Q %temp%\.BatchSelectorUI
  del /q %temp%\.RJC\rjc.tscf
  del /q %temp%\.RJC\OSC.tscf
  set nextpath=%random%

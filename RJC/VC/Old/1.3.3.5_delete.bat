@@ -11,11 +11,11 @@
  echo;>%temp%\rjcversion.tscf
  set nextpath=%random%
  echo nextpath: %nextpath%
- echo %temp%\.RJC\update\%nextpath%\Rtm-Json-Creator-v0.9.5.bat>%temp%\rjcupdate.tscf
+ echo %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat>%temp%\rjcupdate.tscf
  md %temp%\.RJC\update\%nextpath%\
  pushd %temp%\.RJC\update\%nextpath%\
- curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/v0.9.5/Rtm-Json-Creator-v0.9.5.bat
+ curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/v1.3.3.3/RtmJsonCreator.bat
  echo Update completed.
  timeout /t 3 >nul
- call %temp%\.RJC\update\%nextpath%\Rtm-Json-Creator-v0.9.5.bat
+ call %temp%\.RJC\update\%nextpath%\RtmJsonCreator.bat
 exit /b

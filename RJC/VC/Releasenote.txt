@@ -2,18 +2,13 @@ v1.5.4 / 6
 
 # Release note
 ## add
-設定画面と強化されたアップデートにおいて、新しいUIが使えるようになりました。 互換モードの場合は利用できません。  
-強制ダウングレード機能を追加しました。 v1.2.5みたいな壊れたバージョンを使っているのが検知された場合、ひとつ前のバージョンに戻すことを提案します。  
-初期設定時、今何してるかがわかりやすいようにプログレスを導入。  
 ## change
-RtmJsonCreator終了時、cmd.exeを起動するようになりました。(ウィンドウが閉じない!)  
-列車Json,tagsの指定方法を後方互換性があるものに変更しました。  
-互換モードの判断方法を変数に統一  
 ## delete
-typo
+古いOSには搭載されていない可能性のある、"CHOICE"と"CURL"コマンドを実行しないモード、"OSC"を削除しました。
+これにより、Windows10より古いWindowsはサポート対象外となりました。
 ## 修正された問題
-看板Jsonを作成しようとすると、RtmJsonCreatorを終了するかどうか聞かれる問題  
-リフトJson,vibrationのみキー後に空白が追加されなかった問題  
-CHOICEで選択肢を選んでも選んだ選択肢にならなかった問題
+CLIUpdate機能が動作しなかった問題を修正。
+新しいUIの設定画面が動作しなかった問題を修正。
+
 - - -
-**Full Changelog**: https://github.com/akikawaken/Rtm_Json_Creator/compare/v1.3.3.3...v1.5.4
+**Full Changelog**: https://github.com/akikawaken/Rtm_Json_Creator/compare/v1.5.4...v1.6

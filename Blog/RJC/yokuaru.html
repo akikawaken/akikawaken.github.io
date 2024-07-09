@@ -93,9 +93,9 @@
 
         <h2 id="WhatIsOSCMode">互換モードって何?</h2>
         <blockquote class="warn">
-            バージョン1.0.2以降が対象です。
+            CLI版 v1.0.2 ~ v1.6 が対象です。 それ以外のバージョンにOSCモードは搭載されていません。
         </blockquote>
-        <p>OSCモードとは、<code>Old System Compatibility</code>の頭文字を取ったもので、古いWindowsでは搭載していない可能性のある<code>CHOICE</code>や<code>CURL</code>コマンドを実行しないようにするためのものです。<br>
+        <p>OSCモード(互換モード)とは、<code>Old System Compatibility</code>の頭文字を取ったもので、古いWindowsでは搭載していない可能性のある<code>CHOICE</code>や<code>CURL</code>コマンドを実行しないようにするためのものです。<br>
             <strong>バージョン1.0.2以前はCHOICEやCURLを実行しないため、OSCモードが不要です。</strong><br>
             初期設定時に<code>WHERE</code>コマンドでCHOICEとCURLの両方が存在するかどうかを判断し、どちらかまたは両方が存在しない場合は<code>%temp%\.RJC\OSC.tscf</code>が作成され、OSCが有効であることが記録されます。<br>
             もし、何らかの理由でOSCモードを解除したい場合は<code>%temp%\.RJC\OSC.tscf</code>を削除してください。<br>

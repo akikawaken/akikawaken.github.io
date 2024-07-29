@@ -17,7 +17,7 @@ Disallow: /RJC/info.htm
 Disallow: /404.html
 Disallow: /index.html
 Disallow: /RTM/DB/
-Disallow: /RTM/frame/
+Disallow: /s/
 
 
 Sitemap: https://akikawaken.github.io/sitemap.xml

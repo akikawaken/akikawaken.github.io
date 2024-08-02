@@ -1,14 +1,14 @@
-v1.6 / 7
+v1.6.3 / 8
 
 # Release note
 ## add
+"機構"のjsonを作成できるようになりました。
+dir機能が(たぶん)全部のフォルダを作ってくれるようになりました。
 ## change
+ライセンスの表示をURLリンク先による表示に変更しました。
 ## delete
-古いOSには搭載されていない可能性のある、"CHOICE"と"CURL"コマンドを実行しないモード、"OSC"を削除しました。
-これにより、Windows10より古いWindowsはサポート対象外となりました。
 ## 修正された問題
-CLIUpdate機能が動作しなかった問題を修正。
-新しいUIの設定画面が動作しなかった問題を修正。
+自動材質設定機能で,が正しく付与されない問題を修正しました。
 
 - - -
-**Full Changelog**: https://github.com/akikawaken/Rtm_Json_Creator/compare/v1.5.4...v1.6
+**Full Changelog**: https://github.com/akikawaken/Rtm_Json_Creator/compare/v1.6...v1.6.3

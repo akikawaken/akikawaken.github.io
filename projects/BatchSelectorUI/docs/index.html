@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>BatchSelectorUI</title>
+        <meta name="description" content="BatchSelectorUI ホームページ">
+        <link rel="stylesheet" href="../../../RJC/css/index.css" />
+    </head>
+<body>
+    <div class="title">
+        <div class="SuperUltraHyperSugoiTokoro">
+            <p><br>
+                <br>
+                ユーザと開発者に優しい、選択肢UI。<br>
+                <!--もしバナー作ったら下のbr消してRJCと同じ感じにやっといて-->
+                <br>
+                BatchSelectorUIが簡単に使える選択肢UIを提供します。<br>
+                <br>
+            </p>
+        </div>
+        <div class="download">
+            <p>インストール<br>
+                For Windows<br>
+                <code>curl -sLJO https://github.com/akikawaken/BatchSelectorUI/releases/download/latest/BatchSelectorUI.bat</code> <button alt="Windows用CLIインストールコマンドをコピーします。" onclick="copy()">copy</button><br>
+                または、<a alt="GitHubへ別タブでリンクします。" class="haikei" target="_blank" rel="noopener noreferrer" href="https://github.com/akikawaken/BatchSelectorUI">GitHubからダウンロード。</a><br>
+                <br>
+                <br>
+            </p>
+        </div>
+    </div>
+    <div class="main">
+        <h2>BatchSelectorUIとは?</h2>
+        <p>選択肢形式のUIを簡単に作成することができるバッチファイルです。<br>
+        <strong>単体で使用するものではなく、ソフトウェアに組み込んだりして利用するものです。</strong></p>
+        <h2>使い方</h2>
+        <p><details>
+                <summary>例; 引数から設定を行い、特定のファイルを[コピー,削除,キャンセル]を行うかをユーザに聞く場合。</summary>
+                <blockquote class="code">
+                @echo off<br>
+                if not exist %temp%\.BatchSelectorUI\BatchSelectorUI.bat call :downloadBSUI<br>
+                set /p filename=ファイル名を入力してください: <br>
+                call %temp%\.BatchSelectorUI\BatchSelectorUI.bat true %temp%\.BatchSelectorUI\test_UIText.txt %temp%\.BatchSelectorUI\test_UIHint.txt w s p false false<br>
+                if %tsv_place2% == 1 goto copyfile<br>
+                if %tsv_place2% == 2 goto deletefile<br>
+                if %tsv_place2% == 3 goto cancel<br>
+                <br>
+                :copyfile<br>
+                copy %filename% %temp%<br>
+                echo 処理が完了しました。<br>
+                exit /b<br>
+                <br>
+                :deletefile<br>
+                del %filename%<br>
+                echo 処理が完了しました。<br>
+                exit /b<br>
+                <br>
+                :cancel<br>
+                echo キャンセルしました。<br>
+                exit /b<br>
+                <br>
+                :downloadBSUI<br>
+                md %temp%\.BatchSelectorUI\<br>
+                pushd %temp%\.BatchSelectorUI\<br>
+                curl -sLJO https://github.com/akikawaken/BatchSelectorUI/releases/download/latest/BatchSelectorUI.bat<br>
+                echo #ファイルに対する処理を選択してください。>test_UIText.txt<br>
+                echo @3>>test_UIText.txt<br>
+                echo コピー>>test_UIText.txt<br>
+                echo 削除>>test_UIText.txt<br>
+                echo キャンセル>>test_UIText.txt<br>
+                <br>
+                echo testhint>test_UIHint.txt<br>
+                echo 1:ファイルを一時フォルダにコピーします。>>test_UIHint.txt<br>
+                echo 2:ファイルを削除します。>>test_UIHint.txt<br>
+                echo 3:処理を行わず、キャンセルします。>>test_UIHint.txt<br>
+                <br>
+                popd<br>
+                exit /b
+                </blockquote>
+            </details>
+            <br>
+            例だけじゃ99.9%わからないと思うのでちゃんと書きます...<br>
+        </p>
+        <h3>ダウンロード方法</h3>
+        <p>ダウンロードはcurlコマンドを利用することを推奨します。 curlコマンドの場合、<code>curl -sLJO https://github.com/akikawaken/BatchSelectorUI/releases/download/latest/BatchSelectorUI.bat</code>で<strong>"リリース"最新版</strong>をダウンロードさせることができます。<br>
+            ダウンロード先("BatchSelectorUI.bat"を配置する場所)はどこでも大丈夫ですが、あなたのソフトウェアの他のファイルを%temp%配下に配置する場合を除き、%temp%配下はお勧めしません。</p>
+        <h3>設定方法 / 呼び方 - (引数)</h3>
+        <p>2種類ある設定方法のうち、標準的な方です。<br>
+            呼び方は<code>BatchSelectorUI.bat true %temp%\.BatchSelectorUI\test_UIText.txt %temp%\.BatchSelectorUI\test_UIHint.txt w s p false false</code>の様にします。<br>
+            引数について:<br>
+            <strong>%1はtrue固定です。 true以外だとコード内設定が適用されます。</strong><br>
+            %2にはUIの選択肢ファイルパスを指定します。 もちろん変数使えます。(たぶん!)<br>
+            %3にはUIのヒントファイルパスを指定します。 これも変数使えるはず<br>
+            %4には選択中矢印を上に動かすキーを指定します。 <code>0123456789abcdefghijklmnopqrstuvwxyz</code>が使えます。 指定できるのはこのうちの一つだけです。<br>
+            %5には選択中矢印を下に動かすキーを指定します。 指定できるのは%4のヤツと同じです。<br>
+            %6にはセレクトキーを指定します。 選択キーのことです。 指定できるのは%4と以下略<br>
+            %7にはtsv_noClsを有効にするかどうかを指定します。 真偽で入力するべきです。 真だとclsコマンドが実行されません。<br>
+            %8にはtsv_showMoveInfoを有効にするかどうかを指定します。 真偽で入力するべきです。 真だと現在位置とか直前に入力したキーとかが画面に表示されます。</p>
+        <h3>設定方法 / 呼び方 - (コード内)</h3>
+        <p>2種類ある設定方法のうち、誰得な方です。<small>でもBatchSelectorUIの前身はこの設定方法しかありませんでした!</small><br>
+            呼び方は引数を指定しないか、%1をtrue以外にしてください。
+            コード覗けば設定方法は多分わかるので説明は省略します。</p>
+        <h3>ユーザ選択の取得 / 付番方式</h3>
+        <p>%tsv_place2%にユーザが選択した選択肢の番号が格納されています。<br>
+            選択肢の番号の付番方式は、"UI選択肢ファイルの当該選択肢の行数 - 2"した数です。</p>
+        <h3>UI 選択肢/ヒント ファイル</h3>
+        <p><a href="UIOption.html">専用ページをご覧ください。</a></p>
+        <h2>つくったひととか</h2>
+        <table><caption>つくったひととか</caption><tbody>
+        <tr>
+            <th class="head">設計</th>
+            <th>akikawa9616</th>
+        </tr>
+        <tr>
+            <th class="head">コード記述</th>
+            <th>akikawa9616</th>
+        </tr>
+        <tr>
+            <th class="head">広報</th>
+            <th>akikawa9616</th>
+        </tr>
+        </tbody></table>
+    </div>
+    <div class="sidebar"><iframe src="../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../../Blog/frame/copyright.htm"></iframe></div>
+</body>
+<script src="../../../Blog/js/SidebarHeight.js"></script>
+</html>

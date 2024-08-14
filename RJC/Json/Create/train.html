@@ -6,7 +6,6 @@
     <meta name="author" content="akikawa9616" />
     <meta name="description" content="RealTrainMod用Json作成支援ツール:RtmJsonCreatorのGUI版 - 列車用Json作成ページ" />
     <link rel="stylesheet" href="../../css/all-mode.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <noscript>
@@ -199,7 +198,7 @@
         <label for="isSingleTrainNone">なし</label><br><br>
         
         
-        <button onclick="(async function() { var results = await getResults(); })()">自動材質設定用出力</button>  <button onclick="outputMats()">旧式材質設定用出力</button><br><br><button id="download">Download Json</button>
+  <button onclick="(async function() { var results = await getResults(); })()">自動材質設定用出力</button>  <button onclick="outputMats()">旧式材質設定用出力</button><br><br><button id="download">Download Json</button>
 
     </form>
     <hr>
@@ -232,56 +231,104 @@ async function getResults() {
 
     // 列車材質設定
 function addTrainMat() {
-    var count = $('#trainMatSettings').children().length + 1;
-    var matSetting = $('<div>').attr('id', 'trainMat' + count);
-    matSetting.append($('<strong>').text("列車の3Dモデルの材質," + count + "つめの名前を決めてください。"));
-    matSetting.append($('<p>').text("材質名を入力してください。"));
-    matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
-    matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
-    matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatTexture'));
-    matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\" "));
-    var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
-    for (var j = 0; j < options.length; j++) {
-      matSetting.append($('<input>').attr('type', 'radio').attr('class', 'trainMatOption').attr('name', 'trainMatOption' + count).attr('value', options[j]));
-      matSetting.append($('<label>').attr('for', 'trainMatOption' + count).text(options[j]));
-    }
-    $('#trainMatSettings').append(matSetting);
+  var count = document.getElementById('trainMatSettings').children.length + 1;
+  var matSetting = document.createElement('div');
+  matSetting.id = 'trainMat' + count;
+  var strong = document.createElement('strong');
+  strong.textContent = "列車の3Dモデルの材質," + count + "つめの名前を決めてください。";
+  matSetting.appendChild(strong);
+  var p = document.createElement('p');
+  p.textContent = "材質名を入力してください。";
+  matSetting.appendChild(p);
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'trainMat';
+  matSetting.appendChild(input);
+  var p2 = document.createElement('p');
+  p2.textContent = "テクスチャへのパスを記述してください。";
+  matSetting.appendChild(p2);
+  var input2 = document.createElement('input');
+  input2.type = 'text';
+  input2.className = 'trainMatTexture';
+  matSetting.appendChild(input2);
+  var p3 = document.createElement('p');
+  p3.textContent = "オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\" ";
+  matSetting.appendChild(p3);
+  var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
+  for (var j = 0; j < options.length; j++) {
+    var input = document.createElement('input');
+    input.type = 'radio';
+    input.className = 'trainMatOption';
+    input.name = 'trainMatOption' + count;
+    input.value = options[j];
+    matSetting.appendChild(input);
+
+    var label = document.createElement('label');
+    label.htmlFor = 'trainMatOption' + count;
+    label.textContent = options[j];
+    matSetting.appendChild(label);
+  }
+  document.getElementById('trainMatSettings').appendChild(matSetting);
+  }
+
+function removeTrainMat() {
+  var count = document.getElementById('trainMatSettings').children.length;
+  if (count > 0) {
+      var matSetting = document.getElementById('trainMat' + count);
+      matSetting.parentNode.removeChild(matSetting);
+  }
 }
 
-        function removeTrainMat() {
-            var count = $('#trainMatSettings').children().length;
-            if (count > 0) {
-                $('#trainMat' + count).remove();
-            }
-        }
-
-        // ボギー材質設定
-        function addBogieMat() {
-            var count = $('#bogieMatSettings').children().length + 1;
-            var matSetting = $('<div>').attr('id', 'bogieMat' + count);
-
-            matSetting.append($('<strong>').text("ボギーの3Dモデルの材質," + count + "つめの名前を決めてください。"));
-            matSetting.append($('<p>').text("材質名を入力してください。"));
-            matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMat'));
-            matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
-            matSetting.append($('<input>').attr('type', 'text').attr('class', 'bogieMatTexture'));
-            matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\", \"なし\" "));
-            var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
-              for (var j = 0; j < options.length; j++) {
-              matSetting.append($('<input>').attr('type', 'radio').attr('class', 'bogieMatOption').attr('name', 'bogieMatOption' + count).attr('value', options[j]));
-           matSetting.append($('<label>').attr('for', 'bogieMatOption' + count).text(options[j]));
-          }
-   $('#bogieMatSettings').append(matSetting);
+  // ボギー材質設定
+function addBogieMat() {
+  var count = document.getElementById('bogieMatSettings').children.length + 1;
+  var matSetting = document.createElement('div');
+  matSetting.id = 'bogieMat' + count;
+  var strong = document.createElement('strong');
+  strong.textContent = "ボギーの3Dモデルの材質," + count + "つめの名前を決めてください。";
+  matSetting.appendChild(strong);
+  var p = document.createElement('p');
+  p.textContent = "材質名を入力してください。";
+  matSetting.appendChild(p);
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'bogieMat';
+  matSetting.appendChild(input);
+  var p2 = document.createElement('p');
+  p2.textContent = "テクスチャへのパスを記述してください。";
+  matSetting.appendChild(p2);
+  var input2 = document.createElement('input');
+  input2.type = 'text';
+  input2.className = 'bogieMatTexture';
+  matSetting.appendChild(input2);
+  var p3 = document.createElement('p');
+  p3.textContent = "オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\", \"なし\" ";
+  matSetting.appendChild(p3);
+  var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
+  for (var j = 0; j < options.length; j++) {
+    var input = document.createElement('input');
+    input.type = 'radio';
+    input.className = 'bogieMatOption';
+    input.name = 'bogieMatOption' + count;
+    input.value = options[j];
+    matSetting.appendChild(input);
+    var label = document.createElement('label');
+    label.htmlFor = 'bogieMatOption' + count;
+    label.textContent = options[j];
+    matSetting.appendChild(label);
+  }
+    document.getElementById('bogieMatSettings').appendChild(matSetting);
 }
 
-        function removeBogieMat() {
-            var count = $('#bogieMatSettings').children().length;
-            if (count > 0) {
-                $('#bogieMat' + count).remove();
-            }
-        }
+function removeBogieMat() {
+  var count = document.getElementById('bogieMatSettings').children.length;
+  if (count > 0) {
+      var matSetting = document.getElementById('bogieMat' + count);
+      matSetting.parentNode.removeChild(matSetting);
+  }
+}
 
-        // AMS for GUI
+// AMS for GUI
 function ams1() {
   return new Promise((resolve, reject) => {
     var x = document.getElementById("amsfile1");

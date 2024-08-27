@@ -17,6 +17,7 @@
         <h2>目次</h2>
         <ul>
             <li><a href="#HowToUpdate">アップデートはどうやってやるの?</a></li>
+            <li><a href="#LoopAfterUpdate">アップデートしたらコマンドがループするんだけど?</a></li>
             <li><a href="#Encoding">エンコーディングは?</a></li>
             <li><a href="#BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ?</a></li>
             <li><a href="#SuperUpdate">強化されたアップデートって何?</a></li>
@@ -56,9 +57,19 @@
             初期設定では<code>4</code>に設定されているスペシャルサンクス表示でバージョンが確認できるので<code>releaseversion</code>とかが上がっていることを確認しましょう。
         </p>
 
+        <h2 id="#LoopAfterUpdate">アップデートしたらコマンドがループするんだけど?</h2>
+        <blockquote class="warn">
+            バージョン1.2以降が対象です。
+        </blockquote>
+        <p>開発者が記述ミスを直すことをサボったのでしょう。 この場合、手動でアップデートさせるしかありません。<br>
+            下記のコマンドを使用して再インストールを行ってください。このコマンドは1行で実行すべきです。 この場合、RtmJsonCreatorのインストール先は %temp% となります。
+        <blockquote class="code">
+            pushd %temp% & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/delfirstsettingfiles.bat & call %temp%\delfirstsettingfiles.bat & del %temp%\delfirstsettingfiles.bat & https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call %temp%\RtmJsonCreator.bat
+        </blockquote></p>
+
         <h2 id="Encoding">エンコーディングは?</h2>
         <p>すべてのCLI版バージョン、機能においてSHIFT-JISで出力されます。<br>
-            つまり、<strong>英数字以外の文字(日本語や全角文字等が含まれます)が含まれている場合を除き、RJCによって作られたファイルをそのまま利用できます。</strong><br>
+            つまり、<strong>英数字と一部の記号以外の文字(日本語や全角文字等が含まれます)が含まれている場合を除き、RJCによって作られたファイルをそのまま利用できます。</strong><br>
             <br>
             GUI版はたぶんUTF-8で出力されます。しらんけど
         </p>
@@ -68,11 +79,11 @@
             バージョン1.3.3.3以降が対象です。
         </blockquote>
         <p>強化されたアップデートは設定画面からアクセスできます。 <strong>Welcome画面のupdateは強化されたアップデートではありません。</strong><br>
-            強化されたアップデートは設定画面の"3"、"アップデート/ダウングレード"という名前で存在しています。<br>
+            強化されたアップデートは設定画面の3行目に、 "バージョン変更" または "アップデート/ダウングレード" という名前で存在しています。<br>
             <br>
-            "強制的に最新版へアップデートする"は現在利用中のRtmJsonCreatorが最新版であるかどうかを確認せずに、アップデートを実行させます。 なぜこの機能を追加したのかは謎です。誰得<br>
-            <br></a>
-            "強制的に特定のバージョンへ移行させる"はv0.1、つまり看板しか作れなかった初期版時代から、GitHubリリースでパブリッシングされたRtmJsonCreatorをダウンロードし、それを実行します。 <a href="../../RJC/VC/DownloadList.tscf">ダウンロードリスト(tscf)</a><br>
+            "最新版" または "強制的に最新版へアップデートする" は現在利用中のRtmJsonCreatorが最新版であるかどうかを確認せずに、アップデートを実行させます。 なぜこの機能を追加したのかは謎です。誰得<br>
+            <br>
+            "特定のバージョン" または "強制的に特定のバージョンへ移行させる" はv0.1、つまり看板しか作れなかった初期版時代から、GitHubリリースでパブリッシングされたRtmJsonCreatorをダウンロードし、それを実行します。 <a href="../../RJC/VC/DownloadList.tscf">ダウンロードリスト(tscf)</a><br>
             v1.0.1.2を含めたそれより前のバージョンはアップデート機能が搭載されていないため、現在利用中のバージョンをまた利用するには特定のファイルの削除が必要になります。 これらについてはダウングレード時に警告が表示されますので、それらの危険性を確認してから行うようにして下さい。<br>
             
         </p>

@@ -101,43 +101,43 @@ function download(content, fileName, contentType) {
     // 列車材質設定
 
     function addTrainMat() {
-  var count = document.getElementById('trainMatSettings').children.length + 1;
-  var matSetting = document.createElement('div');
-  matSetting.id = 'trainMat' + count;
-  var strong = document.createElement('strong');
-  strong.textContent = "3Dモデルの材質," + count + "つめの名前を決めてください。";
-  matSetting.appendChild(strong);
-  var p = document.createElement('p');
-  p.textContent = "材質名を入力してください。";
-  matSetting.appendChild(p);
-  var input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'trainMat';
-  matSetting.appendChild(input);
-  var p2 = document.createElement('p');
-  p2.textContent = "テクスチャへのパスを記述してください。";
-  matSetting.appendChild(p2);
-  var input2 = document.createElement('input');
-  input2.type = 'text';
-  input2.className = 'trainMatTexture';
-  matSetting.appendChild(input2);
-  var p3 = document.createElement('p');
-  p3.textContent = "オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\" ";
-  matSetting.appendChild(p3);
-  var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
-  for (var j = 0; j < options.length; j++) {
+    var count = document.getElementById('trainMatSettings').children.length + 1;
+    var matSetting = document.createElement('div');
+    matSetting.id = 'trainMat' + count;
+    var strong = document.createElement('strong');
+    strong.textContent = "3Dモデルの材質," + count + "つめの名前を決めてください。";
+    matSetting.appendChild(strong);
+    var p = document.createElement('p');
+    p.textContent = "材質名を入力してください。";
+    matSetting.appendChild(p);
     var input = document.createElement('input');
-    input.type = 'radio';
-    input.className = 'trainMatOption';
-    input.name = 'trainMatOption' + count;
-    input.value = options[j];
+    input.type = 'text';
+    input.className = 'trainMat';
     matSetting.appendChild(input);
+    var p2 = document.createElement('p');
+    p2.textContent = "テクスチャへのパスを記述してください。";
+    matSetting.appendChild(p2);
+    var input2 = document.createElement('input');
+    input2.type = 'text';
+    input2.className = 'trainMatTexture';
+    matSetting.appendChild(input2);
+    var p3 = document.createElement('p');
+    p3.textContent = "オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\" ";
+    matSetting.appendChild(p3);
+    var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
+    for (var j = 0; j < options.length; j++) {
+        var input = document.createElement('input');
+        input.type = 'radio';
+        input.className = 'trainMatOption';
+        input.name = 'trainMatOption' + count;
+        input.value = options[j];
+        matSetting.appendChild(input);
 
-    var label = document.createElement('label');
-    label.htmlFor = 'trainMatOption' + count;
-    label.textContent = options[j];
-    matSetting.appendChild(label);
-  }
+        var label = document.createElement('label');
+        label.htmlFor = 'trainMatOption' + count;
+        label.textContent = options[j];
+        matSetting.appendChild(label);
+    }
   document.getElementById('trainMatSettings').appendChild(matSetting);
   }
 

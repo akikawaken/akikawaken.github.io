@@ -446,91 +446,91 @@ function ams2() {
 }
 
         // 出力
-function outputMats(dataFromams1, dataFromams2) {
+        function outputMats(dataFromams1, dataFromams2) {
   var ams;
-    try {
-        ams = dataFromams1.ams;
-    } catch (error) {
-        ams = false;
-    }
-    var output = "{ \n";
-    var trainname = $('#trainname').val();
-    output += ' "trainName": "' + trainname + '", \n';
-    
-    var traintype = $('#traintype').val();
-    output += ' "trainType": "' + traintype + '", \n';
-    var tags = $('#tags').val();
-    output += ' "tags": "' + tags + '", \n';
-    var modelfile = $('#modelfile').val();
-    if (ams !== true) {
+  try {
+    ams = dataFromams1.ams;
+  } catch (error) {
+    ams = false;
+  }
+  var output = "{ \n";
+  var trainname = document.getElementById('trainname').value;
+  output += ' "trainName": "' + trainname + '", \n';
+
+  var traintype = document.getElementById('traintype').value;
+  output += ' "trainType": "' + traintype + '", \n';
+  var tags = document.getElementById('tags').value;
+  output += ' "tags": "' + tags + '", \n';
+  var modelfile = document.getElementById('modelfile').value;
+  if (ams !== true) {
     //旧式
     output += ' "trainModel2":{ \n';
     output += '  "modelFile": "' + modelfile + '", \n';
     output += '  "textures":[ \n';
-    var count = $('#trainMatSettings').children().length;
+    var count = document.getElementById('trainMatSettings').children.length;
     for (var i = 1; i <= count; i++) {
-    var trainMat = $('#trainMat' + i + ' .trainMat').val();
-    var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
-    var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
-    var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
-    if (i == count) {
-      output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
+      var trainMat = document.querySelector('#trainMat' + i + ' .trainMat').value;
+      var trainMatTexture = document.querySelector('#trainMat' + i + ' .trainMatTexture').value;
+      var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
+      var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
+      if (i == count) {
+        output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
       } else {
-      output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
+        output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
+      }
     }
-}
     output += ' "bogieModel2":{ \n';
-    var bogiemodelfile = $('#bogiemodelfile').val();
+    var bogiemodelfile = document.getElementById('bogiemodelfile').value;
     output += '  "modelFile": "' + bogiemodelfile + '", \n';
     output += '  "textures": [ \n';
-    count = $('#bogieMatSettings').children().length;
+    count = document.getElementById('bogieMatSettings').children.length;
     for (var i = 1; i <= count; i++) {
-    var bogieMat = $('#bogieMat' + i + ' .bogieMat').val();
-    var bogieMatTexture = $('#bogieMat' + i + ' .bogieMatTexture').val();
-    var bogieMatOptionRadio = document.querySelector('input[name="bogieMatOption' + i + '"]:checked');
-    var bogieMatOption = bogieMatOptionRadio ? (bogieMatOptionRadio.value === "なし" ? "" : bogieMatOptionRadio.value) : "";
-    if (i == count) {
+      var bogieMat = document.querySelector('#bogieMat' + i + ' .bogieMat').value;
+      var bogieMatTexture = document.querySelector('#bogieMat' + i + ' .bogieMatTexture').value;
+      var bogieMatOptionRadio = document.querySelector('input[name="bogieMatOption' + i + '"]:checked');
+      var bogieMatOption = bogieMatOptionRadio ? (bogieMatOptionRadio.value === "なし" ? "" : bogieMatOptionRadio.value) : "";
+      if (i == count) {
         output += '   ["' + bogieMat + '", "' + bogieMatTexture + '", "' + bogieMatOption + '"] \n  ] \n }, \n';
-    } else {
-        output += '   ["' + bogieMat + '", "' + bogieMatTexture+ '", "'+ bogieMatOption +'"],';
+      } else {
+        output += '   ["' + bogieMat + '", "' + bogieMatTexture + '", "' + bogieMatOption + '"],';
+      }
     }
-    }
-    }
-    if (ams) {
+  }
+  if (ams) {
     output += ' "trainModel2":{ \n';
     var filename1 = dataFromams1.filename1;
     output += '  "modelFile": "' + filename1 + '", \n';
     output += '  "textures":[ \n';
     var output1 = dataFromams1.output1;
-    output += ' '+ output1 +' '
-    
+    output += ' ' + output1 + ' '
+
     output += ' "bogieModel2":{ \n';
     var filename2 = dataFromams2.filename2;
     output += '  "modelFile": "' + filename2 + '", \n';
     output += '  "textures":[ \n';
     var output2 = dataFromams2.output2;
-    output += ' '+ output2 +' '
-    }
+    output += ' ' + output2 + ' '
+  }
 
-    var buttontexture = $('#buttontexture').val();
-    output += ' "buttontexture": "' + buttontexture + '", \n';
-    var playerposx = $('#playerposx').val();
-    var playerposy = $('#playerposy').val();
-    var playerposz = $('#playerposz').val();
-    var playerposx2 = $('#playerposx2').val();
-    var playerposy2 = $('#playerposy2').val();
-    var playerposz2 = $('#playerposz2').val();
-    output += ' "playerPos": [[' + playerposx +',' + playerposy +',' + playerposz +',' + playerposx2 +',' + playerposy2 +',' + playerposz2 +']], \n';
-    var bogieposx = $('#bogieposx').val();
-    var bogieposy = $('#bogieposy').val();
-    var bogieposz = $('#bogieposz').val();
-    var bogieposx2 = $('#bogieposx2').val();
-    var bogieposy2 = $('#bogieposy2').val();
-    var bogieposz2 = $('#bogieposz2').val();
-    output += ' "bogiePos": [[' + bogieposx +',' + bogieposy +',' + bogieposz +',' + bogieposx2 +',' + bogieposy2 +',' + bogieposz2 +']], \n';
-    var trainDistance = $('#trainDistance').val();
-    output += ' "trainDistance": ' + trainDistance + ', \n';
-    var accuracy = $('#accuracy').val();
+  var buttontexture = document.getElementById('buttontexture').value;
+  output += ' "buttontexture": "' + buttontexture + '", \n';
+  var playerposx = document.getElementById('playerposx').value;
+  var playerposy = document.getElementById('playerposy').value;
+  var playerposz = document.getElementById('playerposz').value;
+  var playerposx2 = document.getElementById('playerposx2').value;
+  var playerposy2 = document.getElementById('playerposy2').value;
+  var playerposz2 = document.getElementById('playerposz2').value;
+  output += ' "playerPos": [[' + playerposx + ',' + playerposy + ',' + playerposz + ',' + playerposx2 + ',' + playerposy2 + ',' + playerposz2 + ']], \n';
+  var bogieposx = document.getElementById('bogieposx').value;
+  var bogieposy = document.getElementById('bogieposy').value;
+  var bogieposz = document.getElementById('bogieposz').value;
+  var bogieposx2 = document.getElementById('bogieposx2').value;
+  var bogieposy2 = document.getElementById('bogieposy2').value;
+  var bogieposz2 = document.getElementById('bogieposz2').value;
+  output += ' "bogiePos": [[' + bogieposx + ',' + bogieposy + ',' + bogieposz + ',' + bogieposx2 + ',' + bogieposy2 + ',' + bogieposz2 + ']], \n';
+  var trainDistance = document.getElementById('trainDistance').value;
+  output += ' "trainDistance": ' + trainDistance + ', \n';
+  var accuracy = document.getElementById('accuracy').value;
     // おぷしょんとゆかいななかまたち
         var accelerateion = document.getElementById('accelerateion').value
         if (accelerateion !== "") {

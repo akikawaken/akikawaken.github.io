@@ -6,7 +6,6 @@
     <meta name="author" content="akikawa9616" />
     <meta name="description" content="RealTrainMod用Json作成支援ツール:RtmJsonCreatorのGUI版 - 機能あり/なし設置物用Json作成ページ" />
     <link rel="stylesheet" href="../../css/all-mode.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <noscript>
@@ -100,133 +99,144 @@ function download(content, fileName, contentType) {
 }
 
     // 列車材質設定
-function addTrainMat() {
-    var count = $('#trainMatSettings').children().length + 1;
-    var matSetting = $('<div>').attr('id', 'trainMat' + count);
-    matSetting.append($('<strong>').text("3Dモデルの材質," + count + "つめの名前を決めてください。"));
-    matSetting.append($('<p>').text("材質名を入力してください。"));
-    matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMat'));
-    matSetting.append($('<p>').text("テクスチャへのパスを記述してください。"));
-    matSetting.append($('<input>').attr('type', 'text').attr('class', 'trainMatTexture'));
-    matSetting.append($('<p>').text("オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"OneTex\" "));
-    var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "OneTex", "なし"];
-    for (var j = 0; j < options.length; j++) {
-      matSetting.append($('<input>').attr('type', 'radio').attr('class', 'trainMatOption').attr('name', 'trainMatOption' + count).attr('value', options[j]));
-      matSetting.append($('<label>').attr('for', 'trainMatOption' + count).text(options[j]));
-    }
-    $('#trainMatSettings').append(matSetting);
+
+    function addTrainMat() {
+  var count = document.getElementById('trainMatSettings').children.length + 1;
+  var matSetting = document.createElement('div');
+  matSetting.id = 'trainMat' + count;
+  var strong = document.createElement('strong');
+  strong.textContent = "3Dモデルの材質," + count + "つめの名前を決めてください。";
+  matSetting.appendChild(strong);
+  var p = document.createElement('p');
+  p.textContent = "材質名を入力してください。";
+  matSetting.appendChild(p);
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'trainMat';
+  matSetting.appendChild(input);
+  var p2 = document.createElement('p');
+  p2.textContent = "テクスチャへのパスを記述してください。";
+  matSetting.appendChild(p2);
+  var input2 = document.createElement('input');
+  input2.type = 'text';
+  input2.className = 'trainMatTexture';
+  matSetting.appendChild(input2);
+  var p3 = document.createElement('p');
+  p3.textContent = "オプションをつけますか? 使用可能: \"AlphaBlend\" , \"Light\" , \"AlphaBlend,Light\" , \"AlphaBlend,Light,OneTex\" ";
+  matSetting.appendChild(p3);
+  var options = ["AlphaBlend", "Light", "AlphaBlend,Light", "AlphaBlend,Light,OneTex", "なし"];
+  for (var j = 0; j < options.length; j++) {
+    var input = document.createElement('input');
+    input.type = 'radio';
+    input.className = 'trainMatOption';
+    input.name = 'trainMatOption' + count;
+    input.value = options[j];
+    matSetting.appendChild(input);
+
+    var label = document.createElement('label');
+    label.htmlFor = 'trainMatOption' + count;
+    label.textContent = options[j];
+    matSetting.appendChild(label);
+  }
+  document.getElementById('trainMatSettings').appendChild(matSetting);
+  }
+
+function removeTrainMat() {
+  var count = document.getElementById('trainMatSettings').children.length;
+  if (count > 0) {
+      var matSetting = document.getElementById('trainMat' + count);
+      matSetting.parentNode.removeChild(matSetting);
+  }
 }
 
-        function removeTrainMat() {
-            var count = $('#trainMatSettings').children().length;
-            if (count > 0) {
-                $('#trainMat' + count).remove();
-            }
-        }
-
         // 出力
-        function outputMats() {
-            var output = "{ \n";
-            var name = $('#name').val();
-            output += ' "name": "' + name + '", \n';
+    function outputMats() {
+    var output = "{ \n";
+    var name = document.getElementById('name').value;
+    output += ' "name": "' + name + '", \n';
 
-            var tags = $('#tags').val();
-            output += ' "tags": "' + tags + '", \n';
-            
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Gate") {
-                    output += ' "machineType": "Gate",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Point") {
-                    output += ' "machineType": "Point",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Turnstile") {
-                    output += ' "machineType": "Turnstile",\n';
-                }
-                var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Vendor") {
-                    output += ' "machineType": "Vendor",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Light") {
-                    output += ' "machineType": "Light",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "BumpingPost") {
-                    output += ' "machineType": "BumpingPost",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Antenna_Send") {
-                    output += ' "machineType": "Antenna_Send",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Antenna_Receive") {
-                    output += ' "machineType": "Antenna_Receive",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Lamp") {
-                    output += ' "ornamentType": "Lamp",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Stair") {
-                    output += ' "ornamentType": "Stair",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.ornamentType == "Scaffold") {
-                    output += ' "ornamentType": "Scaffold",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Pole") {
-                    output += ' "ornamentType": "Pole",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Pipe") {
-                    output += ' "ornamentType": "Pipe",\n';
-                }
-            var typeRadio = document.querySelector('input[name="type"]:checked');
-                if (typeRadio.value == "Plant") {
-                    output += ' "ornamentType": "Plant",\n';
-                }
+    var tags = document.getElementById('tags').value;
+    output += ' "tags": "' + tags + '", \n';
+    
+    var typeRadio = document.querySelector('input[name="type"]:checked');
+    if (typeRadio.value == "Gate") {
+        output += ' "machineType": "Gate",\n';
+    }
+    if (typeRadio.value == "Point") {
+        output += ' "machineType": "Point",\n';
+    }
+    if (typeRadio.value == "Turnstile") {
+        output += ' "machineType": "Turnstile",\n';
+    }
+    if (typeRadio.value == "Vendor") {
+        output += ' "machineType": "Vendor",\n';
+    }
+    if (typeRadio.value == "Light") {
+        output += ' "machineType": "Light",\n';
+    }
+    if (typeRadio.value == "BumpingPost") {
+        output += ' "machineType": "BumpingPost",\n';
+    }
+    if (typeRadio.value == "Antenna_Send") {
+        output += ' "machineType": "Antenna_Send",\n';
+    }
+    if (typeRadio.value == "Antenna_Receive") {
+        output += ' "machineType": "Antenna_Receive",\n';
+    }
+    if (typeRadio.value == "Lamp") {
+        output += ' "ornamentType": "Lamp",\n';
+    }
+    if (typeRadio.value == "Stair") {
+        output += ' "ornamentType": "Stair",\n';
+    }
+    if (typeRadio.value == "Scaffold") {
+        output += ' "ornamentType": "Scaffold",\n';
+    }
+    if (typeRadio.value == "Pole") {
+        output += ' "ornamentType": "Pole",\n';
+    }
+    if (typeRadio.value == "Pipe") {
+        output += ' "ornamentType": "Pipe",\n';
+    }
+    if (typeRadio.value == "Plant") {
+        output += ' "ornamentType": "Plant",\n';
+    }
 
-            output += ' "model":{ \n';
-            
-            var modelfile = $('#modelfile').val();
-            output += '  "modelFile": "' + modelfile + '", \n';
+    output += ' "model":{ \n';
+    
+    var modelfile = document.getElementById('modelfile').value;
+    output += '  "modelFile": "' + modelfile + '", \n';
 
-            output += '  "textures":[ \n';
-            var count = $('#trainMatSettings').children().length;
+    output += '  "textures":[ \n';
+    var count = document.getElementById('trainMatSettings').children.length;
 
-        for (var i = 1; i <= count; i++) {
-          var trainMat = $('#trainMat' + i + ' .trainMat').val();
-          var trainMatTexture = $('#trainMat' + i + ' .trainMatTexture').val();
-          var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
-           var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
-         if (i == count) {
-           output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
-           } else {
-           output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],\n';
-           }
+    for (var i = 1; i <= count; i++) {
+        var trainMat = document.querySelector('#trainMat' + i + ' .trainMat').value;
+        var trainMatTexture = document.querySelector('#trainMat' + i + ' .trainMatTexture').value;
+        var trainMatOptionRadio = document.querySelector('input[name="trainMatOption' + i + '"]:checked');
+        var trainMatOption = trainMatOptionRadio ? (trainMatOptionRadio.value === "なし" ? "" : trainMatOptionRadio.value) : "";
+        if (i == count) {
+            output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"] \n  ] \n }, \n';
+        } else {
+            output += '   ["' + trainMat + '", "' + trainMatTexture + '", "' + trainMatOption + '"],';
         }
+    }
 
-            var smoothing = document.getElementById('smoothing').value
-            output += ' "smoothing":' + smoothing + ', \n';
-            
-            var doCulling = document.getElementById('doCulling').value
-            output += ' "doCulling":' + doCulling + ', \n';
+    var smoothing = document.getElementById('smoothing').value;
+    output += ' "smoothing":' + smoothing + ', \n';
+    
+    var doCulling = document.getElementById('doCulling').value;
+    output += ' "doCulling":' + doCulling + ', \n';
 
-            var buttontexture = $('#buttontexture').val();
-            output += ' "buttontexture": "' + buttontexture + '" \n';
+    var buttontexture = document.getElementById('buttontexture').value;
+    output += ' "buttontexture": "' + buttontexture + '" \n';
 
-            output += "}";
-            
+    output += "}";
 
-            document.getElementById('output').textContent = output;
-            
-            $('#output').text(output);
-            document.getElementById("filename").innerHTML = "------ファイル名:ModelMachine_" + name + ".json-------";
-        }
+    document.getElementById('output').textContent = output;
+    document.getElementById("filename").innerHTML = "------ファイル名:ModelMachine_" + name + ".json-------";
+}
+
     </script>
 
 </body>

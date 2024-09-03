@@ -19,5 +19,19 @@ Disallow: /index.html
 Disallow: /RTM/DB/
 Disallow: /s/
 
+User-agent: Bingbot
+Disallow: /Blog/css/
+Disallow: /Blog/js/
+Disallow: /Blog/PR/Dev/
+Disallow: /Blog/template.htm
+Disallow: /RJC/css/
+Disallow: /RJC/js/
+Disallow: /RJC/main/template.htm
+Disallow: /RJC/VC/
+Disallow: /RJC/info.htm
+Disallow: /404.html
+Disallow: /index.html
+Disallow: /RTM/DB/
+Disallow: /s/
 
 Sitemap: https://akikawaken.github.io/sitemap.xml

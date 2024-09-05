@@ -5,6 +5,7 @@
         <title>RealTrainModのJsonについてのドキュメント</title>
         <meta name="description" content="RealTrainModのJsonで利用可能なキーについてのドキュメント。" />
         <link rel="stylesheet" href="../../Blog/css/Blog.css" />
+        <script src="../../Blog/js/aTagScroll.js"></script>
     </head>
 <body>
     <div class="title">
@@ -15,10 +16,254 @@
     <div class="main h3nosticky">
         <h2>はじめに</h2>
         <p>情報は間違っていたり、古くなっている場合があります。 必ずユーザ自身でも情報が正しいかどうかを確認するようにしてください。<br>
-            また、このドキュメントは<a href="../../RJC/main/index.html">RtmJsonCreator</a>関連ドキュメント整備の一環として作成されたものであり、RealTrainModで利用可能な設定事項すべてを記載しているわけではないことに注意する必要がある。</p>
+            また、このドキュメントは<a href="../../RJC/main/index.html">RtmJsonCreator</a>関連ドキュメント整備の一環として作成されたものであり、RealTrainModで利用可能な設定事項すべてを記載しているわけではないことに注意する必要があります。<br>
+            <strong>看板,sounds.json,pack.json、そして3Dモデル設定を除く、全てのアドオンタイプで、"共通"で省略が不可とされているものもJson内に記述する必要があります。 (3Dモデル設定は単一ファイルで行うものではなく、"列車等のアドオンJSONファイル内で記述するキー"の解説であるためです。)</strong><br>
+            <br>
+            このページではJSONそのものの構文解説を行いません。 各キーに対して記述されているJSONはサンプルであり、サンプルよりも多い配列を追加することなどができる場合があります。</p>
         </p>
+        <h2>目次</h2>
+        <p>このドキュメントは非常に膨大である為、CTRL^Fまたは目次から目当てのキーを探すことを推奨します。<br>
+        以下の目次はアドオンタイプによって分かれています。 キー名はわかるけどタイプがわからない場合はCTRL^Fで探すことを推奨します。</p>
+        <details>
+            <summary class="h3">共通</summary>
+        <p>
+            <a href="#tags">tags</a><br>
+            <a href="#useCustomColor">useCustomColor</a><br>
+            <a href="#defaultData">defaultData</a><br>
+            <a href="#scale">scale</a><br>
+            <a href="#offset">offset</a><br>
+            <a href="#smoothing">smoothing</a><br>
+            <a href="#doCulling">doCulling</a><br>
+            <a href="#accuracy">accuracy</a><br>
+            <a href="#serverScriptPath">serverScriptPath</a><br>
+            <a href="#guiScriptPath">guiScriptPath</a><br>
+            <a href="#renderAABB">renderAABB</a><br>
+            <a href="#buttonTexture">buttonTexture</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">共通(列車+乗り物のみ)</summary>
+        <p>
+            <a href="#size">size</a><br>
+            <a href="#rollsignTexture">rollsignTexture</a><br>
+            <a href="#rollsignNames">rollsignNames</a><br>
+            <a href="#rollsigns">rollsigns</a><br>
+            <a href="#sound_Stop">sound_Stop</a><br>
+            <a href="#sound_S_A">sound_S_A</a><br>
+            <a href="#sound_Acceleration">sound_Acceleration</a><br>
+            <a href="#sound_Deceleration">sound_Deceleration</a><br>
+            <a href="#sound_D_S">sound_D_S</a><br>
+            <a href="#sound_Horn">sound_Horn</a><br>
+            <a href="#sound_DoorOpen">sound_DoorOpen</a><br>
+            <a href="#sound_DoorClose">sound_DoorClose</a><br>
+            <a href="#sound_Announcement">sound_Announcement</a><br>
+            <a href="#soundScriptPath">soundScriptPath</a><br>
+            <a href="#smoke">smoke</a><br>
+            <a href="#headLights">headLights</a><br>
+            <a href="#tailLights">tailLights</a><br>
+            <a href="#interiorLights">interiorLights</a><br>
+            <a href="#slotPos">slotPos</a><br>
+            <a href="#playerPos">playerPos</a><br>
+            <a href="#notDisplayCab">notDisplayCab</a><br>
+            <a href="#wheelRotationSpeed">wheelRotationSpeed</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">3Dモデル設定</summary>
+        <p>
+            <a href="#model">model</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">列車</summary>
+        <p>
+            <a href="#trainName">trainName</a><br>
+            <a href="#trainType">trainType</a><br>
+            <a href="#trainModel2">trainModel2</a><br>
+            <a href="#bogieModel2">bogieModel2</a><br>
+            <a href="#bogieModel3">bogieModel3</a><br>
+            <a href="#sound_BrakeRelease">sound_BrakeRelease</a><br>
+            <a href="#sound_BrakeRelease2">sound_BrakeRelease2</a><br>
+            <a href="#muteJointSound">muteJointSound</a><br>
+            <a href="#bogiePos">bogiePos</a><br>
+            <a href="#trainDistance">trainDistance</a><br>
+            <a href="#accelerateion">accelerateion</a><br>
+            <a href="#maxSpeed">maxSpeed</a><br>
+            <a href="#rolling">rolling</a><br>
+            <a href="#rollSpeedCoefficient">rollSpeedCoefficient</a><br>
+            <a href="#rollVariationCoefficient">rollVariationCoefficient</a><br>
+            <a href="#rollWidthCoefficient">rollWidthCoefficient</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">乗り物(自動車,航空機,船舶)</summary>
+        <p>
+            <a href="#name">name</a><br>
+            <a href="#model_v">model</a><br>
+            <a href="#vehicleType">vehicleType</a><br>
+            <a href="#friction">friction</a><br>
+            <a href="#acceleration_v">acceleration</a><br>
+            <a href="#maxSpeed_v">maxSpeed</a><br>
+            <a href="#maxYaw">maxYaw</a><br>
+            <a href="#pitchCoefficient">pitchCoefficient</a><br>
+            <a href="#rollCoefficient">rollCoefficient</a><br>
+            <a href="#changeYawOnStopping">changeYawOnStopping</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">乗り物(リフト)</summary>
+        <p>
+            <a href="#lift-name">name</a><br>
+            <a href="#model_l">model</a><br>
+            <a href="#lift-vehicleType">vehicleType</a><br>
+            <a href="#vibration">vibration</a><br>
+            <a href="#gripPos">gripPos</a><br>
+            <a href="#collisionParts">collisionParts</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">レール</summary>
+        <p>
+            <a href="#railName">railName</a><br>
+            <a href="#model_r">model</a><br>
+            <a href="#polygonType">polygonType</a><br>
+            <a href="#ballastWidth">ballastWidth</a><br>
+            <a href="#allowCrossing">allowCrossing</a><br>
+            <a href="#defaultBallast">defaultBallast</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">コンテナ</summary>
+        <p>
+            <a href="#containerName">containerName</a><br>
+            <a href="#containerModel">containerModel</a><br>
+            <a href="#containerTexture">containerTexture</a><br>
+            <a href="#containerWidth">containerWidth</a><br>
+            <a href="#containerHeight">containerHeight</a><br>
+            <a href="#containerLength">containerLength</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">火器</summary>
+        <p>
+            <a href="#firearmName">firearmName</a><br>
+            <a href="#firearmModel">firearmModel</a><br>
+            <a href="#firearmTexture">firearmTexture</a><br>
+            <a href="#modelPartsY">modelPartsY</a><br>
+            <a href="#modelPartsX">modelPartsX</a><br>
+            <a href="#modelPartsBarrel">modelPartsBarrel</a><br>
+            <a href="#muzzlePos">muzzlePos</a><br>
+            <a href="#playerPos_gun">playerPos_gun</a><br>
+            <a href="#yaw">yaw</a><br>
+            <a href="#pitch">pitch</a><br>
+            <a href="#rotationSpeedY">rotationSpeedY</a><br>
+            <a href="#rotationSpeedX">rotationSpeedX</a><br>
+            <a href="#recoil">recoil</a><br>
+            <a href="#fpvMode">fpvMode</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">信号機</summary>
+        <p>
+            <a href="#signalName">signalName</a><br>
+            <a href="#signalModel">signalModel</a><br>
+            <a href="#signalTexture">signalTexture</a><br>
+            <a href="#lightTexture">lightTexture</a><br>
+            <a href="#modelPartsFixture">modelPartsFixture</a><br>
+            <a href="#modelPartsBody">modelPartsBody</a><br>
+            <a href="#lights">lights</a><br>
+            <a href="#rotateBody">rotateBody</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">NPC</summary>
+        <p>
+            <a href="#model_n">model</a><br>
+            <a href="#role">role</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">看板</summary>
+        <p>
+            <a href="#texture">texture</a><br>
+            <a href="#backTexture">backTexture</a><br>
+            <a href="#height">height</a><br>
+            <a href="#width">width</a><br>
+            <a href="#depth">depth</a><br>
+            <a href="#frame">frame</a><br>
+            <a href="#animationcycle">animationCycle</a><br>
+            <a href="#color">color</a><br>
+            <a href="#lightValue">lightValue</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">機能あり設置物</summary>
+        <p>
+            <a href="#name_ma">name</a><br>
+            <a href="#model_ma">model</a><br>
+            <a href="#machineType">machineType</a><br>
+            <a href="#sound_OnActivate">sound_OnActivate</a><br>
+            <a href="#sound_Running">sound_Running</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">機能なし設置物</summary>
+        <p>
+            <a href="#name_mn">name</a><br>
+            <a href="#model_mn">model</a><br>
+            <a href="#ornamentType">ornamentType</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">旗</summary>
+        <p>
+            <a href="#texture_f">texture</a><br>
+            <a href="#height_f">height</a><br>
+            <a href="#width_f">width</a><br>
+            <a href="#resolutionU">resolutionU</a><br>
+            <a href="#resolutionV">resolutionV</a><br>
+            <a href="#poleLength">poleLength</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">コネクタ</summary>
+        <p>
+            <a href="#name_c">name</a><br>
+            <a href="#model_c">model</a><br>
+            <a href="#connectorType">connectorType</a><br>
+            <a href="#wirePos">wirePos</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">ワイヤ</summary>
+        <p>
+            <a href="#name_w">name</a><br>
+            <a href="#model_w">model</a><br>
+            <a href="#deflectionCoefficient">deflectionCoefficient</a><br>
+            <a href="#lengthCoefficient">lengthCoefficient</a><br>
+            <a href="#sectionLength">sectionLength</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">sounds.json</summary>
+        <p>
+            <a href="#sounds.json">sounds.json</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">pack.json</summary>
+        <p>
+            <a href="#pack.json">pack.json</a><br>
+        </p>
+        </details>
+        <details>
+            <summary class="h3">pack.json - アップデート確認用テキストファイル</summary>
+        <p>
+            <a href="#pack.txt">pack.json - アップデート確認用テキストファイル</a><br>
+        </p>
+        </details>
         <h2>共通</h2>
-        <p>多分ほとんどの場合で利用可能な設定事項。</p>
+        <p>看板を除く、すべての場合で利用可能な設定事項。</p>
         <h3 id="tags">tags</h3>
         <p>
             <blockquote>
@@ -714,7 +959,7 @@
             </blockquote>
             前照灯の指定を行います。<br>
             <code>type</code>は0がフレア、1がボリュームライトです。<br>
-            <code>color</code>は他キーの色指定と同様に、<strong>Hexではなく、Decで表記</strong>する必要があります。<a href="HexToDec.html">Hex-&gt;Decの方法はコチラ</a><br>
+            <code>color</code>は他キーの色指定と同様に、<strong>Hexではなく、Decで表記</strong>する必要があります。<a href="HexToDec.html">Hex-&gt;Decの変換方法はコチラ</a><br>
             <code>pos</code>は前照灯の光源発生源の中心位置です。㍍で指定します。<br>
             <code>r</code>は半径を設定します。㍍で指定します。
             <table><caption>情報</caption><tbody>
@@ -751,7 +996,7 @@
             </blockquote>
             尾灯の指定を行います。<br>
             <code>type</code>は0がフレア、1がボリュームライトです。<br>
-            <code>color</code>は他キーの色指定と同様に、<strong>Hexではなく、Decで表記</strong>する必要があります。<a href="HexToDec.html">Hex-&gt;Decの方法はコチラ</a><br>
+            <code>color</code>は他キーの色指定と同様に、<strong>Hexではなく、Decで表記</strong>する必要があります。<a href="HexToDec.html">Hex-&gt;Decの変換方法はコチラ</a><br>
             <code>pos</code>は尾灯の光源発生源の中心位置です。㍍で指定します。<br>
             <code>r</code>は半径を設定します。㍍で指定します。
             <table><caption>情報</caption><tbody>
@@ -902,7 +1147,7 @@
                 "rendererPath": "scripts/hoge.js"<br>
             }
         </blockquote>
-        <blockquote class="warn">列車の場合は車体:"trainModel2",ボギー:"bogieModel2"です。bogieModel3は列車の項目で説明しています。それ以外の場合は"model"がキー名です。</blockquote>
+        <blockquote class="warn">キー名について: 列車の場合は車体:"trainModel2",ボギー:"bogieModel2"です。bogieModel3は列車の項目で説明しています。それ以外の場合は"model"です。</blockquote>
         列車やレール等の3Dモデルを設定します。
         </p>
         <h3>modelFile</h3>
@@ -1322,7 +1567,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3>model_v</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -1370,10 +1615,10 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3 id="accelerateion">accelerateion</h3>
+        <h3 id="acceleration_v">acceleration</h3>
         <p>
             <blockquote>
-                "accelerateion": [0.0125, 0.0125],
+                "acceleration": [0.0125, 0.0125],
             </blockquote>
             加速度を指定します。<br>
             それぞれ、地面にいる場合と空中にいる場合です。
@@ -1392,7 +1637,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3 id="maxSpeed">maxSpeed</h3>
+        <h3 id="maxSpeed_v">maxSpeed</h3>
         <p>
             <blockquote>
                 "maxSpeed": [0.8, 0.8],
@@ -1528,7 +1773,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3 id="model_l">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -1644,7 +1889,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3 id="model_r">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -1949,9 +2194,9 @@
         <h3 id="modelPartsY">modelPartsY</h3>
         <p>
             <blockquote>
-                "modelPartsY": {
-                    "objects": ["base"],
-                    "pos": [0.0, 0.0, 0.0]
+                "modelPartsY": {<br>
+                    "objects": ["base"],<br>
+                    "pos": [0.0, 0.0, 0.0]<br>
                 },
             </blockquote>
             火器のパーツを指定します。(Y軸回転)
@@ -1973,9 +2218,9 @@
         <h3 id="modelPartsX">modelPartsX</h3>
         <p>
             <blockquote>
-                "modelPartsX": {
-                    "objects": ["body"],
-                    "pos": [0.0, 0.5, 0.0]
+                "modelPartsX": {<br>
+                    "objects": ["body"],<br>
+                    "pos": [0.0, 0.5, 0.0]<br>
                 },
             </blockquote>
             火器のパーツを指定します。(X軸回転)
@@ -1997,9 +2242,9 @@
         <h3 id="modelPartsBarrel">modelPartsBarrel</h3>
         <p>
             <blockquote>
-                "modelPartsBarrel": {
-                    "objects": ["barrel"],
-                    "pos": [0.0, 3.0, -0.25]
+                "modelPartsBarrel": {<br>
+                    "objects": ["barrel"],<br>
+                    "pos": [0.0, 3.0, -0.25]<br>
                 },
             </blockquote>
             火器のパーツを指定します。(バレル)
@@ -2379,7 +2624,7 @@
 
         <h2>NPC</h2>
         <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
-        <h3>model</h3>
+        <h3 id="model_n">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -2430,7 +2675,6 @@
 
 
         <h2>看板</h2>
-        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
         <h3 id="texture">texture</h3>
         <p>
             <blockquote>
@@ -2628,7 +2872,8 @@
 
 
         <h2>機能あり設置物</h2>
-        <h3>name</h3>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="name_ma">name</h3>
         <p>
             <blockquote>
                 "name": "hoge",
@@ -2649,7 +2894,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3 id="model_ma">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -2722,7 +2967,8 @@
 
 
         <h2>機能なし設置物</h2>
-        <h3>name</h3>
+        <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
+        <h3 id="name_mn">name</h3>
         <p>
             <blockquote>
                 "name": "hoge",
@@ -2743,7 +2989,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3 id="model_mn">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -2775,7 +3021,7 @@
 
         <h2>旗</h2>
         <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
-        <h3>texture</h3>
+        <h3 id="texture_f">texture</h3>
         <p>
             <blockquote>
                 "texture": "textures/flag/flag_hoge.png",
@@ -2796,7 +3042,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>height</h3>
+        <h3 id="height_f">height</h3>
         <p>
             <blockquote>
                 "height": 0.75,
@@ -2817,7 +3063,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>width</h3>
+        <h3 id="width_f">width</h3>
         <p>
             <blockquote>
                 "width": 2.25,
@@ -2906,7 +3152,7 @@
 
         <h2>コネクタ</h2>
         <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
-        <h3>name</h3>
+        <h3 id="name_c">name</h3>
         <p>
             <blockquote>
                 "name": "hoge",
@@ -2927,7 +3173,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3 id="model_c">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -2980,7 +3226,7 @@
 
         <h2>ワイヤ</h2>
         <p>"共通"で省略が不可とされているものもJson内に記述する必要があります。</p>
-        <h3>name</h3>
+        <h3 id="name_w">name</h3>
         <p>
             <blockquote>
                 "name": "hoge",
@@ -3001,7 +3247,7 @@
                 </tr>
             </tbody></table>
         </p>
-        <h3>model</h3>
+        <h3 id="model_w">model</h3>
         <p><a href="#model">3Dモデル設定を参照してください。</a><br>
             キー名はmodelです。
         </p>
@@ -3071,7 +3317,7 @@
 
 
 
-        <h2>sounds.json</h2>
+        <h2 id="sounds.json">sounds.json</h2>
         <p>
             <blockquote>
             {<br>
@@ -3092,7 +3338,7 @@
 
 
 
-        <h2>pack.json</h2>
+        <h2 id="pack.json">pack.json</h2>
         <p>
             <blockquote>
                 {<br>
@@ -3107,7 +3353,7 @@
             updateURLにはアップデート確認用のテキストファイルURLを指定します。<br>
             versionには現時点の最新バージョンを指定してください。
         </p>
-        <h2>pack.json - アップデート確認用テキストファイル</h2>
+        <h2 id="pack.txt">pack.json - アップデート確認用テキストファイル</h2>
         <p>
             <blockquote>
                 addon1:1.0.0<br>

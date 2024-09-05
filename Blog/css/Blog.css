@@ -22,6 +22,7 @@ a:hover {
     margin: 1em 0;
     border-bottom-right-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
+    z-index: 10;
   }
 h2 {
     background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
@@ -32,6 +33,7 @@ h2 {
     left: 0;
     margin: 1em 0;
     font-size: 1.5em;
+    z-index: 10;
   }
   h3 {
       background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
@@ -42,6 +44,7 @@ h2 {
       left: 0;
       margin: 1em 0;
       font-size: 1.17em;
+      z-index: 10;
     }
     h4 {
         background: linear-gradient(to top, rgb(43, 43, 43), #298086 25%);
@@ -50,6 +53,7 @@ h2 {
         top: 0;
         left: 0;
         margin: 1em 0;
+        z-index: 10;
       }
 
 hr {
@@ -170,16 +174,53 @@ table {
 }
 
 thead {
-  background-color: #B1D1D7;
-  color: black;
+  background-color: #3f5c5f;
+  color: rgb(255, 255, 255);
+}
+
+tbody > tr {
+  border: 2px solid #298086;
 }
 
 tbody > tr:nth-of-type(even) {
   background-color: rgb(80,80,80);
 }
 
-th,
-td {
+th.head {
+  background-color: #3f5c5f;
+  position: relative;
+  border-top: 2px solid #298086; 
+  border-bottom: 2px solid #298086; 
+}
+
+th.head::before {
+  content: '';
+  position: absolute;
+  top: -2px; 
+  left: -2px; 
+  width: calc(100% + 4px);
+  height: 2px; 
+  background-color: #298086; 
+}
+
+th, td {
   border: 2px solid #298086;
   padding: 8px 10px;
+}
+
+th.head + th {
+  position: relative;
+}
+
+th.head + th::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -1px; 
+  width: 0;
+  height: 0;
+  border-left: 10px solid #3f5c5f; 
+  transform: translateY(-50%);
+  border-top: var(--arrow-size) solid transparent;
+  border-bottom: var(--arrow-size) solid transparent;
 }

@@ -65,7 +65,7 @@
         <p>開発者が記述ミスを直すことをサボったのでしょう。 この場合、手動でアップデートさせるしかありません。<br>
             下記のコマンドを使用して再インストールを行ってください。このコマンドは1行で実行すべきです。 この場合、RtmJsonCreatorのインストール先は %temp% となります。
         <blockquote class="code">
-            pushd %temp% & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/delfirstsettingfiles.bat & call %temp%\delfirstsettingfiles.bat & del %temp%\delfirstsettingfiles.bat & https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call %temp%\RtmJsonCreator.bat
+            pushd %temp% & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/delfirstsettingfiles.bat & call %temp%\delfirstsettingfiles.bat & del %temp%\delfirstsettingfiles.bat & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call %temp%\RtmJsonCreator.bat
         </blockquote></p>
 
         <h2 id="Encoding">エンコーディングは?</h2>

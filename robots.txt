@@ -5,12 +5,8 @@ User-agent: AdsBot-Google
 Disallow: /
 
 User-agent: *
-Disallow: /Blog/css/
-Disallow: /Blog/js/
 Disallow: /Blog/PR/Dev/
 Disallow: /Blog/template.htm
-Disallow: /RJC/css/
-Disallow: /RJC/js/
 Disallow: /RJC/main/template.htm
 Disallow: /RJC/VC/
 Disallow: /RJC/info.htm
@@ -20,12 +16,8 @@ Disallow: /RTM/DB/
 Disallow: /s/
 
 User-agent: Bingbot
-Disallow: /Blog/css/
-Disallow: /Blog/js/
 Disallow: /Blog/PR/Dev/
 Disallow: /Blog/template.htm
-Disallow: /RJC/css/
-Disallow: /RJC/js/
 Disallow: /RJC/main/template.htm
 Disallow: /RJC/VC/
 Disallow: /RJC/info.htm

@@ -17,18 +17,19 @@
         </p>
         <h2>目次</h2>
         <ul>
-            <li><a href="#HowToUpdate">アップデートはどうやってやるの?</a></li>
-            <li><a href="#LoopAfterUpdate">アップデートしたらコマンドがループするんだけど?</a></li>
-            <li><a href="#Encoding">エンコーディングは?</a></li>
-            <li><a href="#BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ?</a></li>
-            <li><a href="#SuperUpdate">強化されたアップデートって何?</a></li>
-            <li><a href="#CrashRJC">クラッシュしたんだけど、作成途中のJsonファイルどっかに残ってない?</a></li>
-            <li><a href="#WhatIsOSCMode">互換モードって何?</a></li>
-            <li><a href="#JsonSavedFolder">作成したJsonはどこにあるの?</a></li>
-            <li><a href="#NeedPutAcknowledgementInREADME">作成したJsonを使ったアドオンにクレジットの記載は必要?</a></li>
+            <li><a href="#HowToUpdate">アップデートはどうやってやるの? (CLI)</a></li>
+            <li><a href="#LoopAfterUpdate">アップデートしたらコマンドがループするんだけど? (CLI)</a></li>
+            <li><a href="#CantInstall">インストールがうまくできないんだけど! (CLI)</a></li>
+            <li><a href="#Encoding">エンコーディングは? (CLI,GUI)</a></li>
+            <li><a href="#BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ? (CLI)</a></li>
+            <li><a href="#SuperUpdate">強化されたアップデートって何? (CLI)</a></li>
+            <li><a href="#CrashRJC">クラッシュしたんだけど、作成途中のJsonファイルどっかに残ってない? (CLI,GUI)</a></li>
+            <li><a href="#WhatIsOSCMode">互換モードって何? (CLI)</a></li>
+            <li><a href="#JsonSavedFolder">作成したJsonはどこにあるの? (CLI,GUI)</a></li>
+            <li><a href="#NeedPutAcknowledgementInREADME">作成したJsonを使ったアドオンにクレジットの記載は必要? (CLI,GUI)</a></li>
         </ul>
 
-        <h2 id="HowToUpdate">アップデートはどうやってやるの?</h2>
+        <h2 id="HowToUpdate">アップデートはどうやってやるの? (CLI)</h2>
         <blockquote class="warn">
             バージョン1.2以降が対象です。<br>
             それ以前のバージョンを利用中の場合はGitHubのリリースからセルフダウンロードしてください。
@@ -59,7 +60,7 @@
             初期設定では<code>4</code>に設定されているスペシャルサンクス表示でバージョンが確認できるので<code>releaseversion</code>とかが上がっていることを確認しましょう。
         </p>
 
-        <h2 id="LoopAfterUpdate">アップデートしたらコマンドがループするんだけど?</h2>
+        <h2 id="LoopAfterUpdate">アップデートしたらコマンドがループするんだけど? (CLI)</h2>
         <blockquote class="warn">
             バージョン1.2以降が対象です。
         </blockquote>
@@ -69,14 +70,22 @@
             pushd %temp% & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/delfirstsettingfiles.bat & call %temp%\delfirstsettingfiles.bat & del %temp%\delfirstsettingfiles.bat & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call %temp%\RtmJsonCreator.bat
         </blockquote></p>
 
-        <h2 id="Encoding">エンコーディングは?</h2>
+        <h2 id="Encoding">エンコーディングは? (CLI,GUI)</h2>
         <p>すべてのCLI版バージョン、機能においてSHIFT-JISで出力されます。<br>
             つまり、<strong>英数字と一部の記号以外の文字が含まれている場合を除き、RJCによって作られたファイルをそのまま利用できます。</strong><br>
             <br>
             GUI版はたぶんUTF-8で出力されます。しらんけど
         </p>
 
-        <h2 id="SuperUpdate">強化されたアップデートって何?</h2>
+        <h2 id="BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ? (CLI)</h2>
+        <p>Windowsは多くの場合、インターネット上からダウンロードしたファイルを初めて起動しようとすると、それらをブロックする事があります。<br>
+            RtmJsonCreatorもこれにより警告画面が表示されますが、<code>詳細情報-&gt;実行</code>の手順で利用を続行することができます。<br>
+            RtmJsonCreatorが怪しいと思うのならば、GitHubで<a href="https://github.com/akikawaken/Rtm_Json_Creator/blob/master/rtm_json_creator.bat">ソースコード</a>を読んで危険かどうか判断してください。<br>
+            <br>
+            <img src="https://raw.githubusercontent.com/akikawaken/images/main/Blog/img/yokuaru-00003.gif" />
+        </p>
+
+        <h2 id="SuperUpdate">強化されたアップデートって何? (CLI)</h2>
         <blockquote class="warn">
             バージョン1.3.3.3以降が対象です。
         </blockquote>
@@ -90,21 +99,15 @@
             
         </p>
 
-        <h2 id="BlockedByWindowsDefender">起動しようとしたら警告が出たけど大丈夫なやつ?</h2>
-        <p>Windowsは多くの場合、インターネット上からダウンロードしたファイルを初めて起動しようとすると、それらをブロックする事があります。<br>
-            RtmJsonCreatorもこれにより警告画面が表示されますが、<code>詳細情報-&gt;実行</code>の手順で利用を続行することができます。<br>
-            RtmJsonCreatorが怪しいと思うのならば、GitHubで<a href="https://github.com/akikawaken/Rtm_Json_Creator/blob/master/rtm_json_creator.bat">ソースコード</a>を読んで危険かどうか判断してください。<br>
-            <br>
-            <img src="https://raw.githubusercontent.com/akikawaken/images/main/Blog/img/yokuaru-00003.gif" />
-        </p>
-
-        <h2 id="CrashRJC">クラッシュしたんだけど、作成途中のJsonファイルどっかに残ってない?</h2>
-        <p><code>%temp%\.RJC\json\[trainnameなどの名前]</code>または<code>%temp%\.Rtm_Json_Creator_json.tscf</code>を確認してください。<br>
+        <h2 id="CrashRJC">クラッシュしたんだけど、作成途中のJsonファイルどっかに残ってない? (CLI,GUI)</h2>
+        <p>CLIの場合、<code>%temp%\.RJC\json\[trainnameなどの名前]</code>または<code>%temp%\.Rtm_Json_Creator_json.tscf</code>を確認してください。<br>
             自動材質設定機能中にクラッシュした場合は、<code>%temp%\.ams1.tscf</code>と<code>%temp%\.ams2.tscf</code>も確認してみてください。<br>
-            <code>%temp%\.Rtm_Json_Creator_json.tscf</code>に保存されていた場合、そのファイルは次回のRJC起動時に削除されますので、注意してください。
+            <code>%temp%\.Rtm_Json_Creator_json.tscf</code>に保存されていた場合、そのファイルは次回のRJC起動時に削除されますので、注意してください。<br>
+            <br>
+            GUIの場合は... 諦めるしかありません。
         </p>
 
-        <h2 id="WhatIsOSCMode">互換モードって何?</h2>
+        <h2 id="WhatIsOSCMode">互換モードって何? (CLI)</h2>
         <blockquote class="warn">
             CLI版 v1.0.2 ~ v1.6 が対象です。 それ以外のバージョンにOSCモードは搭載されていません。
         </blockquote>
@@ -115,11 +118,12 @@
             自分のRtmJsonCreatorがOSCに該当しているかどうかを確認するには、スペシャルサンクス画面から確認(v1.3~)、または、行動選択画面で<code>cmd</code>を入力し、<code>if exist %temp%\.RJC\OSC.tscf ( echo osc_true ) ELSE ( echo osc_false )</code>を実行してください。 実行後に出力される文字列が osc_true の場合はOSCに該当しています。 osc_false の場合は互換モードではありません。
         </p>
 
-        <h2 id="JsonSavedFolder">作成したJsonはどこにあるの?</h2>
-        <p>作成したJsonは規定の設定を利用中の場合、<code>%temp%\.RJC\Json\</code>にあります。
+        <h2 id="JsonSavedFolder">作成したJsonはどこにあるの? (CLI,GUI)</h2>
+        <p>作成したJsonは、CLI版で規定の設定を利用中の場合、<code>%temp%\.RJC\Json\</code>にあります。<br>
+            GUI版の場合は、各ユーザが自身で設定したフォルダにインストールされます。(またはブラウザの規定値)
         </p>
 
-        <h2 id="NeedPutAcknowledgementInREADME">作成したJsonを使ったアドオンにクレジットの記載は必要?</h2>
+        <h2 id="NeedPutAcknowledgementInREADME">作成したJsonを使ったアドオンにクレジットの記載は必要? (CLI,GUI)</h2>
         <p>RtmJsonCreatorで作成したJsonをアドオンに使用する場合、<strong>README等でRJCを使用した旨を記載することは、不要です。</strong><br>
             但し、記載することが禁止されているわけではありません。</p>
     </div>

@@ -7,6 +7,15 @@ a:visited {
 a:hover {
       text-decoration: none;
     }
+a.otherTab::after {
+  content: url('https://raw.githubusercontent.com/akikawaken/images/refs/heads/main/Blog/icon/new_window_line24.png');
+  display: inline-block;
+  background: linear-gradient(to top, rgb(43, 43, 43), #7B98AD 25%);
+  width: 24px; 
+  height: 24px; 
+  vertical-align: middle; 
+  margin-left: 3px; 
+}
     div.h2nosticky > h2 {
       position: static;
     }

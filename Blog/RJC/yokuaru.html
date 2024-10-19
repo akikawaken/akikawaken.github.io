@@ -70,6 +70,32 @@
             pushd %temp% & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/delfirstsettingfiles.bat & call %temp%\delfirstsettingfiles.bat & del %temp%\delfirstsettingfiles.bat & curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call %temp%\RtmJsonCreator.bat
         </blockquote></p>
 
+        <h2 id="CantInstall">インストールがうまくできないんだけど! (CLI)</h2>
+        <p>まずはどの段階でインストールに失敗するかを判断する必要があります。<br>
+            <hr>
+            <b>1. バッチファイルをダウンロードする前</b><br>
+            <strong>まず、あなたが利用しているOSがWindowsであることを確認してください。 MacやLinuxでは動作しません。 その場合はGUI版を利用してください。</strong><br>
+            あなたはCLIでダウンロードしようとしていますか? そうである場合、もう一度コマンドを確認してみてください。 正しいコマンドは<code>curl -sLJO https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/RtmJsonCreator.bat & call RtmJsonCreator.bat</code>です。<br>
+            もしくは... コマンドを入力する場所を間違えていませんか? ブラウザのアドレスバーや、Minecraftのチャットなどではなく、Windowsの標準搭載ソフトウェアである、<i>コマンドライン</i>に入力する必要があります。<br>
+            もし、コマンドラインがわからない場合は、windowsキーとRキーを同時押しし、ファイル名を指定して実行を呼び出して、<code>cmd</code>と入力した後、真っ黒の画面に上記のコマンドをコピー&ペーストしてEnterキーを押してください。<br>
+            GUI、つまりGitHubからダウンロードしようとしている場合は、ブラウザのファイルダウンロード設定を確かめてみてください。 一部のブラウザでは信頼できないファイルとしてダウンロードをブロックしようとします。 そして、ダウンロードしたファイルをダブルクリック起動します。(コマンドラインからでも可能です)<br>
+            <hr>
+            2. バッチファイルをダウンロードした後<br>
+            バージョンによって異なります。</p>
+        <h3>v1.6~最新版</h3>
+        <p>まず、<code>where curl</code>をコマンドラインで実行してみてください。 <code>C:\Windows\System32\curl.exe</code>と出力されますか? されない場合はcurlをインストールする必要があります。 または、GUI版を利用してください。<br>
+            上記の出力結果が出たのにインストールができない場合は、既にRJCがインストールされている可能性があります。<a href="https://github.com/akikawaken/Rtm_Json_Creator/releases/download/update/delfirstsettingfiles.bat">RJC関連ファイルを全て削除するバッチファイル</a>をダウンロードし、実行した後にもう一度RtmJsonCreatorをインストールしてみてください。<br>
+            </p>
+        <h3>v0.9.6.1~v1.5.4</h3><!--v0.9.6.1~v1.0.1.2は必須フォルダ作成のみ。v1.0.2~v1.5.4はOSC搭載。このうち一部バージョンはBSUIのライブラリダウンロードを含む。-->
+        <p>基本的に、インストールできないことはないはずです。(機能的に) 恐らく、RtmJsonCreatorが作成しようとしているファイルの位置に対する、権限が不足しているのでしょう。 管理者権限でRtmJsonCreatorを実行しなおしてみてください。<br>
+        <strong>これらのバージョンはRtmJsonCreator史的に古いものであり、可能であるならば最新版を利用することを強くお勧めします。</strong></p>
+        <h3>v0.1~v0.9.5</h3>
+        <p>インストールできないことはないです。というか、インストールもなにもダブルクリック起動するだけで動くはずです。 ですが、以下の場合のみインストール/起動に失敗します。<br>
+            "ファミリーセーフティ"等によってコマンドラインの呼び出し自体が制限されている。<br>
+            OS/Windowsコマンドライン等のバージョンが古い<br>
+            それ以外の理由で起動できない場合は、個別に聞かなければ解決できません。 なんならRtmJsonCreator側の問題じゃないので対応できるかどうかも怪しいです<br>
+            <strong>これらのバージョンはRtmJsonCreator史的に化石レベルの物であり、可能であるならば最新版を利用することを非常に強くお勧めします。</strong></p>
+
         <h2 id="Encoding">エンコーディングは? (CLI,GUI)</h2>
         <p>すべてのCLI版バージョン、機能においてSHIFT-JISで出力されます。<br>
             つまり、<strong>英数字と一部の記号以外の文字が含まれている場合を除き、RJCによって作られたファイルをそのまま利用できます。</strong><br>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <title>RealTrainModのsounds.jsonを作る方法</title>
+        <meta name="description" content="RealTrainMod (RTM) の sounds.json を 作る (記述する) 方法" />
+        <link rel="stylesheet" href="../../Blog/css/Blog.css" />
+    </head>
+<body>
+    <div class="title">
+    <h1>sounds.jsonの作り方</h1>
+    <p>執筆: akikawa9616, 11-10-2024</p>
+    <hr>
+    </div>
+    <div class="main">
+        <h2>はじめに</h2>
+        <p>こんにちは。私です。<br>
+            このページではRealTrainModのsounds.jsonを作成する方法について、75%くらいがメモと同じくらい適当に記述します。<br>
+            構文が知りたいだけなら、<a href="../Docs/json.html#sounds.json">RealTrainModのJsonについてのドキュメント</a>をご覧いただくことをお勧めします。
+            複数の事項について注意する必要があります。
+            <ol>
+                <li>作成環境がWindowsであること。 Mac/Linuxユーザにとっては有益なドキュメントでないかもしれません。</li>
+                <li>動作確認環境が1.12.2であること。 1.7.10ユーザにとっては有益なドキュメントでないかもしれません。</li>
+            </ol>
+        </p>
+        <h2>1. 用意</h2>
+        <p>sounds.jsonを作るためには、必ず以下のソフトウェア等が必要です。
+            <ul>
+                <li> テキストエディタ(メモ帳,VisualStudioCodeなど)</li>
+                <li> ファイル/フォルダ操作が可能なソフトウェア(explorer.exe,cmd.exeなど)</li>
+                <li> モチベーション</li>
+            </ul>
+            以上の内、テキストエディタは使い慣れた物がよいでしょう。<br>
+            モチベーションはどこにも売ってないかもしれませんが、なんとかしてください。
+        </p>
+        <h2>2. ファイルを作成する</h2>
+        <p>いつも通りにjsonファイルを作成してください。そしてそのファイルの名前/拡張子を"sounds.json"にします。 コマンドラインで作りたいなら<code>echo; &gt;%cd%\sounds.json</code>が一番楽です。<br></p>
+        <h2>3. 内容を記述する</h2>
+        <p>Jsonなので1行目は<code>{</code>のみを記述します。これはいつも通りですよね? <br>
+            2行目からが本番です。まず、キー名を考えなければいけません。キー名の構文は"フォルダ名.ファイル名(.oggを省略)"です。 例えば、"assets/sound_hoge/sounds/train/testfile1.ogg"をサウンド追加する場合のキー名は、"train.testfile1"となります。 キー名が決定したら後は構文に従って配置するのみです。 キー名が"train.testfile1"の場合の2行目は <code>"train.testfile1": { </code>となります。<br>
+            3行目は、<code>"category": "neutral",</code>とすることが一般的とされています。 それに従うべきです。<br>
+            4行目は、2行目で使用したキー名の<code>.</code>を<code>/</code>に置き換えたものを"sounds"キー内の配列内に配置すべきです。 2行目の例で使用したものを代入すると、<code>"sounds": ["train/testfile1"]</code>となります。
+            5行目で1つのサウンドを追加するのみの場合は終了です。<code>}</code>を追加してファイルを保存し、"assets/sounds_*/sounds.json"に成果物を配置してください。 2以上のサウンドを1つのsounds.jsonで追加する場合は、<code>},</code>を5行目に記述し、2~5行目をもう一度同じファイルに書くことで完了します。(もちろん、この場合も必ず最後の行は<code>}</code>である必要があります。)
+        </p>
+        <h2>4. 成果物のチェック</h2>
+        <blockquote class="code">
+            <p><span style="color: rgb(0, 255, 0);">{</span><br>
+                "train.testfile1": <span style="color: yellow;">{</span><br>
+                "category": "neutral",<br>
+                "sounds": <span style="color: rgb(234, 165, 255);">[</span>"train/testfile1"<span style="color: rgb(234, 165, 255);">]</span><br>
+            <span style="color: yellow;">}</span><br>
+            <span style="color: rgb(0, 255, 0);">}</span></p>
+        </blockquote>
+        <p>最後に、JSONのチェックを行う必要があります。 以上の構文になっていますか? もし、構文が間違っていれば、もう一度読み直すか、上記の構文に合わせてすこし修正してみてください。<br>
+            構文があってそうなら、実際にRTMに読み込ませてみましょう。(確認方法はRTMのスピーカーがお勧め) 正常に動作したら、完成です。</p> 
+    </div>
+    <div class="sidebar"><iframe src="../frame/sidebar.htm"></iframe></div>
+    <div class="copyright"><iframe src="../../Blog/frame/copyright.htm"></iframe></div>
+</body>
+<script src="../../Blog/js/SidebarHeight.js"></script>
+</html>

@@ -1,6 +1,10 @@
 a:link {
     color: rgb(175, 210, 255);
     } 
+a.haikei:link {
+  color: #b0fbff;
+  background-color: #298086;
+}
 a:visited {
     color: rgb(151, 44, 250);
 }
@@ -210,4 +214,3 @@ td {
   border: 2px solid #298086;
   padding: 8px 10px;
 }
-

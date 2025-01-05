@@ -5,4 +5,4 @@ RtmJsonCreatorをブラウザ上で体験できます。
 https://akikawaken.github.io/RJC/main/
 
 # らいせんす
-MIT
+MIT License

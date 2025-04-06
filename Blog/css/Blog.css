@@ -233,3 +233,7 @@ th.head + th::before {
   border-top: var(--arrow-size) solid transparent;
   border-bottom: var(--arrow-size) solid transparent;
 }
+
+p {
+  word-break: break-all;
+}
